@@ -1,0 +1,31 @@
+#Bashrc for MAC
+
+#User Scripts
+export PATH=$PATH:~/bin/:~/bin/munkymorgy_scripts_generic:~/bin/munkymorgy_scripts_osx
+
+#Extra paths for manual ruby update
+#http://hivelogic.com/articles/compiling-ruby-rubygems-and-rails-on-snow-leopard/
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+#For Darwin Ports
+export PATH=/opt/local/bin/:$PATH
+export PATH=/opt/local/sbin/:$PATH
+
+#Add path for mysql package
+export PATH=$PATH:/usr/local/mysql/bin/
+
+#Add Path for google code install of git (Source control)
+export PATH=$PATH:/usr/local/git/bin/
+
+#Path for fink (Package Managment)
+export PATH=/sw/bin/:$PATH
+
+#Add jruby to path
+#export PATH="$PATH:~/bin/jruby"
+
+################################
+## Custom Alias
+################################
+
+alias tkdiff="/Applications/TkDiff.app/Contents/MacOS/Wish\ Shell"
