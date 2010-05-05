@@ -58,3 +58,32 @@ alias h='history'
 
 alias reload='source ~/.bashrc'
 
+############################
+## Load Files if Present
+############################
+if [-f ./.bashrc_work ]
+then 
+   source ./.bashrc_work
+fi
+
+if [-f ./.bashrc_mac ]
+then 
+   source ./.bashrc_mac
+fi
+
+if [-f ./.bashrc_webfaction ]
+then 
+   source ./.bashrc_webfaction
+fi
+
+
+
+
+
+
+
+
+
+
+
+
