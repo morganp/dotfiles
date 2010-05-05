@@ -1,7 +1,7 @@
 #Bashrc for MAC
 
 #User Scripts
-export PATH=$PATH:~/bin/:~/bin/munkymorgy_scripts_generic:~/bin/munkymorgy_scripts_osx
+export PATH=$PATH:~/bin/:~/bin/scripts_generic:~/bin/munkymorgy_scripts_osx
 
 #Extra paths for manual ruby update
 #http://hivelogic.com/articles/compiling-ruby-rubygems-and-rails-on-snow-leopard/
@@ -20,6 +20,9 @@ export PATH=$PATH:/usr/local/git/bin/
 
 #Path for fink (Package Managment)
 export PATH=/sw/bin/:$PATH
+
+#Ruby Enterprise 1.8.7
+export PATH=~/bin/ruby-ee-1.8.7/bin:$PATH
 
 #Add jruby to path
 #export PATH="$PATH:~/bin/jruby"
