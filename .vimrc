@@ -1,3 +1,7 @@
+
+"~/.vimrc should be a link here or contain the following:
+"so ~/.unix_config/.vimrc
+
 set scrolloff=3
 syntax on
 syntax enable
@@ -6,11 +10,6 @@ set number
 set showmatch
 set showmode
 
-
-
-"----------------------------------
-"-copied from Mourge.servebeer.com-
-"----------------------------------
 
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start	" more powerful backspacing
@@ -150,9 +149,19 @@ set showcmd		   " Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
 set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
+set autowrite		" Automatically save before commands like :next and :make
 
 " Source a global configuration file if available
-if filereadable("/etc/vimrc")
-  source /etc/vimrc
-endif
+"if filereadable("/etc/vimrc")
+"  source /etc/vimrc
+"endif
+
+map <D-S-]> gt
+map <D-S-[> gT
+map <D-0> :tablast<CR>
+
+"TODO add check if NERDTree plugin is in place
+"Load NERDTree and put cursor in other window
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
