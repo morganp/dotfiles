@@ -160,6 +160,8 @@ map <D-S-]> gt
 map <D-S-[> gT
 map <D-0> :tablast<CR>
 
+"get NerdTree
+" http://www.vim.org/scripts/script.php?script_id=1658
 "TODO add check if NERDTree plugin is in place
 "Load NERDTree and put cursor in other window
 autocmd VimEnter * NERDTree
