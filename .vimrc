@@ -21,6 +21,11 @@ set tabstop=3          " number of spaces inserted when tab is hit
 set shiftwidth=3       " used with autoindent (should equal tabstop)
 set softtabstop=3      " if set below tabstop will insert this many spaces (when greater then tab will convert to tab) 
 
+"Set wrapping  http://vimcasts.org/e/16
+" NB list shows white space byt breaks linebreak
+set wrap linebreak nolist
+
+
 " Setting upo the status line along the bottom
 set showcmd          " Always show command line in the status
 set ch=2             " Command line 2 lines high
@@ -28,8 +33,8 @@ set ls=2             " Status 2 lines high
 
 " Now we set some defaults for the editor
 " set linebreak		" Don't wrap words by default
-"set textwidth=0		" Don't wrap lines by default
-"set nobackup		" Don't keep a backup file
+" set textwidth=0		" Don't wrap lines by default
+" set nobackup		   " Don't keep a backup file
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 			" 50 lines of registers
          " 
@@ -69,6 +74,7 @@ if &term =~ "xterm"
    set mouse=a
 endif
 
+set mouse=a
 
 " Set nice colors
 " 0: Black
@@ -120,6 +126,8 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
 
+"Somthing in the above does not work well with gvim
+colorscheme torte
 
 
 augroup cprog

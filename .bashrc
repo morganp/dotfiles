@@ -22,10 +22,29 @@ export LS_COLORS
 
 ## BASH Prompt
 ## http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
+## Colours from 
+##  http://www.marksanborn.net/linux/adding-color-and-customize-the-bash-prompt-ps1/
 #PS1='\s-\v\$'
 #PS1='\h$ '
-export PS1='\[\033[01;32m\]\h \[\033[01;34m\]\W \$ \[\033[00m\]'
 
+ps_lgreen='\[\033[01;32m\]'
+ps_lblue='\[\033[01;34m\]'
+ps_lred='\[\033[01;31m\]'
+
+export PS1='\[\033[01;32m\]\h \[\033[01;34m\]\W' #\$ \[\033[00m\]'
+
+#.bashrc is not evaluated for each folder
+#Added git branch to status line
+#if [`git branch 2>/dev/null` == ""]
+#then
+#   echo "no git"
+#else 
+#   echo "bashrc branch"
+#fi
+#export PS1=$PS1" : \$(git branch 2>/dev/null | grep '^*' | colrm 1 2) \$ \[\033[00m\] "
+export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo ' (\[\033[01;31m\]'{}'\[\033[01;34m\])')"
+
+export PS1=$PS1" \$ \[\033[00m\]"
 
 
 
