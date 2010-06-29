@@ -115,6 +115,13 @@ highlight Identifier          cterm=NONE      ctermfg=1          ctermbg=0
 
 highlight LineLenWarn         cterm=NONE      ctermfg=1          ctermbg=0
 
+"Warn with subttle background colours when over 80 chars long
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+match OverLength /\%81v.\+/
+
+
+
+
 augroup cprog
   " Remove all cprog autocommands
   au!
