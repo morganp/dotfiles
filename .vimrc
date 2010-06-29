@@ -76,6 +76,10 @@ endif
 
 set mouse=a
 
+
+"The followin can be written out to a colorscheme.vim 
+" file and included sepreately. This would have the added 
+" bonus the :colorscheme x could be used to switch back
 " Set nice colors
 " 0: Black
 " 1: Red
@@ -85,44 +89,56 @@ set mouse=a
 " 5: Magenta
 " 6: Cyan
 " 7: White
-set background=dark
-highlight clear
 
-highlight Normal              cterm=NONE      ctermfg=2          ctermbg=0
-highlight Statement           cterm=bold      ctermfg=7          ctermbg=0
-highlight StatementInclude    cterm=bold      ctermfg=7          ctermbg=0
-highlight Comment             cterm=NONE      ctermfg=6          ctermbg=0
-highlight PreProc             cterm=NONE      ctermfg=5          ctermbg=0
+colorscheme torte
+"set background=dark
+"highlight clear
 
-highlight StatusLine          cterm=bold      ctermfg=0          ctermbg=7
-highlight NonText                                                ctermbg=0
-highlight Constant            cterm=NONE      ctermfg=3          ctermbg=0
-highlight Special             cterm=NONE      ctermfg=7          ctermbg=0
-highlight ModeMsg             cterm=bold      ctermfg=0          ctermbg=7
+" GUI
+"highlight Normal              cterm=NONE      ctermfg=2          ctermbg=0
+"highlight Statement           cterm=bold      ctermfg=7          ctermbg=0
+"highlight StatementInclude    cterm=bold      ctermfg=7          ctermbg=0
+highlight Comment             cterm=NONE     ctermfg=2         ctermbg=0
+highlight Comment             gui=NONE       guifg=Green       guibg=Black
+"highlight PreProc             cterm=NONE      ctermfg=5          ctermbg=0
 
-highlight StatusLine          cterm=NONE      ctermfg=0          ctermbg=7
-highlight StatusLineNC        cterm=NONE      ctermfg=DarkGray   ctermbg=7
+"highlight StatusLine          cterm=bold      ctermfg=0          ctermbg=7
+"highlight NonText                                                ctermbg=0
+"highlight Constant            cterm=NONE      ctermfg=3          ctermbg=0
+"highlight Special             cterm=NONE      ctermfg=7          ctermbg=0
+"highlight ModeMsg             cterm=bold      ctermfg=0          ctermbg=7
 
-highlight Cursor              cterm=reverse   ctermfg=2          ctermbg=2
-highlight iCursor             cterm=reverse   ctermfg=3          ctermbg=3
+"highlight StatusLine          cterm=NONE      ctermfg=0          ctermbg=7
+"highlight StatusLineNC        cterm=NONE      ctermfg=DarkGray   ctermbg=7
 
-highlight Visual              cterm=NONE      ctermfg=0          ctermbg=7
-highlight IncSearch           cterm=reverse   ctermfg=2          ctermbg=0
-highlight Search              cterm=reverse   ctermfg=2          ctermbg=0
-highlight MatchParen          cterm=NONE      ctermfg=4          ctermbg=0
-highlight Pmenu               cterm=NONE      ctermfg=darkgrey   ctermbg=lightgrey
-highlight PmenuSel            cterm=NONE      ctermfg=white      ctermbg=darkgrey
+"highlight Cursor              cterm=reverse   ctermfg=2          ctermbg=2
+"highlight iCursor             cterm=reverse   ctermfg=3          ctermbg=3
 
-highlight Error               cterm=NONE      ctermfg=0          ctermbg=4
-highlight Todo                cterm=NONE      ctermfg=0          ctermbg=4
+"highlight Visual              cterm=NONE      ctermfg=0          ctermbg=7
+"highlight IncSearch           cterm=reverse   ctermfg=2          ctermbg=0
+"highlight Search              cterm=reverse   ctermfg=2          ctermbg=0
+"highlight MatchParen          cterm=NONE      ctermfg=4          ctermbg=0
+"highlight Pmenu               cterm=NONE      ctermfg=darkgrey   ctermbg=lightgrey
+"highlight PmenuSel            cterm=NONE      ctermfg=white      ctermbg=darkgrey
 
-highlight Type                cterm=NONE      ctermfg=7          ctermbg=0
-highlight Identifier          cterm=NONE      ctermfg=1          ctermbg=0
+" Console
+highlight Error               cterm=NONE        ctermfg=0         ctermbg=4
+highlight Todo                cterm=NONE        ctermfg=0         ctermbg=4
 
-highlight LineLenWarn         cterm=NONE      ctermfg=1          ctermbg=0
+" GUI
+highlight Error               gui=NONE          guifg=Black       guibg=blue
+highlight Todo                gui=NONE          guifg=Black       guibg=blue
+
+"highlight Type                cterm=NONE      ctermfg=7          ctermbg=0
+"highlight Identifier          cterm=NONE      ctermfg=1          ctermbg=0
+
+"highlight LineLenWarn         cterm=NONE      ctermfg=1          ctermbg=0
+
+" Console
+"highlight Visual              cterm=reverse
 
 "Somthing in the above does not work well with gvim
-colorscheme torte
+"colorscheme torte
 
 
 augroup cprog
