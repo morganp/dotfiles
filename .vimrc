@@ -74,6 +74,7 @@ if &term =~ "xterm"
    set mouse=a
 endif
 
+set mouse=a
 
 " Set nice colors
 " 0: Black
@@ -120,6 +121,10 @@ highlight Identifier          cterm=NONE      ctermfg=1          ctermbg=0
 
 highlight LineLenWarn         cterm=NONE      ctermfg=1          ctermbg=0
 
+"Somthing in the above does not work well with gvim
+colorscheme torte
+
+
 augroup cprog
   " Remove all cprog autocommands
   au!
@@ -164,6 +169,7 @@ set autowrite		" Automatically save before commands like :next and :make
 map <D-S-]> gt
 map <D-S-[> gT
 map <D-0> :tablast<CR>
+
 
 "TODO add check if NERDTree plugin is in place
 "Load NERDTree and put cursor in other window
