@@ -137,6 +137,11 @@ highlight Todo                gui=NONE          guifg=Black       guibg=blue
 " Console
 "highlight Visual              cterm=reverse
 
+"Warn with subttle background colours when over 80 chars long
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+match OverLength /\%81v.\+/
+
+
 "Somthing in the above does not work well with gvim
 "colorscheme torte
 
@@ -186,7 +191,8 @@ map <D-S-]> gt
 map <D-S-[> gT
 map <D-0> :tablast<CR>
 
-
+"get NerdTree
+" http://www.vim.org/scripts/script.php?script_id=1658
 "TODO add check if NERDTree plugin is in place
 "Load NERDTree and put cursor in other window
 autocmd VimEnter * NERDTree
