@@ -1,4 +1,7 @@
 #Work Specific .bashrc Settings
+. /res/modules/init/bash
+module load wolfson
+
 
 # Set this to your preferred printer.
 PRINTER=2prm14500
@@ -21,6 +24,13 @@ export PATH=~/bin/apache-ant-1.7.1/bin:$PATH
 export PATH=/user/eng/morgan/bin:$PATH
 export PATH=/home/morgan/.gem/ruby/1.8/bin:$PATH
 
+###############################
+## Fix DISPLAY when reconnecting to screen
+###############################
+if [ -f ~/.realdisplay ];
+then
+   source ~/.realdisplay
+fi
 
 ###############################
 ## Specific alias
