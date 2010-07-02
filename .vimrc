@@ -187,9 +187,20 @@ set autowrite		" Automatically save before commands like :next and :make
 "  source /etc/vimrc
 "endif
 
-map <D-S-]> gt
-map <D-S-[> gT
-map <D-0> :tablast<CR>
+"map : in normal mode
+"imap : map key in insert mode
+"D apple key
+"Ctrl key
+"<Esc> escape key
+"<CR> Add return to run command 
+  
+map  <D-S-]> gt
+map  <D-S-[> gT
+map  <D-0> :tablast<CR>
+map  <C-t> :NERDTreeToggle<CR>
+map  <C-s> :w<cr>
+imap <C-s> <Esc>:w<cr>
+ 
 
 "get NerdTree
 " http://www.vim.org/scripts/script.php?script_id=1658
