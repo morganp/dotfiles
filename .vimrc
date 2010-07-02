@@ -194,13 +194,31 @@ set autowrite		" Automatically save before commands like :next and :make
 "<Esc> escape key
 "<CR> Add return to run command 
   
-map  <D-S-]> gt
-map  <D-S-[> gT
-map  <D-0> :tablast<CR>
-map  <C-t> :NERDTreeToggle<CR>
-map  <C-s> :w<cr>
-imap <C-s> <Esc>:w<cr>
- 
+"map  <D-S-]> gt
+"map  <D-S-[> gT
+"map  <D-0> :tablast<CR>
+
+#####################################
+### Key Mappings
+#####################################
+if has("unix")
+   if system("uname") == "Darwin"
+      map  <D-t> :NERDTreeToggle<CR>
+      map  <D-s> :w<cr>
+      imap <D-s> <Esc>:w<cr>
+      map  <D-S-]> gt
+      map  <D-S-[> gT
+      map  <D-0> :tablast<CR>
+   else
+      map  <C-t> :NERDTreeToggle<CR>
+      map  <C-s> :w<cr>
+      imap <C-s> <Esc>:w<cr>
+      map  <C-S-]> gt
+      map  <C-S-[> gT
+      map  <C-0> :tablast<CR>
+   endif
+endif
+
 
 "get NerdTree
 " http://www.vim.org/scripts/script.php?script_id=1658
