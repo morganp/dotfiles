@@ -198,9 +198,9 @@ set autowrite		" Automatically save before commands like :next and :make
 "map  <D-S-[> gT
 "map  <D-0> :tablast<CR>
 
-#####################################
-### Key Mappings
-#####################################
+"#####################################
+"### Key Mappings
+"#####################################
 if has("unix")
    if system("uname") == "Darwin"
       map  <D-t> :NERDTreeToggle<CR>
