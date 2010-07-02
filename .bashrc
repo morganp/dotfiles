@@ -1,5 +1,30 @@
 # Morgy .bashrc
 
+############################
+## Load Files if Present
+############################
+
+#if [ -f ~/.unix_config/.bashrc ];
+#then 
+#   source ~/.unix_config/.bashrc
+#fi
+#
+#if [ -f ~/.unix_config/.bashrc_work ];
+#then 
+#   source ~/.unix_config/.bashrc_work
+#fi
+#
+#if [ -f ~/.unix_config/.bashrc_mac ];
+#then 
+#   source ~/.unix_config/.bashrc_mac
+#fi
+#
+#if [ -f ~/.unix_config/.bashrc_webfaction ];
+#then 
+#   source ~/.unix_config/.bashrc_webfaction
+#fi
+
+
 #Add Paths
 export PATH=$PATH:./
 export PATH=$PATH:~/bin
@@ -77,23 +102,7 @@ alias h='history'
 
 alias reload='source ~/.bashrc'
 
-############################
-## Load Files if Present
-############################
-if [ -f ./.bashrc_work ];
-then 
-   source ./.bashrc_work
-fi
 
-if [ -f ./.bashrc_mac ];
-then 
-   source ./.bashrc_mac
-fi
-
-if [ -f ./.bashrc_webfaction ];
-then 
-   source ./.bashrc_webfaction
-fi
 
 
 
