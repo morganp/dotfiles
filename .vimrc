@@ -219,6 +219,9 @@ if has("unix")
    endif
 endif
 
+map <D-]> :s/^/#<cr>
+map <D-[> :s/^#/<cr>
+
 
 "get NerdTree
 " http://www.vim.org/scripts/script.php?script_id=1658
