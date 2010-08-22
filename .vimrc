@@ -112,7 +112,7 @@ highlight Comment             gui=NONE       guifg=Green       guibg=Black
 "highlight StatusLineNC        cterm=NONE      ctermfg=DarkGray   ctermbg=7
 
 "highlight Cursor              cterm=reverse   ctermfg=2          ctermbg=2
-"highlight iCursor             cterm=reverse   ctermfg=3          ctermbg=3
+highlight iCursor             cterm=reverse   ctermfg=3          ctermbg=3
 
 "highlight Visual              cterm=NONE      ctermfg=0          ctermbg=7
 "highlight IncSearch           cterm=reverse   ctermfg=2          ctermbg=0
@@ -203,14 +203,14 @@ set autowrite		" Automatically save before commands like :next and :make
 "#####################################
 if has("unix")
    if system("uname") == "Darwin"
-      map  <D-t> :NERDTreeToggle<CR>
+      map  <D-e> :NERDTreeToggle<CR>
       map  <D-s> :w<cr>
       imap <D-s> <Esc>:w<cr>
       map  <D-S-]> gt
       map  <D-S-[> gT
       map  <D-0> :tablast<CR>
    else
-      map  <C-t> :NERDTreeToggle<CR>
+      map  <C-e> :NERDTreeToggle<CR>
       map  <C-s> :w<cr>
       imap <C-s> <Esc>:w<cr>
       map  <C-S-]> gt
@@ -219,9 +219,12 @@ if has("unix")
    endif
 endif
 
-map <D-]> :s/^/#<cr>
-map <D-[> :s/^#/<cr>
+"map <D-]> :s/^/#<cr>
+"map <D-[> :s/^#/<cr>
+"map <C-]> :s/^/escape(b:comment_leader)<cr>
+"map <C-[> :s/^#/<cr>
 
+so ~/.unix_config/comments.vim
 
 "get NerdTree
 " http://www.vim.org/scripts/script.php?script_id=1658
