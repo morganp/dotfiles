@@ -226,6 +226,11 @@ endif
 
 so ~/.unix_config/comments.vim
 
+set hlsearch "Enable Searcg Highlighting
+"Setting up ':Clear' to clear search sstring
+:com! Clear let @/ = ""
+
+
 "get NerdTree
 " http://www.vim.org/scripts/script.php?script_id=1658
 "TODO add check if NERDTree plugin is in place
