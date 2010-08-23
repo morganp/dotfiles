@@ -27,10 +27,10 @@ export PATH=/home/morgan/.gem/ruby/1.8/bin:$PATH
 ###############################
 ## Fix DISPLAY when reconnecting to screen
 ###############################
-if [ -f ~/.realdisplay ];
-then
-   source ~/.realdisplay
-fi
+#if [ -f ~/.realdisplay ];
+#then
+#   source ~/.realdisplay
+#fi
 
 ###############################
 ## Specific alias
