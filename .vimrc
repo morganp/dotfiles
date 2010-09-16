@@ -137,6 +137,12 @@ highlight Todo                gui=NONE          guifg=Black       guibg=blue
 " Console
 "highlight Visual              cterm=reverse
 
+" For Projector Presintations
+"set background=light
+"highlight clear
+"colorscheme shine 
+
+
 "Warn with subttle background colours when over 80 chars long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
 match OverLength /\%81v.\+/
