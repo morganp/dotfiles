@@ -2,6 +2,10 @@
 "~/.vimrc should be a link here or contain the following:
 "so ~/.unix_config/.vimrc
 
+" Set up the search path for plugins colors and syntax files
+set runtimepath=$HOME/.unix_config/vim,$VIMRUNTIME
+
+
 set scrolloff=3
 syntax on
 syntax enable
@@ -11,15 +15,21 @@ set showmatch
 set showmode
 
 
-set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set nocompatible	   " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start	" more powerful backspacing
-set history=50         " keep 50 lines of command line history
-set ruler              " show the cursor position all the time
-set expandtab          " spaces are used instead of tabs
-set autoindent         " always set autoindenting on
-set tabstop=3          " number of spaces inserted when tab is hit
-set shiftwidth=3       " used with autoindent (should equal tabstop)
-set softtabstop=3      " if set below tabstop will insert this many spaces (when greater then tab will convert to tab) 
+set history=50          " keep 50 lines of command line history
+set ruler               " show the cursor position all the time
+set expandtab           " spaces are used instead of tabs
+set autoindent          " always set autoindenting on
+set tabstop=3           " number of spaces inserted when tab is hit
+set shiftwidth=3        " used with autoindent (should equal tabstop)
+set softtabstop=3       " if set below tabstop will insert this many spaces 
+
+"Experimenting with vim-ruby
+filetype on             " Enable filetype detection
+filetype indent on      " Enable filetype-specific indenting
+filetype plugin on      " Enable filetype-specific plugins
+compiler ruby           " Enable compiler support for ruby
 
 "Set wrapping  http://vimcasts.org/e/16
 " NB list shows white space byt breaks linebreak
