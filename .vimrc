@@ -2,6 +2,10 @@
 "~/.vimrc should be a link here or contain the following:
 "so ~/.unix_config/.vimrc
 
+" Set up the search path for plugins colors and syntax files
+set runtimepath=$HOME/.unix_config/vim,$VIMRUNTIME
+
+
 set scrolloff=3
 syntax on
 syntax enable
@@ -11,15 +15,21 @@ set showmatch
 set showmode
 
 
-set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set nocompatible	   " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start	" more powerful backspacing
-set history=50         " keep 50 lines of command line history
-set ruler              " show the cursor position all the time
-set expandtab          " spaces are used instead of tabs
-set autoindent         " always set autoindenting on
-set tabstop=3          " number of spaces inserted when tab is hit
-set shiftwidth=3       " used with autoindent (should equal tabstop)
-set softtabstop=3      " if set below tabstop will insert this many spaces (when greater then tab will convert to tab) 
+set history=50          " keep 50 lines of command line history
+set ruler               " show the cursor position all the time
+set expandtab           " spaces are used instead of tabs
+set autoindent          " always set autoindenting on
+set tabstop=3           " number of spaces inserted when tab is hit
+set shiftwidth=3        " used with autoindent (should equal tabstop)
+set softtabstop=3       " if set below tabstop will insert this many spaces 
+
+"Experimenting with vim-ruby
+filetype on             " Enable filetype detection
+filetype indent on      " Enable filetype-specific indenting
+filetype plugin on      " Enable filetype-specific plugins
+compiler ruby           " Enable compiler support for ruby
 
 "Set wrapping  http://vimcasts.org/e/16
 " NB list shows white space byt breaks linebreak
@@ -112,7 +122,7 @@ highlight Comment             gui=NONE       guifg=Green       guibg=Black
 "highlight StatusLineNC        cterm=NONE      ctermfg=DarkGray   ctermbg=7
 
 "highlight Cursor              cterm=reverse   ctermfg=2          ctermbg=2
-"highlight iCursor             cterm=reverse   ctermfg=3          ctermbg=3
+highlight iCursor             cterm=reverse   ctermfg=3          ctermbg=3
 
 "highlight Visual              cterm=NONE      ctermfg=0          ctermbg=7
 "highlight IncSearch           cterm=reverse   ctermfg=2          ctermbg=0
@@ -136,6 +146,12 @@ highlight Todo                gui=NONE          guifg=Black       guibg=blue
 
 " Console
 "highlight Visual              cterm=reverse
+
+" For Projector Presintations
+"set background=light
+"highlight clear
+"colorscheme shine 
+
 
 "Warn with subttle background colours when over 80 chars long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
@@ -203,14 +219,14 @@ set autowrite		" Automatically save before commands like :next and :make
 "#####################################
 if has("unix")
    if system("uname") == "Darwin"
-      map  <D-t> :NERDTreeToggle<CR>
+      map  <D-e> :NERDTreeToggle<CR>
       map  <D-s> :w<cr>
       imap <D-s> <Esc>:w<cr>
       map  <D-S-]> gt
       map  <D-S-[> gT
       map  <D-0> :tablast<CR>
    else
-      map  <C-t> :NERDTreeToggle<CR>
+      map  <C-e> :NERDTreeToggle<CR>
       map  <C-s> :w<cr>
       imap <C-s> <Esc>:w<cr>
       map  <C-S-]> gt
@@ -219,8 +235,16 @@ if has("unix")
    endif
 endif
 
-map <D-]> :s/^/#<cr>
-map <D-[> :s/^#/<cr>
+"map <D-]> :s/^/#<cr>
+"map <D-[> :s/^#/<cr>
+"map <C-]> :s/^/escape(b:comment_leader)<cr>
+"map <C-[> :s/^#/<cr>
+
+so ~/.unix_config/comments.vim
+
+set hlsearch "Enable Searcg Highlighting
+"Setting up ':Clear' to clear search sstring
+:com! Clear let @/ = ""
 
 
 "get NerdTree

@@ -41,6 +41,9 @@ export PATH=$PATH:/usr/local/git/bin/
 ################################
 ## Custom Alias
 ################################
+# Colour ls
+export CLICOLOR=1
+alias ll="/bin/ls -lF"
 
 
 alias nginx="nginx -p ~/bin/nginx/ -s stop && nginx -p ~/bin/nginx/ "
