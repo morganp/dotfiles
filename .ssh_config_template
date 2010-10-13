@@ -1,0 +1,12 @@
+Host phillip
+HostName foobar.net
+Port 8927
+User lee
+IdentityFile ~/.ssh/id_rsa.pub
+
+Host injekt
+HostName injekt.net
+Port 2322
+User injekt
+IdentityFile ~/.ssh/id_rsa.pub
+
