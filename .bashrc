@@ -24,6 +24,8 @@
 #   source ~/.unix_config/.bashrc_webfaction
 #fi
 
+#SSH Completion
+source ~/.unix_config/.ssh-completion
 
 #Add Paths
 export PATH=$PATH:./
