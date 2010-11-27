@@ -5,6 +5,8 @@
 " Set up the search path for plugins colors and syntax files
 set runtimepath=$HOME/.unix_config/vim,$VIMRUNTIME
 
+"Setting mac vim font size
+:set guifont=Menlo:h13
 
 set scrolloff=3
 syntax on
@@ -21,9 +23,9 @@ set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set expandtab           " spaces are used instead of tabs
 set autoindent          " always set autoindenting on
-set tabstop=3           " number of spaces inserted when tab is hit
-set shiftwidth=3        " used with autoindent (should equal tabstop)
-set softtabstop=3       " if set below tabstop will insert this many spaces 
+set tabstop=2           " number of spaces inserted when tab is hit
+set shiftwidth=2        " used with autoindent (should equal tabstop)
+set softtabstop=2       " if set below tabstop will insert this many spaces 
 
 "Experimenting with vim-ruby
 filetype on             " Enable filetype detection
@@ -100,52 +102,22 @@ set mouse=a
 " 6: Cyan
 " 7: White
 
-colorscheme torte
-"set background=dark
-"highlight clear
 
-" GUI
-"highlight Normal              cterm=NONE      ctermfg=2          ctermbg=0
-"highlight Statement           cterm=bold      ctermfg=7          ctermbg=0
-"highlight StatementInclude    cterm=bold      ctermfg=7          ctermbg=0
-highlight Comment             cterm=NONE     ctermfg=2         ctermbg=0
-highlight Comment             gui=NONE       guifg=Green       guibg=Black
-"highlight PreProc             cterm=NONE      ctermfg=5          ctermbg=0
+"colorscheme torte
+"colorscheme zenburn
+colorscheme ir_black
 
-"highlight StatusLine          cterm=bold      ctermfg=0          ctermbg=7
-"highlight NonText                                                ctermbg=0
-"highlight Constant            cterm=NONE      ctermfg=3          ctermbg=0
-"highlight Special             cterm=NONE      ctermfg=7          ctermbg=0
-"highlight ModeMsg             cterm=bold      ctermfg=0          ctermbg=7
 
-"highlight StatusLine          cterm=NONE      ctermfg=0          ctermbg=7
-"highlight StatusLineNC        cterm=NONE      ctermfg=DarkGray   ctermbg=7
-
-"highlight Cursor              cterm=reverse   ctermfg=2          ctermbg=2
-highlight iCursor             cterm=reverse   ctermfg=3          ctermbg=3
-
-"highlight Visual              cterm=NONE      ctermfg=0          ctermbg=7
-"highlight IncSearch           cterm=reverse   ctermfg=2          ctermbg=0
-"highlight Search              cterm=reverse   ctermfg=2          ctermbg=0
-"highlight MatchParen          cterm=NONE      ctermfg=4          ctermbg=0
-"highlight Pmenu               cterm=NONE      ctermfg=darkgrey   ctermbg=lightgrey
-"highlight PmenuSel            cterm=NONE      ctermfg=white      ctermbg=darkgrey
 
 " Console
+highlight Comment             cterm=NONE        ctermfg=2         ctermbg=0
 highlight Error               cterm=NONE        ctermfg=0         ctermbg=4
 highlight Todo                cterm=NONE        ctermfg=0         ctermbg=4
 
 " GUI
+highlight Comment             gui=NONE          guifg=Green       guibg=Black
 highlight Error               gui=NONE          guifg=Black       guibg=blue
 highlight Todo                gui=NONE          guifg=Black       guibg=blue
-
-"highlight Type                cterm=NONE      ctermfg=7          ctermbg=0
-"highlight Identifier          cterm=NONE      ctermfg=1          ctermbg=0
-
-"highlight LineLenWarn         cterm=NONE      ctermfg=1          ctermbg=0
-
-" Console
-"highlight Visual              cterm=reverse
 
 " For Projector Presintations
 "set background=light
@@ -156,10 +128,6 @@ highlight Todo                gui=NONE          guifg=Black       guibg=blue
 "Warn with subttle background colours when over 80 chars long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
 match OverLength /\%81v.\+/
-
-
-"Somthing in the above does not work well with gvim
-"colorscheme torte
 
 
 augroup cprog

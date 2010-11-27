@@ -3,6 +3,9 @@
 #User Scripts
 export PATH=$PATH:~/bin/scripts_generic
 
+#Scheme
+export PATH=$PATH:~/bin/racket/bin
+
 #Manual nginx install
 export PATH=$PATH:~/bin/nginx/sbin
 
