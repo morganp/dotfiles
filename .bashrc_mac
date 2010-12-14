@@ -11,6 +11,8 @@ export PATH=$PATH:~/bin/nginx/sbin
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
+export PATH="~/sbin:$PATH"
+
 #Moving to Homebrew and putting those executables in ~/bin
 #For Darwin Ports
 #export PATH=/opt/local/bin/:$PATH
@@ -26,10 +28,15 @@ export PATH=$PATH:/usr/local/mysql/bin/
 export PATH=$PATH:/usr/local/git/bin/
 
 #Ruby Enterprise 1.8.7
-export PATH=~/bin/ruby-ee-1.8.7/bin:$PATH
+# Trying to use RVM now /usr/bin/ruby
+#export PATH=~/bin/ruby-ee-1.8.7/bin:$PATH
 
 #Add jruby to path
 #export PATH="$PATH:~/bin/jruby"
+
+# Stuff for RVM Ruby version manager
+# http://rvm.beginrescueend.com/
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 ################################
 ## Custom Alias
@@ -38,4 +45,6 @@ export PATH=~/bin/ruby-ee-1.8.7/bin:$PATH
 export CLICOLOR=1
 alias ll="/bin/ls -lF"
 
+
+alias nginx="nginx -p ~/bin/nginx/ -s stop && nginx -p ~/bin/nginx/ "
 alias tkdiff="/Applications/TkDiff.app/Contents/MacOS/Wish\ Shell"
