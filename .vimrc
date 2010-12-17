@@ -5,8 +5,6 @@
 " Set up the search path for plugins colors and syntax files
 set runtimepath=$HOME/.unix_config/vim,$VIMRUNTIME
 
-"Setting mac vim font size
-:set guifont=Menlo:h13
 
 set scrolloff=3
 syntax on
@@ -58,15 +56,15 @@ set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
 " Set color stuff
 " " t_Co=16 becuase t_Co=8 disalbes bold font
 if &term =~ "xterm"
-   if has("terminfo")
-      set t_Co=16
-      set t_Sf=^[[3%pl%dm
-      set t_Sb=^[[4%pl%dm
-   else
-      set t_Co=16
-      set t_Sf=^[[3%dm
-      set t_Sb=^[[4%dm
-   endif
+  if has("terminfo")
+    set t_Co=16
+    set t_Sf=^[[3%pl%dm
+    set t_Sb=^[[4%pl%dm
+  else
+    set t_Co=16
+    set t_Sf=^[[3%dm
+    set t_Sb=^[[4%dm
+  endif
 endif
 
 set mouse=a
@@ -85,6 +83,12 @@ set mouse=a
 " 6: Cyan
 " 7: White
 
+if has("unix")
+  if system("uname") == "Darwin"
+    "Setting mac vim font size
+    :set guifont=Menlo:h13
+  endif
+endif
 
 "colorscheme torte
 "colorscheme zenburn
@@ -149,7 +153,7 @@ set autowrite		" Automatically save before commands like :next and :make
 "Ctrl key
 "<Esc> escape key
 "<CR> Add return to run command 
-  
+
 "map  <D-S-]> gt
 "map  <D-S-[> gT
 "map  <D-0> :tablast<CR>
@@ -158,21 +162,21 @@ set autowrite		" Automatically save before commands like :next and :make
 "### Key Mappings
 "#####################################
 if has("unix")
-   if system("uname") == "Darwin"
-      map  <D-e> :NERDTreeToggle<CR>
-      map  <D-s> :w<cr>
-      imap <D-s> <Esc>:w<cr>
-      map  <D-S-]> gt
-      map  <D-S-[> gT
-      map  <D-0> :tablast<CR>
-   else
-      map  <C-e> :NERDTreeToggle<CR>
-      map  <C-s> :w<cr>
-      imap <C-s> <Esc>:w<cr>
-      map  <C-S-]> gt
-      map  <C-S-[> gT
-      map  <C-0> :tablast<CR>
-   endif
+  if system("uname") == "Darwin"
+    map  <D-e> :NERDTreeToggle<CR>
+    map  <D-s> :w<cr>
+    imap <D-s> <Esc>:w<cr>
+    map  <D-S-]> gt
+    map  <D-S-[> gT
+    map  <D-0> :tablast<CR>
+  else
+    map  <C-e> :NERDTreeToggle<CR>
+    map  <C-s> :w<cr>
+    imap <C-s> <Esc>:w<cr>
+    map  <C-S-]> gt
+    map  <C-S-[> gT
+    map  <C-0> :tablast<CR>
+  endif
 endif
 
 "map <D-]> :s/^/#<cr>
