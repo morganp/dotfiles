@@ -219,6 +219,6 @@ set hlsearch "Enable Searcg Highlighting
 " http://www.vim.org/scripts/script.php?script_id=1658
 "TODO add check if NERDTree plugin is in place
 "Load NERDTree and put cursor in other window
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+"autocmd VimEnter * NERDTree
+"autocmd VimEnter * wincmd p
 
