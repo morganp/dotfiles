@@ -43,13 +43,9 @@ set showcmd          " Always show command line in the status
 set ch=2             " Command line 2 lines high
 set ls=2             " Status 2 lines high
 
-" Now we set some defaults for the editor
-" set linebreak		" Don't wrap words by default
-" set textwidth=0		" Don't wrap lines by default
-" set nobackup		   " Don't keep a backup file
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
-			" 50 lines of registers
-         " 
+" 50 lines of registers
+
 " Spelling Corrections
 ab teh the
 ab fro for
@@ -58,18 +54,6 @@ ab fro for
 
 " Format the statusline
 set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
-
-
-" Suffixes that get lower priority when doing tab completion for filenames.
-" These are files we are not likely to want to edit or read.
-"set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
-
-" We know xterm-debian is a color terminal
-"if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
-"  set t_Co=16
-"  set t_Sf=[3%dm
-"  set t_Sb=[4%dm
-"endif
 
 " Set color stuff
 " " t_Co=16 becuase t_Co=8 disalbes bold font
@@ -83,7 +67,6 @@ if &term =~ "xterm"
       set t_Sf=^[[3%dm
       set t_Sb=^[[4%dm
    endif
-   set mouse=a
 endif
 
 set mouse=a
@@ -146,17 +129,6 @@ augroup END
 
 au BufNewFile,BufRead *.va,*.vams set ft=verilogams
 au BufNewFile,BufRead *.sv, set ft=verilog
-
-" Make p in Visual mode replace the selected text with the "" register.
-"vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
-
-"if has("autocmd")
- " Enabled file type detection
- " Use the default filetype settings. If you also want to load indent files
- " to automatically do language-dependent indenting add 'indent' as well.
-" filetype plugin on
-"endif " has ("autocmd")
-
 
 " The following are commented out as they cause vim to behave a lot
 " different from regular vi. They are highly recommended though.
