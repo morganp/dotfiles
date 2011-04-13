@@ -3,7 +3,7 @@
 "so ~/.unix_config/.vimrc
 
 " Set up the search path for plugins colors and syntax files
-set runtimepath=$HOME/.unix_config/vim,$VIMRUNTIME
+set runtimepath=$HOME/dotfiles/vim,$VIMRUNTIME
 
 
 set scrolloff=3
@@ -189,6 +189,11 @@ imap jjk <Esc>
 "map <D-[> :s/^#/<cr>
 "map <C-]> :s/^/escape(b:comment_leader)<cr>
 "map <C-[> :s/^#/<cr>
+
+" Enabling the Ruby Txt Object by nelstrom
+" Relies on other things
+filetype plugin on 
+runtime macros/matchit.vim
 
 "so ~/.unix_config/comments.vim
 

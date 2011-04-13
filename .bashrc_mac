@@ -11,10 +11,10 @@ export PATH=$PATH:~/bin/nginx/sbin
 
 #Extra paths for manual ruby update
 #http://hivelogic.com/articles/compiling-ruby-rubygems-and-rails-on-snow-leopard/
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+#export PATH="/usr/local/bin:$PATH"
+#export PATH="/usr/local/sbin:$PATH"
 
-export PATH="~/sbin:$PATH"
+#export PATH="~/sbin:$PATH"
 
 #Moving to Homebrew and putting those executables in ~/bin
 #For Darwin Ports
@@ -44,9 +44,6 @@ export PATH=$PATH:/usr/local/git/bin/
 ################################
 ## Custom Alias
 ################################
-# Colour ls
-export CLICOLOR=1
-alias ll="/bin/ls -lF"
 
 
 alias nginx="nginx -p ~/bin/nginx/ -s stop && nginx -p ~/bin/nginx/ "

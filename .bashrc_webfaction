@@ -1,0 +1,7 @@
+
+#Load standard ruby gem location if it exists
+if [ -d $HOME/.gem/ruby/1.8/bin ]
+then
+  export PATH=$PATH:$HOME/.gem/ruby/1.8/bin
+fi
+
