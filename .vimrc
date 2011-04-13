@@ -179,12 +179,18 @@ if has("unix")
   endif
 endif
 
+"imap maping for insert mode
+"map  maping for normal mode
+
+" type jjk quickly instead of Escape to leave insert mode
+imap jjk <Esc>
+
 "map <D-]> :s/^/#<cr>
 "map <D-[> :s/^#/<cr>
 "map <C-]> :s/^/escape(b:comment_leader)<cr>
 "map <C-[> :s/^#/<cr>
 
-so ~/.unix_config/comments.vim
+"so ~/.unix_config/comments.vim
 
 set hlsearch "Enable Searcg Highlighting
 "Setting up ':Clear' to clear search sstring
