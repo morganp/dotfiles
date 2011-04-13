@@ -107,13 +107,15 @@ fi
 #echo `type ls`
 
 if [[ $gnu == true ]]; then
+  alias la="ls -laFh --color=tty"
   alias ll="ls -lFh --color=tty"
-  alias ls="ls -AFh --color=tty"
+  alias ls="ls -Fh --color=tty"
 elif [[ $bsd == true ]]; then 
   # Colour ls
   export CLICOLOR=1
+  alias la="ls -lFha"
   alias ll="ls -lFh"
-  alias ls="ls -AFh"
+  alias ls="ls -Fh"
 else 
   echo "/n/nOS type not recognised form uname ls not setup correctly"
 fi
