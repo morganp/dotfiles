@@ -15,16 +15,21 @@ end
 
 install_path = File.join( File.expand_path( File.dirname(__FILE__) ), 'dotfiles')
 
-
+#Build list of Files to include with install
 @dotfiles =[]
 
 bashrc = File.join(install_path ,'.bashrc' ) 
 @dotfiles << DotFile.new('.bashrc', "if [ -f #{bashrc} ]; \nthen\n   source #{bashrc} ; \nfi ")
 
+inputrc = File.join(install_path ,'.inputrc' )
+@dotfiles << DotFile.new('.inputrc',"$include #{inputrc}")
 
+vimrc = File.join(install_path ,'.vimrc' )
+@dotfiles << DotFile.new('.vimrc',"so #{vimrc}")
 
-#pp install_path
-#pp @dotfiles
+screenrc = File.join(install_path ,'.screenrc' )
+@dotfiles << DotFile.new('.screenrc',"source #{screenrc}")
+
 
 def check_if_file_exists_and_contains_include( dotfile )
   basic_file =  File.join( ENV['HOME'] ,dotfile.filename )
@@ -34,8 +39,6 @@ def check_if_file_exists_and_contains_include( dotfile )
     # Does it contain the string
     File.open(basic_file, 'r') do |file|
 
-#      text = file.read 
-     
       # Regular expresion escaping except line breaks
       test_string =  Regexp.escape( dotfile.include_s )
       test_string.gsub!( Regexp.escape('\n'), '\n')

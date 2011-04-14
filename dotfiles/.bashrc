@@ -1,4 +1,4 @@
-# Morgy .bashrc
+# .bashrc
 
 ############################
 ## Load Files if Present
@@ -73,6 +73,7 @@ alias n="nedit"
 
 ## Subversion Shortcuts
 alias ss='svn status -u'
+alias gs='git status'
 
 #dont use 'su' as that is for switching users
 alias sup="echo \"svn update\" && svn update"
@@ -113,7 +114,7 @@ if [[ $gnu == true ]]; then
 elif [[ $bsd == true ]]; then 
   # Colour ls
   export CLICOLOR=1
-  alias la="ls -lFha"
+  alias la="ls -lFhA"
   alias ll="ls -lFh"
   alias ls="ls -Fh"
 else 
