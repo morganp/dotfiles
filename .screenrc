@@ -10,6 +10,9 @@
 # 8 unused/illegal    w    white           s    standout
 # 9 transparent       y    yellow          u    underline
 
+#Set default shell from ENV variable $SHELL
+shell -$SHELL
+
 hardstatus alwayslastline
 hardstatus string '%{= kW}%-Lw%{= KW}%50>%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
 #hardstatus string '%{= kW}%-Lw%{= KW}%50>%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%d/%m/%y %c%{-}'
