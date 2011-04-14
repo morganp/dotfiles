@@ -1,0 +1,60 @@
+#!/usr/bin/env ruby
+
+require 'pp'
+
+class DotFile
+  attr_reader :filename, :include_s
+
+  def initialize( name, include )
+    @filename  = name
+    @include_s = include 
+  end
+  
+end
+
+
+install_path = File.join( File.expand_path( File.dirname(__FILE__) ), 'dotfiles')
+
+
+@dotfiles =[]
+
+bashrc = File.join(install_path ,'.bashrc' ) 
+@dotfiles << DotFile.new('.bashrc', "if [ -f #{bashrc} ]; \nthen\n   source #{bashrc} ; \nfi ")
+
+
+
+#pp install_path
+#pp @dotfiles
+
+def check_if_file_exists_and_contains_include( dotfile )
+  basic_file =  File.join( ENV['HOME'] ,dotfile.filename )
+  if File.exist? basic_file
+    puts "#{basic_file} exists"
+    
+    # Does it contain the string
+    File.open(basic_file, 'r') do |file|
+
+#      text = file.read 
+     
+      # Regular expresion escaping except line breaks
+      test_string =  Regexp.escape( dotfile.include_s )
+      test_string.gsub!( Regexp.escape('\n'), '\n')
+      
+      if file.read.match( test_string )
+        puts "#{basic_file} Already includes this install "
+      else
+        puts "#{basic_file} Appending instruction to include this install"
+        File.open(basic_file, 'a') {|f| f.puts( dotfile.include_s ) }
+      end
+    end
+  else
+    puts "#{basic_file} Does not exist: Creating"
+    File.open(basic_file, 'w') {|f| f.write( dotfile.include_s ) }
+  end
+end
+
+# The Loop that goes over all the files listed above
+@dotfiles.each do |dotfile|
+  check_if_file_exists_and_contains_include( dotfile )
+end
+
