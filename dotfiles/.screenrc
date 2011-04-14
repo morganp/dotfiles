@@ -1,3 +1,6 @@
+# .screenrc Add the line below to your screenrc
+#source $HOME/dotfiles/.screenrc
+
 # Color table:
 # 0 Black             .    leave color unchanged
 # 1 Red               b    blue
@@ -9,6 +12,9 @@
 # 7 White             r    red             r    reverse
 # 8 unused/illegal    w    white           s    standout
 # 9 transparent       y    yellow          u    underline
+
+#Set default shell from ENV variable $SHELL
+shell -$SHELL
 
 hardstatus alwayslastline
 hardstatus string '%{= kW}%-Lw%{= KW}%50>%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'

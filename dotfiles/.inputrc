@@ -1,7 +1,7 @@
 #Generic inputrc
 
 ## Put this in your main ~/.inputrc
-#  $include ~/.unix_config/.inputrc
+#  $include ~/dotfiles/.inputrc
 
 set completion-ignore-case on
 set match-hidden-files on
