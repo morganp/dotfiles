@@ -1,3 +1,6 @@
+# .screenrc Add the line below to your screenrc
+#source $HOME/dotfiles/.screenrc
+
 # Color table:
 # 0 Black             .    leave color unchanged
 # 1 Red               b    blue
