@@ -6,7 +6,9 @@ My Unix Config files in a centralised location
 Install
 -------
 
-    Coming soon!
+    $ git clone git://github.com/morganp/dotfiles.git
+    $ cd dotfiles
+    $ ./install
 
 Special features
 ===============
@@ -31,3 +33,10 @@ Screen
 ------
 
     virtual tabs across the bottom of screen.
+
+Inputrc 
+-------
+
+    Tab completion, not case sensitive.
+    Tab completion works with hidden files.
+
