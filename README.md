@@ -3,7 +3,13 @@ dotfiles (Unix prefs)
 
 My Unix Config files in a centralised location
 
+Install
+-------
+
+    Coming soon!
+
 Special features
+===============
 
 Bash
 ----
@@ -16,12 +22,12 @@ Bash
 Vim
 ---
 
-   jjk -Escape sequence
-   ir_black colour scheme
-   TODO - Keyword highlighting
-   red background after 80 characters
+    jjk -Escape sequence
+    ir_black colour scheme
+    TODO - Keyword highlighting
+    red background after 80 characters
 
 Screen
 ------
 
-   virtual tabs across the bottom of screen.
+    virtual tabs across the bottom of screen.
