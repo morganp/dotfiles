@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'pp'
+require 'rubygems'
+
+# As this not a Ruby Lib
+# there is a local version of slop packaged in vendor
+require File.join( File.dirname( File.expand_path(__FILE__)), 'vendor', 'bundle', 'ruby', '1.8',  'gems', 'slop-1.4.0', 'lib', 'slop')
 
 class DotFile
   attr_reader :filename, :include_s
@@ -9,40 +14,39 @@ class DotFile
     @filename  = name
     @include_s = include 
   end
-  
 end
 
 
 install_path = File.join( File.expand_path( File.dirname(__FILE__) ), 'dotfiles')
 
 #Build list of Files to include with install
-@dotfiles =[]
+dotfiles =[]
 
 bashrc = File.join(install_path ,'.bashrc' ) 
-@dotfiles << DotFile.new('.bashrc', "if [ -f #{bashrc} ]; \nthen\n   source #{bashrc} ; \nfi ")
+dotfiles << DotFile.new('bashrc', "if [ -f #{bashrc} ]; \nthen\n   source #{bashrc} ; \nfi ")
 
 inputrc = File.join(install_path ,'.inputrc' )
-@dotfiles << DotFile.new('.inputrc',"$include #{inputrc}")
+dotfiles << DotFile.new('inputrc',"$include #{inputrc}")
 
 vimrc = File.join(install_path ,'.vimrc' )
-@dotfiles << DotFile.new('.vimrc',"so #{vimrc}")
+dotfiles << DotFile.new('vimrc',"so #{vimrc}")
 
 screenrc = File.join(install_path ,'.screenrc' )
-@dotfiles << DotFile.new('.screenrc',"source #{screenrc}")
+dotfiles << DotFile.new('screenrc',"source #{screenrc}")
 
 
 def check_if_file_exists_and_contains_include( dotfile )
-  basic_file =  File.join( ENV['HOME'] ,dotfile.filename )
+  basic_file =  File.join( ENV['HOME'] , ".#{dotfile.filename}" )
   if File.exist? basic_file
     puts "#{basic_file} exists"
-    
+
     # Does it contain the string
     File.open(basic_file, 'r') do |file|
 
       # Regular expresion escaping except line breaks
       test_string =  Regexp.escape( dotfile.include_s )
       test_string.gsub!( Regexp.escape('\n'), '\n')
-      
+
       if file.read.match( test_string )
         puts "#{basic_file} Already includes this install "
       else
@@ -56,8 +60,24 @@ def check_if_file_exists_and_contains_include( dotfile )
   end
 end
 
-# The Loop that goes over all the files listed above
-@dotfiles.each do |dotfile|
-  check_if_file_exists_and_contains_include( dotfile )
+
+#######################
+### Run stuff below ###
+#######################
+
+opts = Slop.parse :help => true do
+  on :all, 'Install all dotfiles'
+  dotfiles.each do |dot|
+    on dot.filename.to_sym, "Install #{dot.filename}"
+  end
 end
+options = opts.to_hash
+
+# The Loop that goes over all the files listed above
+dotfiles.each do |dotfile|
+  if options['all'] or options[dotfile.filename]
+    check_if_file_exists_and_contains_include( dotfile )
+  end
+end
+
 

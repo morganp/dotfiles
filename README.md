@@ -9,7 +9,9 @@ Install
     $ cd ~
     $ git clone git://github.com/morganp/dotfiles.git
     $ cd dotfiles
-    $ ./install
+    $ ./install --help
+    # If you want every thing 
+    $ ./install --all
 
 Special features
 ===============
@@ -25,15 +27,15 @@ Bash
 Vim
 ---
 
-    jjk -Escape sequence
-    ir_black colour scheme
-    TODO - Keyword highlighting
+    jjk      - Escape sequence
+    ir_black - Colour scheme
+    TODO     - Keyword highlighting
     red background after 80 characters
 
 Screen
 ------
 
-    virtual tabs across the bottom of screen.
+    Virtual tabs across the bottom of screen (in normal colours).
 
 Inputrc 
 -------
