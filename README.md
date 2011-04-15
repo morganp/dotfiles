@@ -6,6 +6,7 @@ My Unix Config files in a centralised location
 Install
 -------
 
+    $ cd ~
     $ git clone git://github.com/morganp/dotfiles.git
     $ cd dotfiles
     $ ./install
