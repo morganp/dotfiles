@@ -195,7 +195,21 @@ imap jjk <Esc>
 filetype plugin on 
 runtime macros/matchit.vim
 
+function! Indent()
+  " Capture Current Line
+  let currentline_num = line(".")
+
+  "Reindent from start to end of file
+  normal! gg=G
+
+  "Restore Current Line
+  execute ":"currentline_num
+endfunction
+
+
+
 "so ~/.unix_config/comments.vim
+map ;g :call Indent()<CR>
 
 set hlsearch "Enable Searcg Highlighting
 "Setting up ':Clear' to clear search sstring
