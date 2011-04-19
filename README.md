@@ -28,6 +28,7 @@ Vim
 ---
 
     jjk      - Escape sequence
+    ;g       - Reindent file (keeping line position)
     ir_black - Colour scheme
     TODO     - Keyword highlighting
     red background after 80 characters
