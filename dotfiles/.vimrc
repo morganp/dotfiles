@@ -198,13 +198,15 @@ runtime macros/matchit.vim
 function! Indent()
   " Capture Current Line
   let currentline_num = line(".")
+  let currentcol_num = virtcol('.')
 
   "Reindent from start to end of file
   normal! gg=G
 
-  "Restore Current Line
-  execute ":"currentline_num
+  "Restore Current Line and column
+  exe 'normal '.currentline_num.'G'.currentcol_num.'|'
 endfunction
+
 
 
 
