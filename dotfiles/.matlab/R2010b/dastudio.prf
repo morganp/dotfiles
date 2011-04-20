@@ -1,0 +1,92 @@
+#
+#DAStudio Preference File
+#
+
+
+[DAStudio DDG]
+DDGFontSize=10
+
+[DAStudio Model Explorer]
+MEGeometry=75 235 922 660
+MEScope_Scope=Current
+MEScope_ShowLinkedSubSystems=1
+MEScope_ShowMaskedSubSystems=1
+MESearchOptions_DeepSearch=1
+MESearchOptions_EvaluateProperties=0
+MESearchOptions_MatchCase=0
+MESearchOptions_MatchWholeString=0
+MESearchOptions_RefineAnd=0
+MESearchOptions_RegularExpression=1
+MESearchOptions_SearchLinks=0
+MESearchOptions_SearchMasks=0
+MESplitterPositions=516 0 271 629 386 235 
+METreeClassNames=Simulink.Root,Simulink.SubSystem,
+METreeClassRecord_DAStudio.WorkspaceNode::PropertyList=Name,
+METreeClassRecord_Simulink.BlockDiagram::ObjectTypes=DAStudio.WorkspaceNode,Simulink.ConfigSet,Simulink.DataTypeConversion,Simulink.ModelAdvisor,Simulink.SFunction:Repeat,Simulink.SubSystem,Simulink.SubSystem:,Simulink.ToWorkspace,
+METreeClassRecord_Simulink.BlockDiagram::PropertyList=Name,TreatAsAtomicUnit,Priority,
+METreeClassRecord_Simulink.ConfigSet::ObjectTypes=Simulink.DataIOCC,Simulink.DebuggingCC,Simulink.HardwareCC,Simulink.ModelReferenceCC,Simulink.OptimizationCC,Simulink.SFSimCC,Simulink.SolverCC,
+METreeClassRecord_Simulink.ConfigSet::PropertyList=Name,StopTime,SaveOutput,ProdHWDeviceType,InlineParams,SolverType,SaveTime,SaveState,
+METreeClassRecord_Simulink.ModelAdvisor::PropertyList=Name,
+METreeClassRecord_Simulink.Root::ObjectTypes=DAStudio.WorkspaceNode,Simulink.BlockDiagram,
+METreeClassRecord_Simulink.Root::PropertyList=Name,ModelVersion,LastSaved,LibraryLinkDisplay,Dirty,Description,
+METreeClassRecord_Simulink.SubSystem::ObjectTypes=Simulink.Inport,Simulink.Outport,Simulink.SubSystem:,
+METreeClassRecord_Simulink.SubSystem::PropertyList=Name,TreatAsAtomicUnit,Priority,
+MEViewOptions_MarkUnrelatedProperties=0
+MEViewOptions_ShowCustomizePropsPane=0
+MEViewOptions_ShowDynamicDialogs=1
+MEViewOptions_ShowPropertyDetails=1
+MEViewOptions_StackListnTree=0
+
+[General]
+MatlabRelease=2010b
+
+[LibraryBrowser]
+LBAlphaPercent4DisabledBlock=40
+LBColorBlocksDescriptionBackground=255 255 255
+LBColorLibraryBlocksBackgroundBot=245 246 247
+LBColorLibraryBlocksBackgroundTop=255 255 255
+LBColorSearchResultsBackgroundBot=245 246 247
+LBColorSearchResultsBackgroundTop=248 249 250
+LBColorSearchResultsDividerBarBot=153 163 190
+LBColorSearchResultsDividerBarTop=183 190 208
+LBFontFamily=system
+LBFontSize=10
+LBGeometry4Blocks=0 0 555 683
+LBGeometry4Window=1024 275 771 824
+LBIconSize=Compact
+LBLayout=Grid
+LBSearchHistory=logic,not,comparator,constant,source,sink,sum,delay,scope,conversion,convert,from workspace,to workspace,switch,switche,switches,
+LBSearchResults_isTitleElidedMiddle=1
+LBSearchResults_rememberUserHiddenSections=1
+LBSearch_MatchCase=0
+LBSearch_MatchWholeWord=0
+LBSearch_UseRegExp=0
+LBShowBlockDesc=0
+LBTreeSelectionTimeout=111
+LBWindowState=AAAA/wAAAAD9AAAAAgAAAAAAAADAAAACx/wCAAAAAfsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMAEAAAA7AAACxwAAAGAA////AAAAAwAAA23////6/AEAAAAC+wAAABYARABvAGMAawBXAGkAZABnAGUAdAAxAAAAAAAAAANtAAAAZgD////7AAAAFgBEAG8AYwBrAFcAaQBkAGcAZQB0ADIBAAAAAAAAA20AAAAAAAAAAAAAAi8AAALHAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAQAFQAbwBvAGwAQgBhAHIAMwEAAAAAAAAAXwAAAAAAAAAAAAAAEABUAG8AbwBsAEIAYQByADQBAAAAXwAAAw4AAAAAAAAAAA==
+LBWindowVersion=1
+
+[Model Advisor]
+MEGeometry=1024 192 1010 884
+MEScope_Scope=Current
+MEScope_ShowLinkedSubSystems=0
+MEScope_ShowMaskedSubSystems=0
+MESplitterPositions=771 0 565 841 0 841 
+METreeClassNames=ModelAdvisor.FactoryGroup,ModelAdvisor.Group,ModelAdvisor.Task,
+METreeClassRecord_ModelAdvisor.FactoryGroup::ObjectTypes=ModelAdvisor.Task,
+METreeClassRecord_ModelAdvisor.FactoryGroup::PropertyList=Name,
+METreeClassRecord_ModelAdvisor.Group::ObjectTypes=ModelAdvisor.Group,
+METreeClassRecord_ModelAdvisor.Group::PropertyList=Name,
+METreeClassRecord_ModelAdvisor.Task::PropertyList=Name,
+
+[Simulink Preferences]
+MEGeometry=1024 275 764 481
+MEScope_Scope=Current
+MEScope_ShowLinkedSubSystems=0
+MEScope_ShowMaskedSubSystems=0
+MESplitterPositions=423 0 198 544 0 544 
+METreeClassNames=Simulink.EditorPrefs,Simulink.Preferences,
+METreeClassRecord_Simulink.EditorPrefs::PropertyList=Name,
+METreeClassRecord_Simulink.Preferences::ObjectTypes=Simulink.EditorPrefs,Simulink.FontPrefs,
+METreeClassRecord_Simulink.Preferences::PropertyList=Name,
+
