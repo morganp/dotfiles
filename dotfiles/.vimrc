@@ -194,18 +194,6 @@ imap jjk <Esc>
 filetype plugin on 
 runtime macros/matchit.vim
 
-"Indent function no longer required with the Preserve function
-function! Indent()
-  " Capture Current Line
-  let currentline_num = line(".")
-  let currentcol_num = col('.')
-
-  "Reindent from start to end of file
-  normal! gg=G
-
-  "Restore Current Line and column
-  exe 'normal '.currentline_num.'G'.currentcol_num.'|'
-endfunction
 
 "http://technotales.wordpress.com/2010/03/31/preserve-a-vim-function-that-keeps-your-state/
 function! Preserve(command)
