@@ -1,0 +1,6 @@
+#!/bin/bash
+
+newurl=$(svn info $1 | grep "URL" | sed "s/URL://")
+
+svn info $newurl | grep 'Lock Owner'
+
