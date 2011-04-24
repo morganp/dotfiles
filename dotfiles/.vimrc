@@ -35,6 +35,8 @@ compiler ruby           " Enable compiler support for ruby
 " NB list shows white space byt breaks linebreak
 set wrap linebreak nolist
 
+"Allow cursor to goe 1 character past end of line (for pasting at the end)
+set virtualedit=onemore
 
 " Setting upo the status line along the bottom
 set showcmd          " Always show command line in the status
