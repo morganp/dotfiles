@@ -1,0 +1,5 @@
+#!/bin/sh
+
+grep -riHn "$1" *
+
+#find ./ | xargs -I {} grep -iHn "$0" {}

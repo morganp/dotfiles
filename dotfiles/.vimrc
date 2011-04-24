@@ -1,4 +1,3 @@
-
 "~/.vimrc should be a link here or contain the following:
 "so ~/.unix_config/.vimrc
 
@@ -197,23 +196,24 @@ imap jjk <Esc>
 filetype plugin on 
 runtime macros/matchit.vim
 
-function! Indent()
-  " Capture Current Line
-  let currentline_num = line(".")
-  let currentcol_num = virtcol('.')
 
-  "Reindent from start to end of file
-  normal! gg=G
-
-  "Restore Current Line and column
-  exe 'normal '.currentline_num.'G'.currentcol_num.'|'
+"http://technotales.wordpress.com/2010/03/31/preserve-a-vim-function-that-keeps-your-state/
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
 endfunction
 
 
-
-
 "so ~/.unix_config/comments.vim
-map ;g :call Indent()<CR>
+"map ;g :call Indent()<CR>
+map ;g :call Preserve("normal! gg=G")<CR>
 
 set hlsearch "Enable Searcg Highlighting
 "Setting up ':Clear' to clear search sstring

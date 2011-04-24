@@ -3,9 +3,10 @@
 require 'pp'
 require 'rubygems'
 
-# As this not a Ruby Lib
-# there is a local version of slop packaged in vendor
-require File.join( File.dirname( File.expand_path(__FILE__)), 'vendor', 'bundle', 'ruby', '1.8',  'gems', 'slop-1.4.0', 'lib', 'slop')
+# Adding vendored gem to path
+slop = File.join( File.dirname( File.expand_path(__FILE__)), 'vendor', 'bundle', 'ruby', '1.8',  'gems', 'slop-1.4.0', 'lib', 'slop')
+$:.unshift slop
+require 'slop'
 
 class DotFile
   attr_reader :filename, :include_s
