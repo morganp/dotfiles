@@ -82,3 +82,6 @@ dotfiles.each do |dotfile|
 end
 
 
+
+puts "For global git ignore you may want to execute "
+puts "$ git config --global core.excludesfile ~/dotfiles/dotfiles/.gitignore "
