@@ -1,5 +1,5 @@
 #!/bin/sh
 
-grep -riHn "$1" *
+grep --exclude=\*.svn\* -riHn "$1" *
 
 #find ./ | xargs -I {} grep -iHn "$0" {}
