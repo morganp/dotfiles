@@ -33,12 +33,12 @@ fi
 
 #Bash functions to only add path if not on $PATH
 pre_add_path() {
-  if [[ ":$PATH:" != *":$1:"* ]]; then
+  if [ -s "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     PATH="$1:$PATH"
   fi
 }
 post_add_path() {
-  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+  if [ -s "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     PATH="$PATH:$1"
   fi
 }
