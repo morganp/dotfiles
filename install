@@ -4,7 +4,7 @@ require 'pp'
 require 'rubygems'
 
 # Adding vendored gem to path
-slop = File.join( File.dirname( File.expand_path(__FILE__)), 'vendor', 'bundle', 'ruby', '1.8',  'gems', 'slop-1.4.0', 'lib', 'slop')
+slop = File.join( File.dirname( File.expand_path(__FILE__)), 'vendor', 'bundle', 'ruby', '1.8',  'gems', 'slop-1.4.0', 'lib')
 $:.unshift slop
 require 'slop'
 
