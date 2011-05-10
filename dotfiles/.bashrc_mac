@@ -15,9 +15,6 @@ export PATH=$PATH:/usr/local/mysql/bin/
 #Add Path for google code install of git (Source control)
 export PATH=$PATH:/usr/local/git/bin/
 
-# Stuff for RVM Ruby version manager
-# http://rvm.beginrescueend.com/
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 ################################
 ## Custom Alias
