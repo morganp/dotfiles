@@ -1,19 +1,19 @@
 #Bashrc for MAC
 
 #User Scripts
-export PATH=$PATH:~/bin/scripts_generic
+post_add_path ~/bin/scripts_generic
 
 #Scheme
-export PATH=$PATH:~/bin/racket/bin
+post_add_path ~/bin/racket/bin
 
 #Manual nginx install
-export PATH=$PATH:~/bin/nginx/sbin
+post_add_path ~/bin/nginx/sbin
 
 #Add path for mysql package
-export PATH=$PATH:/usr/local/mysql/bin/
+post_add_path /usr/local/mysql/bin/
 
 #Add Path for google code install of git (Source control)
-export PATH=$PATH:/usr/local/git/bin/
+post_add_path /usr/local/git/bin/
 
 
 ################################
