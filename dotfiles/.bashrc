@@ -47,9 +47,6 @@ post_add_path() {
 post_add_path ./
 post_add_path ~/bin
 
-non_exist_func ~/
-
-
 # Control BASH History
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
