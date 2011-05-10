@@ -2,7 +2,6 @@
 . /res/modules/init/bash
 module load wolfson
 
-
 # Set this to your preferred printer.
 PRINTER=2prm14500
 
@@ -16,13 +15,13 @@ alias exit='history -a && exit'
 ###############################
 ## Specific Paths
 ###############################
-export PATH=~/bin/my_scripts/:$PATH
-export PATH=~/bin/tkdiff-4.1.4-unix/:$PATH
+pre_add_path ~/bin/my_scripts/
+pre_add_path ~/bin/tkdiff-4.1.4-unix/
 
-export PATH=~/bin/apache-ant-1.7.1/bin:$PATH
+pre_add_path ~/bin/apache-ant-1.7.1/bin
 
-export PATH=/user/eng/morgan/bin:$PATH
-export PATH=/home/morgan/.gem/ruby/1.8/bin:$PATH
+pre_add_path /user/eng/morgan/bin
+pre_add_path /home/morgan/.gem/ruby/1.8/bin
 
 ###############################
 ## Fix DISPLAY when reconnecting to screen

@@ -31,9 +31,23 @@ if [[ "$unamestr" == 'Darwin' ]]; then
   PATH=/bin:~/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/texbin:/usr/X11/bin
 fi
 
+#Bash functions to only add path if not on $PATH
+pre_add_path() {
+  if [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$1:$PATH"
+  fi
+}
+post_add_path() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$PATH:$1"
+  fi
+}
+
 #Add Paths
-export PATH=$PATH:./
-export PATH=$PATH:~/bin
+post_add_path ./
+post_add_path ~/bin
+
+non_exist_func ~/
 
 
 # Control BASH History
