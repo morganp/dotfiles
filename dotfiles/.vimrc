@@ -45,11 +45,8 @@ set ls=2             " Status 2 lines high
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 " 50 lines of registers
 
-" Spelling Corrections
-ab teh the
-ab fro for
-ab slef self
-
+" Spelling corrections moved to the VIM/autoload/auto_spelling_corrections.vim
+so .vimrc_spelling
 
 " Format the statusline
 set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
