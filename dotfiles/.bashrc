@@ -43,6 +43,39 @@ post_add_path() {
   fi
 }
 
+
+# usage 
+# $ check_env_var foobar
+function check_env_var()
+{
+
+  #VAR is then name of the variable to look for
+  VAR=$1
+  eval test=\${$VAR}
+
+  if [ "$test" == "" ]
+  then
+    echo "Enviroment Variable $VAR has not been set"
+    echo "  enter value then press return"
+    #CAPTURE='test'
+    read -e CAPTURE
+
+    # Set it now in the Enviroment
+    export $VAR=$CAPTURE
+
+    # Add to bashrc so will it be set next time
+    echo "export $VAR=$CAPTURE"  >> ~/.bashrc
+
+    #return $CAPTURE
+  else
+    echo "$VAR is set to $test"
+    #return $test
+  fi
+
+}
+
+
+
 #Add Paths
 post_add_path ./
 post_add_path ~/bin
