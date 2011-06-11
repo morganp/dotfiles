@@ -79,6 +79,7 @@ function check_env_var()
 #Add Paths
 post_add_path ./
 post_add_path ~/bin
+post_add_path ~/dotfiles/bin
 
 # Control BASH History
 export HISTCONTROL=ignoreboth
