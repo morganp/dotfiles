@@ -48,7 +48,7 @@ set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 " Spelling Corrections
 ab teh the
 ab fro for
-
+ab slef self
 
 
 " Format the statusline
