@@ -45,8 +45,8 @@ set ls=2             " Status 2 lines high
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 " 50 lines of registers
 
-" Spelling corrections moved to the VIM/autoload/auto_spelling_corrections.vim
-so .vimrc_spelling
+" Spelling corrections moved to seperate file
+so $HOME/dotfiles/dotfiles/.vimrc_spelling
 
 " Format the statusline
 set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
@@ -95,13 +95,13 @@ colorscheme ir_black
 
 
 " Console
-highlight Comment             cterm=NONE        ctermfg=2         ctermbg=0
-highlight Error               cterm=NONE        ctermfg=0         ctermbg=4
+"highlight Comment             cterm=NONE        ctermfg=2         ctermbg=0
+"highlight Error               cterm=NONE        ctermfg=0         ctermbg=4
 highlight Todo                cterm=NONE        ctermfg=0         ctermbg=4
 
 " GUI
-highlight Comment             gui=NONE          guifg=Green       guibg=Black
-highlight Error               gui=NONE          guifg=Black       guibg=blue
+"highlight Comment             gui=NONE          guifg=Green       guibg=Black
+"highlight Error               gui=NONE          guifg=Black       guibg=blue
 highlight Todo                gui=NONE          guifg=Black       guibg=blue
 
 " For Projector Presintations
@@ -110,7 +110,7 @@ highlight Todo                gui=NONE          guifg=Black       guibg=blue
 "colorscheme shine 
 
 
-"Warn with subttle background colours when over 80 chars long
+"Warn with subtle background colours when over 80 chars long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
 match OverLength /\%81v.\+/
 
@@ -161,14 +161,14 @@ set autowrite		" Automatically save before commands like :next and :make
 "#####################################
 if has("unix")
   if system("uname") == "Darwin"
-    map  <D-e> :NERDTreeToggle<CR>
+    "map  <D-e> :NERDTreeToggle<CR>
     map  <D-s> :w<cr>
     imap <D-s> <Esc>:w<cr>
     map  <D-S-]> gt
     map  <D-S-[> gT
     map  <D-0> :tablast<CR>
   else
-    map  <C-e> :NERDTreeToggle<CR>
+    "map  <C-e> :NERDTreeToggle<CR>
     map  <C-s> :w<cr>
     imap <C-s> <Esc>:w<cr>
     map  <C-S-]> gt
@@ -209,7 +209,6 @@ endfunction
 
 
 "so ~/.unix_config/comments.vim
-"map ;g :call Indent()<CR>
 map ;g :call Preserve("normal! gg=G")<CR>
 
 set hlsearch "Enable Searcg Highlighting
