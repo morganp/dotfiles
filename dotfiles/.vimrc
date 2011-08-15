@@ -223,3 +223,23 @@ set hlsearch "Enable Searcg Highlighting
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * wincmd p
 
+  " Toggle fold state between closed and opened. 
+  " 
+  " If there is no fold at current line, just moves forward. 
+  " If it is present, reverse it's state. 
+  fun! ToggleFold() 
+  if foldlevel('.') == 0 
+  normal! l 
+  else 
+  if foldclosed('.') < 0 
+  . foldclose 
+  else 
+  . foldopen 
+  endif 
+  endif 
+  " Clear status line 
+  echo 
+  endfun 
+
+  " Map this function to Space key. 
+  noremap <space> :call ToggleFold()<CR>
