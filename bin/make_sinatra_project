@@ -112,7 +112,7 @@ RSpec::Core::RakeTask.new('spec') do |t|
   t.rspec_opts = ["--colour", "--format progress"]
 end
 
-#Rake fi;e for migrations
+#Rake file for migrations
 
 require 'rubygems'
 require 'rake'
@@ -143,7 +143,8 @@ task :environment do
 
   ## db = "postgres://username:password@hostname/database"
   db = ENV["DATABASE_URL"]
-  if db.match(/postgres:\/\/(.*):(.*)@(.*)\/(.*)/) 
+  db ||= ''
+  if db.match(/postgres:\\\/\\\/(.*):(.*)@(.*)\\\/(.*)/) 
     username = $1
     password = $2
     hostname = $3
@@ -189,7 +190,8 @@ module #{project_name.camelcase}
     #enable :sessions
     #register Sinatra::Flash
     
-    
+    $site_config = {}    
+
     #Configure Modules ran when starting/restarting Server
     configure :development do
       require "sinatra/reloader"
@@ -210,7 +212,9 @@ module #{project_name.camelcase}
     end
 
     configure :production do
+      $site_config[:analytics_ena] = true
       db = ENV["DATABASE_URL"]
+      db ||= '' # Making it safe ofr non heroku deployment
       if db.match(/postgres:\\\/\\\/(.*):(.*)@(.*)\\\/(.*)/) 
         username = $1
         password = $2
@@ -303,6 +307,41 @@ Gem::Specification.new do |s|
 end
 }
 
+
+
+
+layout_contents =%{
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <%=@pre_head ||= ""%>
+  <head>
+  <meta charset=utf-8> <!-- simplified version; works on legacy browsers -->
+      <title> <%=@title%> </title>
+   </head>
+   <body id='<%=@body_id%>' class='<%=@body_class%>' > 
+
+<%= yield %>
+
+<% if $site_config[:analytics_ena] %>
+   <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA_CODE_HERE']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
+
+  </script>
+<% end %>
+
+  </body>
+</html>
+
+  }
 # Create File if it does not exist and write the contents
 def write( filename, contents, warning='')
   if File.exists? filename
