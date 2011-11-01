@@ -118,12 +118,27 @@ alias n="nedit"
 
 ## Subversion Shortcuts
 alias ss='svn status -u'
-alias gs='git status'
-
 #dont use 'su' as that is for switching users
-alias sup="echo \"svn update\" && svn update"
-alias sl="echo \"svn lock\" && svn lock"
-alias sc="echo \"svn commit\" && svn commit"
+alias sup='svn update'
+alias sp='svn update'
+alias sl='svn lock'
+alias sc='svn commit'
+
+## Git Shortcuts (http://barkingiguana.com/2010/07/07/my-dot-files-dot-aliases/)
+alias g='git'
+alias gs='git status'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gup='git pull'
+alias gp='git pull'
+alias ga='git add'
+alias gco='git checkout'
+alias gb='git branch'
+alias gm='git merge'
+alias gd='git diff'
+
+
+
 
 alias ..='cd ../'
 alias ...='cd ../../'
