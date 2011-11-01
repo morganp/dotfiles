@@ -1,0 +1,18 @@
+#!/bin/bash
+
+## Automate Samba connecting, using keychain passwords
+#connect_to_samba_using_keychain() {
+    user=$1
+    server=$2
+    share=$3
+    ping=`ping -q -c 1 $server`
+
+    if [ "$ping" == "0" ]; 
+    then
+    osascript -e "try" -e "mount volume \"smb://$user@$server/$share\"" -e "end try"
+    fi 
+#}
+## Create a Bin script for each share and add as cron job
+## connect_to_samba_using_keychain user  server share
+
+
