@@ -136,7 +136,7 @@ alias gco='git checkout'
 alias gb='git branch'
 alias gm='git merge'
 alias gd='git diff'
-
+alias gl='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
 
 
 
