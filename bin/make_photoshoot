@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+#
+# PhotoFlow, A small Ruby Shoes Application for helping with a photography workflow
+# Copyright (C) 2009  Morgan Prior
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# 
+# Contact morgan@amaras-tech.co.uk
+# http://amaras-tech.co.uk
+#
+#
+
+require 'yaml'
+
+require 'fileutils'
+#$configFile = ".photoflow" + File::SEPARATOR + "config.yml"
+
+
+def sensible_sort(unsorted)
+  return  unsorted.sort_by {|k| k.to_s.split(/((?:(?:^|\s)[-+])?(?:\.\d+|\d+(?:\.\d+?(?:[eE]\d+)?(?:$|(?![eE\.])))?))/ms).map{|v| Float(v) rescue v.downcase}}
+end
+
+
+#Function to save Config file
+def saveConfig(configFile, config)
+  #For Shoes compatability change to a known directory
+  Dir.chdir(ENV['HOME'])
+  #Test if exists
+  if !(File.exist?(".photoflow"))
+    FileUtils.mkdir_p (".photoflow")
+  end
+  open(configFile, 'w') {|f| YAML.dump(config, f)}
+end
+
+#Function to Load Settings
+def loadConfig(configFile)
+  #For Shoes compatability change to a known directory
+  Dir.chdir(ENV['HOME'])
+  config = {}
+  #f = open("|ls " + configFile)
+  #foo = f.read()
+
+  #@message.text = foo
+
+  #do this to set parameters that might be missing from the yaml file
+  config[:raw_conf_folder_loc]      = ""
+  config[:drv_conf_folder_loc]      = ""
+  config[:template_file_loc]        = ""
+  config[:template_include_folder]  = false
+  config[:launch_photo_transf]      = ""
+  config[:launch_photo_editor]      = ""
+  config[:append_template]          = false
+  if File.exist?(configFile)
+    config.update(open(configFile) {|f| YAML.load(f) })
+  end
+  return config
+end
+
+def create_shoot( shoot_name )
+
+  @config = {
+   :raw_conf_folder_loc => '/Users/morgy/Pictures/Pictures400D/RAW',
+   :drv_conf_folder_loc => '/Users/morgy/Pictures/Pictures400D/DRV',
+  }
+
+
+  folderlist = Dir.entries(@config[:raw_conf_folder_loc]) ##- ['.', '..']
+  folderlist = folderlist.find_all{ |item| item =~ /(\d+)/ }
+  
+  sensible_sort( folderlist ).last =~ /(\d+)/
+  shoot_number = ($1.to_i + 1).to_s
+
+  #Zero pad Shoot number
+  shoot_number  =  shoot_number.to_s.rjust(4, '0')
+  shoot_folder  = "#{shoot_number}-#{shoot_name}"
+
+  # Create matching hierarchies
+  create_folder( File.join( @config[:raw_conf_folder_loc], shoot_folder ) )
+  create_folder( File.join( @config[:drv_conf_folder_loc], shoot_folder ) )
+
+end 
+
+def create_folder( name )
+  puts "Creating : #{name}"
+  FileUtils.mkdir_p( name )
+end
+
+## Execute this when called directly
+if $0 == __FILE__
+  unless ARGV.size == 1 
+    puts "Usage is : #{__FILE__} shoot_name"
+  else
+    shoot_name = ARGV[0]
+    create_shoot( shoot_name )
+  end
+end
+
