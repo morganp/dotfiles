@@ -176,12 +176,37 @@ Gem::Specification.new do |s|
 end
 }
 
+license_contents = %{
+Copyright (c) #{Time.now.year}, #{user_name}
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the organization nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+}
 # Create File if it does not exist and write the contents
-def write( filename, contents, warning='')
+def write( filename, contents )
   if File.exists? filename
     puts "#{filename} already exists"
   else
-    puts warning unless warning == ''
     puts "Creating #{filename}"
     ::File.open( filename, "w" ){ |f| f.write contents }
   end
@@ -203,13 +228,9 @@ write File.join('lib', project_name + '.rb'),               top_level_contents
 write File.join('lib', project_name, project_name + '.rb'), module_base_contents
 write File.join('spec', 'spec_helper.rb'),                  spec_helper_contents
 write File.join('spec', project_name + '_spec.rb'),         first_spec_contents
+write "LICENSE",                                            license_contents 
 
 
-license_warn= %{WARNING attempting to add the GPL3 License
+puts %{WARNING added the BSD License
 If you do not want this applied to your project please remove ./LICENSE}
 
-puts "Connecting to gnu.org to retrieve the GPL License"
-require 'open-uri'
-license_content = ""
-open( "http://www.gnu.org/licenses/gpl.txt" ) { |s| license_content = s.read }
-write "LICENSE",                                            license_content, license_warn
