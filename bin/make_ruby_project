@@ -25,6 +25,8 @@ end
 #Command line parse
 project_name = (ARGV.first.to_s).dup
 
+user_name = 'Morgan Prior'
+
 #Add CamelCase method to singleton
 module CaseFunctions
   def camelcase
@@ -159,7 +161,7 @@ Gem::Specification.new do |s|
   s.name        = '#{project_name}'
   s.version     = #{project_name.camelcase}::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
+  s.authors     = ["#{user_name}"]
   s.email       = ["TODO: Write your email address"]
   s.homepage    = ""
   s.summary     = %q{#{project_name} TODO: Write a gem summary}
