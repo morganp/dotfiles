@@ -161,14 +161,13 @@ set autowrite		" Automatically save before commands like :next and :make
 "#####################################
 if has("unix")
   if system("uname") == "Darwin"
-    "map  <D-e> :NERDTreeToggle<CR>
-    map  <D-s> :w<cr>
-    imap <D-s> <Esc>:w<cr>
+    " Mac Vim Defaults overide This
+    "map  <D-s> :w<cr>
+    "imap <D-s> <Esc>:w<cr>
     map  <D-S-]> gt
     map  <D-S-[> gT
     map  <D-0> :tablast<CR>
   else
-    "map  <C-e> :NERDTreeToggle<CR>
     map  <C-s> :w<cr>
     imap <C-s> <Esc>:w<cr>
     map  <C-S-]> gt
