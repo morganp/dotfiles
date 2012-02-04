@@ -1,4 +1,4 @@
-"~/.vimrc should be a link here or contain the following:
+ "~/.vimrc should be a link here or contain the following:
 "so ~/.unix_config/.vimrc
 
 " Set up the search path for plugins colors and syntax files
