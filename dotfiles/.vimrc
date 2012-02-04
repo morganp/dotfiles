@@ -24,6 +24,8 @@ set tabstop=2           " number of spaces inserted when tab is hit
 set shiftwidth=2        " used with autoindent (should equal tabstop)
 set softtabstop=2       " if set below tabstop will insert this many spaces 
 
+set iskeyword-=_        " Add _ to key words, fo yiw, diw, viw to_work_with_ruby
+
 "Experimenting with vim-ruby
 filetype on             " Enable filetype detection
 filetype indent on      " Enable filetype-specific indenting
