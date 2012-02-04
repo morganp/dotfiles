@@ -180,7 +180,7 @@ endif
 "map  maping for normal mode
 
 " type jjk quickly instead of Escape to leave insert mode
-imap jjk <Esc>
+imap  jk <Esc>
 
 "map <D-]> :s/^/#<cr>
 "map <D-[> :s/^#/<cr>
