@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo "Current Airport MAC is:"
+ifconfig en1 | grep ether 
+
+## Save your real mac address
+MACADDRESS=~/.macaddress
+if [ -f $MACADDRESS ]
+then
+  echo "$MACADDRESS exists"
+else  
+  ifconfig en1 | grep ether > $MACADDRESS
+  echo "$MACADDRESS written"
+fi
+
+## Alias the airport adapter
+AIRPORT_ALIAS='/usr/sbin/airport'
+if [ -h  $AIRPORT_ALIAS ]
+then
+  echo "$AIRPORT_ALIAS exists"
+else
+  AIRPORT='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+  sudo ln -s $AIRPORT $AIRPORT_ALIAS
+  echo "$AIRPORT_ALIAS created"
+fi
+
+### Each time you want to change MAC address:
+#disconnect but don't turn off the airport
+sudo airport -z       
+# Wait so that the Wifi can correcly disassociate
+sleep 5
+
+if [ "$1" = "" ]
+then
+  echo "No Mac Supplied"
+  sudo ifconfig en1 ether 00:00:00:00:00:01  #set new mac address (perhaps just
+else
+  echo "Using MAC $1"
+  sudo ifconfig en1 ether $1  
+fi
+echo "NEW Airport MAC is:"
+ifconfig en1 | grep ether                    #check it's actually changed
+
+
+echo "Reconnect to your Wireless Network"
+
