@@ -1,4 +1,4 @@
 #!/bin/sh
 
 #-not -name '.svn' // Stop the search in .svn & .SYNC folders
-find ./ -not -name '.svn' -not -name '.SYNC' -iname "*$1*"
+find ./ -not -name "*.svn*" -not -name "*.SYNC*" -iname "*$1*"
