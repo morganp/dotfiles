@@ -85,6 +85,14 @@ post_add_path ~/dotfiles/bin
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 
+## Bash History from : http://briancarper.net/blog/248/
+shopt -s histappend
+# Using this all terminals will have there history in sync
+# Not sure if this is nice, will not apply to ssh session etc.
+# but will keep local history in ordered by absolute time.
+export PROMPT_COMMAND="history -n; history -a"
+
+
 export EDITOR=vim
 
 
