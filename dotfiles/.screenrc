@@ -14,7 +14,8 @@
 # 9 transparent       y    yellow          u    underline
 
 #Set default shell from ENV variable $SHELL
-shell -$SHELL
+shell -bash
+defshell -bash
 
 hardstatus alwayslastline
 hardstatus string '%{= kW}%-Lw%{= KW}%50>%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
