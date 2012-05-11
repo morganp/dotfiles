@@ -53,19 +53,48 @@ so $HOME/dotfiles/dotfiles/.vimrc_spelling
 " Format the statusline
 set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
 
+if has("unix")
+  if system("uname") == "Darwin"
+    "Setting mac vim font size
+    :set guifont=Menlo:h13
+  endif
+endif
+
 " Set color stuff
 " " t_Co=16 becuase t_Co=8 disalbes bold font
+
+" 8 Colours
+"if &term =~ "xterm"
+"  if has("terminfo")
+"    set t_Co=8
+"    set t_Sf=^[[3%pl%dm
+"    set t_Sb=^[[4%pl%dm
+"  else
+"    set t_Co=8
+"    set t_Sf=^[[3%dm
+"    set t_Sb=^[[4%dm
+"  endif
+"endif
+
+" 16 Colours
 if &term =~ "xterm"
   if has("terminfo")
     set t_Co=16
-    set t_Sf=^[[3%pl%dm
-    set t_Sb=^[[4%pl%dm
+    set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
+    set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
   else
     set t_Co=16
-    set t_Sf=^[[3%dm
-    set t_Sb=^[[4%dm
+    set t_Sf=[3%dm
+    set t_Sb=[4%dm
   endif
 endif
+
+
+" 256 Color Terminals etc
+"This sent iTerm in to a RAGE
+"set t_Co=256
+"set t_AB=^[[48;5;%dm
+"set t_AF=^[[38;5;%dm
 
 set mouse=a
 
@@ -83,12 +112,6 @@ set mouse=a
 " 6: Cyan
 " 7: White
 
-if has("unix")
-  if system("uname") == "Darwin"
-    "Setting mac vim font size
-    :set guifont=Menlo:h13
-  endif
-endif
 
 "colorscheme torte
 "colorscheme zenburn
