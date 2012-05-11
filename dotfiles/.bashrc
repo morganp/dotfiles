@@ -90,7 +90,8 @@ shopt -s histappend
 # Using this all terminals will have there history in sync
 # Not sure if this is nice, will not apply to ssh session etc.
 # but will keep local history in ordered by absolute time.
-export PROMPT_COMMAND="history -n; history -a"
+#export PROMPT_COMMAND="history -n; history -a"
+export PROMPT_COMMAND="history -a"
 
 
 export EDITOR=vim
@@ -113,6 +114,9 @@ export PS1='\[\033[01;32m\]\h \[\033[01;34m\]\W' #\$ \[\033[00m\]'
 export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo ' (\[\033[01;31m\]'{}'\[\033[01;34m\])')"
 export PS1=$PS1" \$ \[\033[00m\]"
 
+#Trying this out Escape character to return to the begining of the line
+#http://jonisalonen.com/2012/your-bash-prompt-needs-this/
+export PS1="\[\033[G\]$PS1"
 
 
 ############################
