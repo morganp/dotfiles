@@ -1,4 +1,4 @@
-"~/.vimrc should be a link here or contain the following:
+ "~/.vimrc should be a link here or contain the following:
 "so ~/.unix_config/.vimrc
 
 " Set up the search path for plugins colors and syntax files
@@ -23,6 +23,8 @@ set autoindent          " always set autoindenting on
 set tabstop=2           " number of spaces inserted when tab is hit
 set shiftwidth=2        " used with autoindent (should equal tabstop)
 set softtabstop=2       " if set below tabstop will insert this many spaces 
+
+set iskeyword-=_        " Add _ to key words, fo yiw, diw, viw to_work_with_ruby
 
 "Experimenting with vim-ruby
 filetype on             " Enable filetype detection
@@ -161,14 +163,13 @@ set autowrite		" Automatically save before commands like :next and :make
 "#####################################
 if has("unix")
   if system("uname") == "Darwin"
-    "map  <D-e> :NERDTreeToggle<CR>
-    map  <D-s> :w<cr>
-    imap <D-s> <Esc>:w<cr>
+    " Mac Vim Defaults overide This
+    "map  <D-s> :w<cr>
+    "imap <D-s> <Esc>:w<cr>
     map  <D-S-]> gt
     map  <D-S-[> gT
     map  <D-0> :tablast<CR>
   else
-    "map  <C-e> :NERDTreeToggle<CR>
     map  <C-s> :w<cr>
     imap <C-s> <Esc>:w<cr>
     map  <C-S-]> gt
@@ -181,7 +182,7 @@ endif
 "map  maping for normal mode
 
 " type jjk quickly instead of Escape to leave insert mode
-imap jjk <Esc>
+imap  jk <Esc>
 
 "map <D-]> :s/^/#<cr>
 "map <D-[> :s/^#/<cr>

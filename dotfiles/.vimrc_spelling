@@ -1,4 +1,13 @@
-" Spelling Corrections
+"Turn on Spelling Checker
+set spell
+" USAGE:
+"   ]s    Next misspelt word
+"   [s    Prev misspelt word
+"   zg    Add to dictionary
+"   zug   Undo add to dictionary
+"   z=    spelling suggestions
+
+" Spelling Corrections (automatic substitutions)
 ab teh the
 ab fro for
 ab slef self
