@@ -267,3 +267,9 @@ set hlsearch "Enable Searcg Highlighting
 
   " Map this function to Space key. 
   noremap <space> :call ToggleFold()<CR>
+
+  " gf goto_file, automatically add search for these file extensions
+  :set suffixesadd+=.v
+  :set suffixesadd+=.sv
+  :set suffixesadd+=.bh.v
+
