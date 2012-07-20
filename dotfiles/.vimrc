@@ -33,13 +33,14 @@ filetype plugin on      " Enable filetype-specific plugins
 compiler ruby           " Enable compiler support for ruby
 
 "Set wrapping  http://vimcasts.org/e/16
-" NB list shows white space byt breaks linebreak
+" NB list shows white space but breaks linebreak
 set wrap linebreak nolist
 
-"Allow cursor to goe 1 character past end of line (for pasting at the end)
+"Allow cursor to go 1 character past end of line 
+"for pasting at the end, I should use p instead of P
 set virtualedit=onemore
 
-" Setting upo the status line along the bottom
+" Setting the status line along the bottom
 set showcmd          " Always show command line in the status
 set ch=2             " Command line 2 lines high
 set ls=2             " Status 2 lines high
@@ -47,15 +48,15 @@ set ls=2             " Status 2 lines high
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 " 50 lines of registers
 
-" Spelling corrections moved to seperate file
+" Spelling corrections moved to separate file
 so $HOME/dotfiles/dotfiles/.vimrc_spelling
 
-" Format the statusline
+" Format the status line
 set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
 
 if has("unix")
   if system("uname") == "Darwin"
-    "Setting mac vim font size
+    "Setting Mac Vim font size
     :set guifont=Menlo:h13
   endif
 endif
@@ -151,11 +152,11 @@ augroup cprog
   autocmd BufRead * set formatoptions=tcql nocindent comments&
   " autocmd BufRead *.c,*.h set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
   " File types
-  au BufNewFile,BufRead *.v,*.vh,*.args,*.f,*.verilog,*.v_[A-Za-z0-9_]*,*.v.* set ft=verilog
+  au BufNewFile,BufRead *.v,*.vh,*.args,*.f,*.verilog,*.v_[A-Za-z0-9_]*,*.v.* set ft=verilog_systemverilog
 augroup END
 
 au BufNewFile,BufRead *.va,*.vams set ft=verilogams
-au BufNewFile,BufRead *.sv, set ft=verilog
+au BufNewFile,BufRead *.sv, set ft=verilog_systemverilog
 
 " The following are commented out as they cause vim to behave a lot
 " different from regular vi. They are highly recommended though.
@@ -239,6 +240,9 @@ set hlsearch "Enable Searcg Highlighting
 "Setting up ':Clear' to clear search sstring
 :com! Clear let @/ = ""
 
+" aliasing :W to :w from http://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w'))
+":command W w
 
 "get NerdTree
 " http://www.vim.org/scripts/script.php?script_id=1658
