@@ -203,5 +203,5 @@ export LS_COLORS="fi=00:di=01;94:ln=00;36:ex=00;91:"
 # Stuff for RVM Ruby version manager
 # http://rvm.beginrescueend.com/
 # install with $ bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
-#[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
