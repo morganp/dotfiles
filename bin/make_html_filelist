@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+def msg( text )
+  puts text
+end
+
+msg "<html><body>"
+Dir.foreach( Dir.pwd ) do |entry|
+   msg "<a href='./#{entry}'>#{entry}</a><br  />"
+end
+msg "</body></html>"
+
