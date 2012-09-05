@@ -1,38 +1,22 @@
+# Some useful Unicode entities
+# Non-Breaking Space
 snippet initial
-  initial begin
-
+	initial begin
+	  ${1}
 	end
-
+# 
+snippet comb
+	always @* begin
+	  ${1}
+	end
+# 
 snippet flop
-  always @(posedge clk or negedge rst_n) begin
-		if (!rst_n) begin
-
+	always @(posedge clk or negedge rst_n) begin
+	  if (~rst_n) begin
+		  ${1}
 		end
 		else begin
-
+			${2}
 		end
 	end
-
-snippet comb
-  always @* begin
-
-	end
-
-snippet if
-	if ( ${1:condition} ) begin
-		${2:#statements}
-	end
-snippet else
-	else begin 
-  
-  end
-snippet for
-	for (( ${2:i} = 0; $2 < ${1:count}; $2 = $2+1 )) begin
-		${3:#statements}
-	end
-snippet case
-	case (${1:word})
-		0 :${2:apattern} ;
-		
-		default : ;
-	endcase
+# 
