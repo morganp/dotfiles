@@ -28,7 +28,9 @@
 #source ~/.unix_config/.ssh-completion
 
 if [[ "$unamestr" == 'Darwin' ]]; then
-  PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+  # Default
+  #PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+  PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
   #PATH=/bin:~/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/texbin:/usr/X11/bin
 fi
 
@@ -78,7 +80,7 @@ function check_env_var()
 
 
 #Add Paths
-post_add_path ./
+post_add_path .
 post_add_path ~/bin
 post_add_path ~/dotfiles/bin
 
