@@ -104,11 +104,11 @@ source :rubygems
 #If this is a gem 
 #Normal gems go in #{project_name}.gemspec
 #gemspec
-#gem "heroku", "~>2"
-gem "sinatra", "~>1" 
-gem "activerecord", "~>3" 
+#gem "heroku",         "~>2"
+gem "sinatra",         "~>1",        :require => 'sinatra/base' 
+gem "activerecord",    "~>3",        :require => 'active_record'
 gem "sinatra-session", "~>1"
-gem "sinatra-flash", "~> 0.3"
+gem "sinatra-flash",   "~> 0.3"
 
 #development and test not install on heroku deployment
 group :development do
@@ -188,16 +188,11 @@ task :default => 'spec'
 
 
 top_level_contents = %{
-require 'rubygems'
-require 'sinatra/base'
-#require 'sinatra/session'
-#require 'sinatra/flash'
+
+require 'bundler/setup'
+Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/models/*.rb'].each {|file| require file }
-
-
-require 'active_record'
-
 
 module #{project_name.camelcase}
   VERSION = '0.0.1'
@@ -211,21 +206,20 @@ module #{project_name.camelcase}
     #enable :sessions
     #register Sinatra::Flash
     
-    $site_config = {}    
-
     #Configure Modules ran when starting/restarting Server
     configure :development do
-      require "sinatra/reloader"
-      
       puts "Development"
+      require "sinatra/reloader"
+      set :analytics_ena, false
+      
       register Sinatra::Reloader
       also_reload "models/*.rb"
       also_reload "helpers/*.rb"
 
-      ActiveRecord::Base.establish_connection(
-        :adapter   => 'sqlite3',
-        :database  => './db/devel.db'
-      )
+      #ActiveRecord::Base.establish_connection(
+      #  :adapter   => 'sqlite3',
+      #  :database  => './db/devel.db'
+      #)
     end
 
     configure :test do
@@ -233,22 +227,22 @@ module #{project_name.camelcase}
     end
 
     configure :production do
-      $site_config[:analytics_ena] = true
+      set :analytics_ena, true
       db = ENV["DATABASE_URL"]
-      db ||= '' # Making it safe ofr non heroku deployment
+      db ||= '' # Making it safe for non heroku deployment
       if db.match(/postgres:\\\/\\\/(.*):(.*)@(.*)\\\/(.*)/) 
         username = $1
         password = $2
         hostname = $3
         database = $4
 
-        ActiveRecord::Base.establish_connection(
-          :adapter  => 'postgresql',
-          :host     => hostname,
-          :username => username,
-          :password => password,
-          :database => database
-        )
+        #ActiveRecord::Base.establish_connection(
+        #  :adapter  => 'postgresql',
+        #  :host     => hostname,
+        #  :username => username,
+        #  :password => password,
+        #  :database => database
+        #)
       end
     end
 
@@ -268,12 +262,11 @@ module #{project_name.camelcase}
     get '/' do
       'HelloWorld!'
     end
+    
+    # start the server if ruby file executed directly
+    run! if app_file == $0
   end
 end
-if $0 == __FILE__
- #{project_name.camelcase}::App.run!
-end
-
 }
 
 
