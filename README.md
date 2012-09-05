@@ -27,7 +27,7 @@ Bash
 Vim
 ---
 
-    jjk      - Escape sequence
+    jk       - Escape sequence
     ;g       - Reindent file (keeping line position)
     ir_black - Colour scheme
     TODO     - Keyword highlighting
