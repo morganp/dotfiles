@@ -8,3 +8,6 @@ FSM
 clk
 morgan
 diasemi
+config
+IRQ
+Posedge
