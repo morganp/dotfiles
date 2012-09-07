@@ -1,0 +1,22 @@
+#!/bin/sh
+
+echo "Searching for local files"
+#vim accidental saves
+find . -name "1" -type f 
+
+#Other Temp files
+find . -name "*.log" -type f 
+find . -name "*.key" -type f
+find . -name "*.swp" -type f 
+find . -name "*results*" -type d 
+find . -name "*INCA_libs*" -type d 
+
+
+echo "Searching for linked files"
+find . -name "*results*" -type l 
+
+#Accidental checkins
+find . -name "*.log" -type l 
+find . -name "*.key" -type l
+find . -name "*.swp" -type l
+find . -name "*INCA_libs*" -type l 
