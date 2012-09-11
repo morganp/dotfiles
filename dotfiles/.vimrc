@@ -130,6 +130,12 @@ highlight Todo                cterm=NONE        ctermfg=0         ctermbg=4
 "highlight Error               gui=NONE          guifg=Black       guibg=blue
 highlight Todo                gui=NONE          guifg=Black       guibg=blue
 
+" Spellings Underline instead of highlight
+highlight clear SpellBad
+highlight SpellBad cterm=underline
+" GVIM/MVIM squigle underline
+highlight SpellBad gui=undercurl
+
 " For Projector Presintations
 "set background=light
 "highlight clear
