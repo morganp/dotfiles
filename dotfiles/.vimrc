@@ -62,7 +62,7 @@ if has("unix")
 endif
 
 " Set color stuff
-" " t_Co=16 becuase t_Co=8 disalbes bold font
+" " t_Co=16 because t_Co=8 disables bold font
 
 " 8 Colours
 "if &term =~ "xterm"
