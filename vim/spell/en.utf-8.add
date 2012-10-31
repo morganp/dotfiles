@@ -11,3 +11,13 @@ diasemi
 config
 IRQ
 Posedge
+dotfiles
+setenv
+mprior
+gvim
+vim
+mvim
+grep
+alias
+cd
+colorscheme
