@@ -1,0 +1,3 @@
+#!/bin/sh
+
+diff -r --exclude=.SYNC $1 $2
