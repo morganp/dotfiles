@@ -24,7 +24,16 @@ set tabstop=2           " number of spaces inserted when tab is hit
 set shiftwidth=2        " used with autoindent (should equal tabstop)
 set softtabstop=2       " if set below tabstop will insert this many spaces 
 
-set iskeyword-=_        " Add _ to key words, fo yiw, diw, viw to_work_with_ruby
+" Turn on caret cross-hairs
+set cursorline
+set cursorcolumn
+
+"Allow Code Folding with {{{ }}} markers
+" zc close fold, zo open fold
+set foldmethod=marker
+
+" Preffer being able to yank full variable names
+"set iskeyword-=_        " Add _ to key words, fo yiw, diw, viw to_work_with_ruby
 
 "Experimenting with vim-ruby
 filetype on             " Enable filetype detection
@@ -58,6 +67,9 @@ if has("unix")
   if system("uname") == "Darwin"
     "Setting Mac Vim font size
     :set guifont=Menlo:h13
+  else 
+    "Other Unix systems
+    :set guifont=Courier\ 13
   endif
 endif
 
@@ -100,8 +112,8 @@ endif
 set mouse=a
 
 
-"The followin can be written out to a colorscheme.vim 
-" file and included sepreately. This would have the added 
+"The following can be written out to a colorscheme.vim 
+" file and included separately. This would have the added 
 " bonus the :colorscheme x could be used to switch back
 " Set nice colors
 " 0: Black
@@ -136,7 +148,7 @@ highlight SpellBad cterm=underline
 " GVIM/MVIM squigle underline
 highlight SpellBad gui=undercurl
 
-" For Projector Presintations
+" For Projector Presentations
 "set background=light
 "highlight clear
 "colorscheme shine 
