@@ -69,7 +69,7 @@ if has("unix")
     :set guifont=Menlo:h13
   else 
     "Other Unix systems
-    :set guifont=Courier\ 13
+    :set guifont=Monospace\ 12
   endif
 endif
 
