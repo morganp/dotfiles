@@ -8,16 +8,16 @@
 " :he highlight-groups
 " :he cterm-colors
 "
-"set background=light
-set background=dark
+set background=light
+"set background=dark
 hi clear
 if exists("syntax_on")
   syntax reset
 endif
 let g:colors_name="bw"
 
-"hi Normal         ctermbg=White         ctermfg=Black
-hi Normal         ctermbg=Black         ctermfg=White
+hi Normal         ctermbg=White         ctermfg=Black
+"hi Normal         ctermbg=Black         ctermfg=White
 hi SpecialKey     cterm=bold            ctermfg=NONE
 hi NonText        cterm=bold            ctermfg=NONE
 hi Directory      cterm=bold            ctermfg=NONE
