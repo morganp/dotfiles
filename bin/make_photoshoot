@@ -61,8 +61,8 @@ end
 def create_shoot( shoot_name )
 
   @config = {
-   :raw_conf_folder_loc => '/Users/morgy/Pictures/Pictures400D/RAW',
-   :drv_conf_folder_loc => '/Users/morgy/Pictures/Pictures400D/DRV',
+   :raw_conf_folder_loc => '/Users/morgy/Pictures/Workflow/RAW',
+   :drv_conf_folder_loc => '/Users/morgy/Pictures/Workflow/DRV',
   }
 
 
