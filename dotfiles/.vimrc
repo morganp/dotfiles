@@ -1,4 +1,4 @@
- "~/.vimrc should be a link here or contain the following:
+"~/.vimrc should be a link here or contain the following:
 "so ~/.unix_config/.vimrc
 
 " Set up the search path for plugins colors and syntax files
@@ -24,7 +24,13 @@ set tabstop=2           " number of spaces inserted when tab is hit
 set shiftwidth=2        " used with autoindent (should equal tabstop)
 set softtabstop=2       " if set below tabstop will insert this many spaces 
 
-set iskeyword-=_        " Add _ to key words, fo yiw, diw, viw to_work_with_ruby
+
+"Allow Code Folding with {{{ }}} markers
+" zc close fold, zo open fold
+set foldmethod=marker
+
+" Preffer being able to yank full variable names
+"set iskeyword-=_        " Add _ to key words, fo yiw, diw, viw to_work_with_ruby
 
 "Experimenting with vim-ruby
 filetype on             " Enable filetype detection
@@ -58,37 +64,43 @@ if has("unix")
   if system("uname") == "Darwin"
     "Setting Mac Vim font size
     :set guifont=Menlo:h13
+  else 
+    "Other Unix systems
+    :set guifont=Monospace\ 12
   endif
 endif
 
-" Set color stuff
-" " t_Co=16 becuase t_Co=8 disalbes bold font
-
-" 8 Colours
+""" Removing Colour stuff from vimrc
+""" Colorschemes looked different to everyone else's :(
+""" Will have to check MAC Terminal and SSH connections
+"" Set color stuff
+"" " t_Co=16 because t_Co=8 disables bold font
+"
+"" 8 Colours
+""if &term =~ "xterm"
+""  if has("terminfo")
+""    set t_Co=8
+""    set t_Sf=^[[3%pl%dm
+""    set t_Sb=^[[4%pl%dm
+""  else
+""    set t_Co=8
+""    set t_Sf=^[[3%dm
+""    set t_Sb=^[[4%dm
+""  endif
+""endif
+"
+"" 16 Colours
 "if &term =~ "xterm"
 "  if has("terminfo")
-"    set t_Co=8
-"    set t_Sf=^[[3%pl%dm
-"    set t_Sb=^[[4%pl%dm
+"    set t_Co=16
+"    set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
+"    set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
 "  else
-"    set t_Co=8
-"    set t_Sf=^[[3%dm
-"    set t_Sb=^[[4%dm
+"    set t_Co=16
+"    set t_Sf=[3%dm
+"    set t_Sb=[4%dm
 "  endif
 "endif
-
-" 16 Colours
-if &term =~ "xterm"
-  if has("terminfo")
-    set t_Co=16
-    set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
-    set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
-  else
-    set t_Co=16
-    set t_Sf=[3%dm
-    set t_Sb=[4%dm
-  endif
-endif
 
 
 " 256 Color Terminals etc
@@ -100,8 +112,8 @@ endif
 set mouse=a
 
 
-"The followin can be written out to a colorscheme.vim 
-" file and included sepreately. This would have the added 
+"The following can be written out to a colorscheme.vim 
+" file and included separately. This would have the added 
 " bonus the :colorscheme x could be used to switch back
 " Set nice colors
 " 0: Black
@@ -113,22 +125,40 @@ set mouse=a
 " 6: Cyan
 " 7: White
 
+" Set colorscheme dependant on terminal type
+"  To find terminal type run :set term?
+  "echom &term
+  "echom &t_Co
+" How do I know how many colours I can display?
 
-"colorscheme torte
-"colorscheme zenburn
-colorscheme ir_black
+if has("gui_running")
+  " GUI
+  colorscheme ir_black
+  "highlight Comment     gui=NONE     guifg=Green       guibg=Black
+  "highlight Error       gui=NONE     guifg=Black       guibg=blue
+  highlight Todo        gui=NONE     guifg=Black       guibg=blue
+
+  " Turn on caret cross-hairs
+  set cursorline
+  set cursorcolumn
+
+elseif &t_Co >= 256
+  " 256 Color Console
+  colorscheme oceanblack256
+elseif &t_Co >= 16
+  "  16 Color Console
+  colorscheme xterm16
+elseif &t_Co >= 8
+  "   8 Color Console
+ set background=light
+  colorscheme bw
+else  
+  " Console
+  colorscheme bw
+end
 
 
 
-" Console
-"highlight Comment             cterm=NONE        ctermfg=2         ctermbg=0
-"highlight Error               cterm=NONE        ctermfg=0         ctermbg=4
-highlight Todo                cterm=NONE        ctermfg=0         ctermbg=4
-
-" GUI
-"highlight Comment             gui=NONE          guifg=Green       guibg=Black
-"highlight Error               gui=NONE          guifg=Black       guibg=blue
-highlight Todo                gui=NONE          guifg=Black       guibg=blue
 
 " Spellings Underline instead of highlight
 highlight clear SpellBad
@@ -136,7 +166,7 @@ highlight SpellBad cterm=underline
 " GVIM/MVIM squigle underline
 highlight SpellBad gui=undercurl
 
-" For Projector Presintations
+" For Projector Presentations
 "set background=light
 "highlight clear
 "colorscheme shine 
@@ -284,4 +314,9 @@ cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w')
   :set suffixesadd+=.v
   :set suffixesadd+=.sv
   :set suffixesadd+=.bh.v
+
+" Add location of project tag-file if the $work environment variable is defined
+if len($work) > 0
+  set tags+=$work/tags
+endif
 
