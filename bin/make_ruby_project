@@ -95,14 +95,14 @@ EXAMPLES
 
 }
 
-dot_rvmrc_contents = %{
-  rvm_gemset_create_on_use_flag=1
-  rvm 1.9.2@#{project_name}
+dot_ruby_version_contents = %{ ruby-2.0.0 
 }
 
+dot_ruby_gemset_contents = %{ #{project_name}
+}
 
 gemfile_contents = %{
-source :rubygems
+source 'https://rubygems.org'
 #If this is a gem 
 #Normal gems go in #{project_name}.gemspec
 gemspec
@@ -237,7 +237,8 @@ FileUtils.mkdir_p "bin"
 FileUtils.mkdir_p File.join( 'lib', project_name) 
 
 
-write ".rvmrc",                                             dot_rvmrc_contents 
+write ".ruby-version",                                      dot_ruby_version_contents 
+write ".ruby-gemset",                                       dot_ruby_gemset_contents 
 write "Gemfile",                                            gemfile_contents 
 write "Rakefile",                                           rakefile_contents 
 write "README.md",                                          readme_contents 
