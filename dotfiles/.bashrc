@@ -99,6 +99,12 @@ export PROMPT_COMMAND="history -a"
 
 export EDITOR=vim
 
+## Adding 256 color support to terminals
+##  Mainly for command line vim
+if [[ "$TERM" != *256color* ]]
+then
+  export TERM=$TERM-256color
+fi
 
 ## BASH Prompt
 ## http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
