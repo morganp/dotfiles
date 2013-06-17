@@ -276,6 +276,8 @@ set hlsearch "Enable Searcg Highlighting
 "Setting up ':Clear' to clear search sstring
 :com! Clear let @/ = ""
 
+:com! StatsLine %s//\r/g 
+
 " aliasing :W to :w from http://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w'))
 ":command W w

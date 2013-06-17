@@ -92,15 +92,14 @@ EXAMPLES
 ========
 
 }
-
-dot_rvmrc_contents = %{
-  rvm_gemset_create_on_use_flag=1
-  rvm 1.9.2@#{project_name}
+dot_ruby_version_contents = %{ ruby-2.0.0 
 }
 
+dot_ruby_gemset_contents = %{ #{project_name}
+}
 
 gemfile_contents = %{
-source :rubygems
+source 'https://rubygems.org'
 #If this is a gem 
 #Normal gems go in #{project_name}.gemspec
 #gemspec
@@ -113,7 +112,7 @@ gem "sinatra-flash",   "~> 0.3"
 #development and test not install on heroku deployment
 group :development do
   gem "sinatra-reloader", "~>0"
-  gem "sqlite3-ruby", "~>1"
+  gem "sqlite3", "~>1"
   gem "thin", "~>1"
 end
 
@@ -200,8 +199,9 @@ module #{project_name.camelcase}
   class App < Sinatra::Base
     #register Sinatra::Session
     use Rack::MethodOverride
-    set :public_folder, "public"
-    
+    set :public_folder, File.join(root, "public")
+    set :erb,           :trim => '-'   
+ 
     ## Flash messages
     #enable :sessions
     #register Sinatra::Flash
@@ -406,7 +406,8 @@ FileUtils.mkdir_p File.join( 'lib', 'public', 'scripts')
 FileUtils.mkdir_p File.join( 'lib', 'public', 'stylesheets') 
 
 
-write ".rvmrc",                                             dot_rvmrc_contents 
+write ".ruby-version",                                      dot_ruby_version_contents 
+write ".ruby-gemset",                                       dot_ruby_gemset_contents 
 write "Gemfile",                                            gemfile_contents 
 write "Rakefile",                                           rakefile_contents 
 write "README.md",                                          readme_contents 
