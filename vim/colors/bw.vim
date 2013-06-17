@@ -7,7 +7,10 @@
 " :he group-name
 " :he highlight-groups
 " :he cterm-colors
-"
+
+" if t_Co == 8 in Gnome terminal will use palette entry 8
+" (16 is default white) Bad t_Co or bad name mapping ?
+
 set background=light
 "set background=dark
 hi clear
