@@ -173,7 +173,8 @@ end
 gemspec_contents = %{
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib")
-require '#{project_name}'
+gem_name = '#{project_name}'
+require File.join( File.dirname(__FILE__), 'lib', gem_name )
 
 Gem::Specification.new do |s|
   s.name        = '#{project_name}'
