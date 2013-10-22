@@ -2,7 +2,7 @@
 ## Setting up files for a new Bundler/RVM Ruby project
 ## $ make_sinatra_project some_new_project 
 ##
-## This could be cleaner split into multiple files and seperate templates
+## This could be cleaner split into multiple files and separate templates
 ## But a single file in the your bin directory is easier to manage
 ##
 ##Copyright (c) 2011, Morgan Prior
@@ -46,7 +46,7 @@ user_name = 'Morgan Prior'
 #Add CamelCase method to singleton
 module CaseFunctions
   def camelcase
-    a = self.split /[-|\s| |_|\.]/ #Word Boundry or _
+    a = self.split /[-|\s| |_|\.]/ #Word Boundary or _
     a = a.map do |word|
       #[0..0] is ruby 1.8.7 safe [0] returns char code 1.8 and char in 1.9
       word[0..0].upcase + word[1..-1]
@@ -60,7 +60,7 @@ project_name.extend(CaseFunctions)
 puts "Setting up new Project : " +  project_name.camelcase
 
 ## TODO
-## Get some enviroment variables
+## Get some environment variables
 ## Users default Ruby version 1.8.7 or 1.9.2 (from RVM?)
 
 
@@ -406,13 +406,13 @@ FileUtils.mkdir_p File.join( 'lib', 'public', 'scripts')
 FileUtils.mkdir_p File.join( 'lib', 'public', 'stylesheets') 
 
 
-write ".ruby-version",                                      dot_ruby_version_contents 
-write ".ruby-gemset",                                       dot_ruby_gemset_contents 
-write "Gemfile",                                            gemfile_contents 
-write "Rakefile",                                           rakefile_contents 
-write "README.md",                                          readme_contents 
-write "config.ru",                                          config_ru_contents 
-write "#{project_name.camelcase}.gemspec",                            gemspec_contents
+write ".ruby-version",                          dot_ruby_version_contents 
+write ".ruby-gemset",                           dot_ruby_gemset_contents 
+write "Gemfile",                                gemfile_contents 
+write "Rakefile",                               rakefile_contents 
+write "README.md",                              readme_contents 
+write "config.ru",                              config_ru_contents 
+write "#{project_name.camelcase}.gemspec",      gemspec_contents
 write File.join('lib', 'app.rb'),               top_level_contents 
 
 #Migration 1
