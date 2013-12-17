@@ -1,11 +1,20 @@
-"Turn on Spelling Checker
-set spell
-" USAGE:
-"   ]s    Next misspelt word
-"   [s    Prev misspelt word
-"   zg    Add to dictionary
-"   zug   Undo add to dictionary
-"   z=    spelling suggestions
+
+if version >= 604
+  "Turn on Spelling Checker
+  set spell
+  " USAGE:
+  "   ]s    Next misspelt word
+  "   [s    Prev misspelt word
+  "   zg    Add to dictionary
+  "   zug   Undo add to dictionary
+  "   z=    spelling suggestions
+
+  " Spellings Underline instead of highlight
+  highlight clear SpellBad
+  highlight SpellBad cterm=underline
+  " GVIM/MVIM squigle underline
+  highlight SpellBad gui=undercurl
+endif
 
 " Spelling Corrections (automatic substitutions)
 ab teh the
