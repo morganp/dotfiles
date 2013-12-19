@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+# Usage :
+#  mv_test old_name new_name
+#
+# old_name is either a path or the test_file
+# Expects 
+# ./tests/old_test_name/old_test_name.v
+#                      /other files
+# Changes to 
+# ./tests/new_test_name/new_test_name.v
+#                      /other files
+require 'fileutils'
+unless ARGV.length == 2
+  $stderr.puts "Usage is mv_test ./path/test new_test_name" 
+  exit
+end 
+
+# Define arguments with mnemonics
+old_test_path = ARGV[0]
+new_name      = ARGV[1]
+
+# Check the Test exists
+unless File.exist?( old_test_path )
+  $stderr.puts "Can not find #{old_test_path}"
+end
+
+# Check new Test does not exist
+if File.exist?( new_name )
+  $stderr.puts "Target exists : #{new_name}"
+end
+
+## Checks complete, start moving files
+
+test_name = File.basename(old_test_path,File.extname(old_test_path))
+
+# Figure out if passed folder or file
+if File.directory?( old_test_path )
+  test_file   = Dir[File.join(old_test_path, "*#{test_name}*")]
+  test_folder = old_test_path 
+else 
+  test_file   = old_test_path
+  test_folder = File.dirname(old_test_path)
+end
+# Turn string into array
+  test_file   = *test_file
+
+#puts "Test Folder: #{test_folder}"
+#puts "Test File  : #{test_file}"
+
+# Rename test in folder
+test_file.each do |old_test_name|
+  ext = File.extname(old_test_name)
+  new_test_name  = File.join(test_folder, new_name + ext)
+
+  FileUtils.mv(old_test_name, new_test_name)
+end
+
+# Move Folder
+new_test_folder = File.join(File.dirname(test_folder), new_name)
+FileUtils.mv( test_folder, new_test_folder)
+

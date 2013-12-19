@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+puts "Matlab Licence usage"
+@base_command = "lmutil lmstat -c 1801@cadlic3"
+
+def run_report_all
+   f = open("| #{@base_command} -a")
+   report = Array.new
+   while (foo = f.gets)
+      report << foo
+   end
+   return report
+end
+
+def run_report_for( lic )
+   @licence = lic
+   f = open("| #{@base_command} -f #{@licence}")
+   report = Array.new
+   while (foo = f.gets)
+      report << foo
+   end
+   return report
+end
+
+def process_report( report )
+  @header     = Array.new
+  @nodelocked = Array.new
+  @floating   = Array.new
+
+  report.each_with_index do |line, index|
+    case line
+    when /floating license/
+      # These are listed in batches
+      float_user_index = index+2
+      float_user = report[float_user_index]
+      until float_user.strip == '' 
+        @floating << float_user
+        float_user       = report[float_user_index+=1]
+      end
+    when /nodelocked license/
+      # These are specified individually
+      @nodelocked << report[index+2]
+    end
+
+  end
+
+end
+
+def print_report()
+  puts ""
+  puts ""
+  puts "#{@licence} Floating"
+  @floating.each do |line|
+   puts line
+  end
+  puts ""
+  puts "#{@licence} Nodelocked"
+  @nodelocked.each do |line|
+   puts line
+  end
+end
+
+#report        = run_report_for( "matlab" )
+#pretty_report = process_report( report  )
+#print_report()
+
+process_report( run_report_for( "matlab"   ) ); print_report
+process_report( run_report_for( "simulink" ) ); print_report
+process_report( run_report_for( "Fixed_Point_Toolbox" ) ); print_report
+process_report( run_report_for( "Signal_Toolbox" ) ); print_report
+#process_report( run_report_for( "" ) ); print_report
+
+
