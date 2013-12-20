@@ -1,19 +1,28 @@
 
 if version >= 604
-  "Turn on Spelling Checker
-  set spell
-  " USAGE:
-  "   ]s    Next misspelt word
-  "   [s    Prev misspelt word
-  "   zg    Add to dictionary
-  "   zug   Undo add to dictionary
-  "   z=    spelling suggestions
+  if has("gui_running")
+    "Turn on Spelling Checker
+    set spell
+    highlight clear SpellBad
+    highlight clear SpellCap   
+    highlight clear SpellLocal 
+    highlight clear SpellRare  
+    "highlight SpellBad   cterm=none ctermfg=0 ctermbg=0
+    "highlight SpellCap   cterm=none ctermfg=0 ctermbg=0
+    "highlight SpellLocal cterm=none ctermfg=0 ctermbg=0
+    "highlight SpellRare  cterm=none ctermfg=0 ctermbg=0
+    " USAGE:
+    "   ]s    Next misspelt word
+    "   [s    Prev misspelt word
+    "   zg    Add to dictionary
+    "   zug   Undo add to dictionary
+    "   z=    spelling suggestions
 
-  " Spellings Underline instead of highlight
-  highlight clear SpellBad
-  highlight SpellBad cterm=underline
-  " GVIM/MVIM squigle underline
-  highlight SpellBad gui=undercurl
+    " Spellings Underline instead of highlight
+    highlight SpellBad cterm=underline
+    "" GVIM/MVIM squigle underline
+    highlight SpellBad gui=undercurl
+  endif
 endif
 
 " Spelling Corrections (automatic substitutions)
