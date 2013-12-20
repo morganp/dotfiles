@@ -15,6 +15,10 @@
 " Set up the search path for plugins colors and syntax files
 set runtimepath=$HOME/dotfiles/vim,$VIMRUNTIME
 
+" Trying out Pathogen
+" https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
+
 " some things borrowed from
 "   http://code.charles-keepax.co.uk/mydotfiles/src/dbea2a3b27f71d572f2aaf9d95a24b8fc148fb63/_vimrc?at=default
 
@@ -50,6 +54,14 @@ set incsearch		" Incremental search
 
 " Auto
 set autowrite		  " Automatically save before commands like :next and :make
+
+"http://amix.dk/vim/vimrc.txt
+" No annoying sound on errors
+ set noerrorbells
+ set novisualbell
+ set t_vb=
+ set tm=500
+ "--
 
 " Gui Options
 ":set guioptions-=m  "remove menu bar
