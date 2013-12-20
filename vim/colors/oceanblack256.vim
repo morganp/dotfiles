@@ -117,9 +117,6 @@ highlight Special        ctermfg=247
 "highlight Debug
 
 highlight Underlined     cterm=underline      ctermfg=102 ctermbg=0
-
 highlight Ignore         ctermfg=67
-
 highlight Error          ctermfg=230          ctermbg=167
-
 highlight Todo           ctermfg=51           ctermbg=66
