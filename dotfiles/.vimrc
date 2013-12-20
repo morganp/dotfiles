@@ -84,8 +84,6 @@ set ls=2             " Status 2 lines high
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 " 50 lines of registers
 
-" Spelling corrections moved to separate file
-so $HOME/dotfiles/dotfiles/.vimrc_spelling
 
 " Format the status line
 "set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
@@ -152,6 +150,10 @@ else
   " Console
   colorscheme bw
 end
+
+" Load Spelling after loading colorscheme
+" Spelling corrections moved to separate file
+so $HOME/dotfiles/dotfiles/.vimrc_spelling
 
 " For Projector Presentations
 "set background=light
