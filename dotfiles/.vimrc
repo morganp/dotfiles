@@ -1,36 +1,64 @@
 "~/.vimrc should be a link here or contain the following:
 "so ~/.unix_config/.vimrc
 
+" This has been checked on:
+" RHEL4     gvim TODO 
+" RHEL4      vim DONE
+" RHEL5     gvim DONE 
+" RHEL5      vim DONE
+" macvim    mvim TODO 
+" macvim     vim TODO
+" webfaction vim TODO
+
+
+
 " Set up the search path for plugins colors and syntax files
 set runtimepath=$HOME/dotfiles/vim,$VIMRUNTIME
 
-
-set scrolloff=3
-syntax on
-syntax enable
-set number
-
-set showmatch
-set showmode
-
+" some things borrowed from
+"   http://code.charles-keepax.co.uk/mydotfiles/src/dbea2a3b27f71d572f2aaf9d95a24b8fc148fb63/_vimrc?at=default
 
 set nocompatible	   " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start	" more powerful backspacing
 set history=50          " keep 50 lines of command line history
-set ruler               " show the cursor position all the time
+"set ruler               " show the cursor position all the time
+
+set scrolloff=3
+set number
+
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  syntax enable
+  set hlsearch " Enable search highlighting
+endif
+
+
+" Show
+set showmatch    " Show matching brackets.
+set showmode     " Display indication that insert mode is on
+set showcmd		   " Show (partial) command in status line.
+
+"Tab settings
 set expandtab           " spaces are used instead of tabs
-set autoindent          " always set autoindenting on
 set tabstop=2           " number of spaces inserted when tab is hit
 set shiftwidth=2        " used with autoindent (should equal tabstop)
 set softtabstop=2       " if set below tabstop will insert this many spaces 
 
+"Search settings
+set ignorecase		" Do case insensitive matching
+set incsearch		" Incremental search
+
+" Auto
+set autowrite		  " Automatically save before commands like :next and :make
+
+" Gui Options
+":set guioptions-=m  "remove menu bar
+:set guioptions-=T  "remove toolbar
+":set guioptions-=r  "remove right-hand scroll bar
 
 "Allow Code Folding with {{{ }}} markers
 " zc close fold, zo open fold
 set foldmethod=marker
-
-" Preffer being able to yank full variable names
-"set iskeyword-=_        " Add _ to key words, fo yiw, diw, viw to_work_with_ruby
 
 "Experimenting with vim-ruby
 filetype on             " Enable filetype detection
@@ -42,9 +70,11 @@ compiler ruby           " Enable compiler support for ruby
 " NB list shows white space but breaks linebreak
 set wrap linebreak nolist
 
-"Allow cursor to go 1 character past end of line 
-"for pasting at the end, I should use p instead of P
-set virtualedit=onemore
+if version >= 604
+  "Allow cursor to go 1 character past end of line 
+  "for pasting at the end, I should use p instead of P
+  set virtualedit=onemore
+endif
 
 " Setting the status line along the bottom
 set showcmd          " Always show command line in the status
@@ -58,7 +88,14 @@ set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 so $HOME/dotfiles/dotfiles/.vimrc_spelling
 
 " Format the status line
-set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
+"set statusline=%<%f\ %h%m%r%=%{getcwd()}\ \ \ %-14.(%l,%c%V%)\ %P
+" m is the [+] when modified
+" %3( ... %) Group min width 3, stops status line moving on modified files
+set statusline=%3(%h%m%r%)
+set statusline+=\ %f
+set statusline+=\ \ FileType:%y
+set statusline+=%= "Switch to right side
+set statusline+=\ \ Line\ %l/%L
 
 if has("unix")
   if system("uname") == "Darwin"
@@ -67,50 +104,14 @@ if has("unix")
   else 
     "Other Unix systems
     :set guifont=Monospace\ 12
+    " set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
   endif
 endif
 
-""" Removing Colour stuff from vimrc
-""" Colorschemes looked different to everyone else's :(
-""" Will have to check MAC Terminal and SSH connections
-"" Set color stuff
-"" " t_Co=16 because t_Co=8 disables bold font
-"
-"" 8 Colours
-""if &term =~ "xterm"
-""  if has("terminfo")
-""    set t_Co=8
-""    set t_Sf=^[[3%pl%dm
-""    set t_Sb=^[[4%pl%dm
-""  else
-""    set t_Co=8
-""    set t_Sf=^[[3%dm
-""    set t_Sb=^[[4%dm
-""  endif
-""endif
-"
-"" 16 Colours
-"if &term =~ "xterm"
-"  if has("terminfo")
-"    set t_Co=16
-"    set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
-"    set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
-"  else
-"    set t_Co=16
-"    set t_Sf=[3%dm
-"    set t_Sb=[4%dm
-"  endif
-"endif
-
-
-" 256 Color Terminals etc
-"This sent iTerm in to a RAGE
-"set t_Co=256
-"set t_AB=^[[48;5;%dm
-"set t_AF=^[[38;5;%dm
-
-set mouse=a
-
+" In many terminal emulators the mouse works.
+if has('mouse')
+ set mouse=a
+endif
 
 "The following can be written out to a colorscheme.vim 
 " file and included separately. This would have the added 
@@ -126,11 +127,6 @@ set mouse=a
 " 7: White
 
 " Set colorscheme dependant on terminal type
-"  To find terminal type run :set term?
-  "echom &term
-  "echom &t_Co
-" How do I know how many colours I can display?
-
 if has("gui_running")
   " GUI
   colorscheme ir_black
@@ -157,66 +153,55 @@ else
   colorscheme bw
 end
 
-
-
-
-" Spellings Underline instead of highlight
-highlight clear SpellBad
-highlight SpellBad cterm=underline
-" GVIM/MVIM squigle underline
-highlight SpellBad gui=undercurl
-
 " For Projector Presentations
 "set background=light
 "highlight clear
 "colorscheme shine 
 
-
 "Warn with subtle background colours when over 80 chars long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
 match OverLength /\%81v.\+/
 
+" Only do this part when compiled with support for autocommands.
+" http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
+if has("autocmd")
+  " Enable file type detection.
+  filetype plugin indent on
+  
+  " Group commands
+  augroup filetype_verilog
+    " Clear auto-commands
+    autocmd! 
 
-augroup cprog
-  " Remove all cprog autocommands
-  au!
+    autocmd BufNewFile,BufRead *.va,*.vams set ft=verilogams
+    autocmd BufNewFile,BufRead *.v,*.vh    set ft=verilog_systemverilog
+    autocmd BufNewFile,BufRead *.f,*.v.*   set ft=verilog_systemverilog
+    autocmd BufNewFile,BufRead *.sv        set ft=verilog_systemverilog
+  augroup END
 
-  " When starting to edit a file:
-  "    For *.c and *.h files set formatting of comments and set C-indenting on.
-  "    For other files switch it off.
-  "    Don't change the order, it's important that the line with * comes first.
-  autocmd BufRead * set formatoptions=tcql nocindent comments&
-  " autocmd BufRead *.c,*.h set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
-  " File types
-  au BufNewFile,BufRead *.v,*.vh,*.args,*.f,*.verilog,*.v_[A-Za-z0-9_]*,*.v.* set ft=verilog_systemverilog
-augroup END
+  augroup remmeber_position_group
+    " Clear auto-commands
+    autocmd! 
 
-au BufNewFile,BufRead *.va,*.vams set ft=verilogams
-au BufNewFile,BufRead *.sv, set ft=verilog_systemverilog
+    " When editing a file, always jump to the last known cursor position.
+    " Except when position is invalid or inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+  augroup END
 
-" The following are commented out as they cause vim to behave a lot
-" different from regular vi. They are highly recommended though.
-set showcmd		   " Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-set ignorecase		" Do case insensitive matching
-set incsearch		" Incremental search
-set autowrite		" Automatically save before commands like :next and :make
+else
+  " If we can not set filetype specific file indentation set generic
+  set autoindent		
+endif " has("autocmd")
+
 
 " Source a global configuration file if available
 "if filereadable("/etc/vimrc")
 "  source /etc/vimrc
 "endif
-
-"map : in normal mode
-"imap : map key in insert mode
-"D apple key
-"Ctrl key
-"<Esc> escape key
-"<CR> Add return to run command 
-
-"map  <D-S-]> gt
-"map  <D-S-[> gT
-"map  <D-0> :tablast<CR>
 
 "#####################################
 "### Key Mappings
@@ -241,13 +226,8 @@ endif
 "imap maping for insert mode
 "map  maping for normal mode
 
-" type jjk quickly instead of Escape to leave insert mode
+" type jk quickly instead of Escape to leave insert mode
 imap  jk <Esc>
-
-"map <D-]> :s/^/#<cr>
-"map <D-[> :s/^#/<cr>
-"map <C-]> :s/^/escape(b:comment_leader)<cr>
-"map <C-[> :s/^#/<cr>
 
 " Enabling the Ruby Txt Object by nelstrom
 " Relies on other things
@@ -272,51 +252,48 @@ endfunction
 "so ~/.unix_config/comments.vim
 map ;g :call Preserve("normal! gg=G")<CR>
 
-set hlsearch "Enable Searcg Highlighting
 "Setting up ':Clear' to clear search sstring
 :com! Clear let @/ = ""
 
 :com! StatsLine %s//\r/g 
 
-" aliasing :W to :w from http://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim
+" Aliasing :W to :w from 
+"   http://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w'))
-":command W w
 
-"get NerdTree
-" http://www.vim.org/scripts/script.php?script_id=1658
-"TODO add check if NERDTree plugin is in place
-"Load NERDTree and put cursor in other window
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
-
-  " Toggle fold state between closed and opened. 
-  " 
-  " If there is no fold at current line, just moves forward. 
-  " If it is present, reverse it's state. 
-  fun! ToggleFold() 
+" Toggle fold state between closed and opened. 
+" 
+" If there is no fold at current line, just moves forward. 
+" If it is present, reverse it's state. 
+fun! ToggleFold() 
   if foldlevel('.') == 0 
-  normal! l 
-  else 
-  if foldclosed('.') < 0 
-  . foldclose 
-  else 
-  . foldopen 
-  endif 
+    normal! l 
+  else
+    if foldclosed('.') < 0 
+      . foldclose 
+    else 
+      . foldopen 
+    endif 
   endif 
   " Clear status line 
   echo 
-  endfun 
+endfun 
 
-  " Map this function to Space key. 
-  noremap <space> :call ToggleFold()<CR>
+" Map this function to Space key. 
+noremap <space> :call ToggleFold()<CR>
 
-  " gf goto_file, automatically add search for these file extensions
-  :set suffixesadd+=.v
-  :set suffixesadd+=.sv
-  :set suffixesadd+=.bh.v
+" Turn on the fold column
+set foldcolumn=1
 
-" Add location of project tag-file if the $work environment variable is defined
-if len($work) > 0
-  set tags+=$work/tags
+" gf goto_file, automatically add search for these file extensions
+:set suffixesadd+=.v
+:set suffixesadd+=.sv
+:set suffixesadd+=.bh.v
+
+if version >= 604
+  " Add location of project tag-file if the $work environment variable is defined
+  if len($work) > 0
+    set tags+=$work/tags
+  endif
 endif
 
