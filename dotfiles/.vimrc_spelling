@@ -1,25 +1,23 @@
 
 if version >= 604
-  if has("gui_running")
+  if has("gui_running") || &t_Co >= 8
     "Turn on Spelling Checker
     set spell
-    highlight clear SpellBad
-    highlight clear SpellCap   
-    highlight clear SpellLocal 
-    highlight clear SpellRare  
-    "highlight SpellBad   cterm=none ctermfg=0 ctermbg=0
-    "highlight SpellCap   cterm=none ctermfg=0 ctermbg=0
-    "highlight SpellLocal cterm=none ctermfg=0 ctermbg=0
-    "highlight SpellRare  cterm=none ctermfg=0 ctermbg=0
-    " USAGE:
+    " USAGE: of spell
     "   ]s    Next misspelt word
     "   [s    Prev misspelt word
     "   zg    Add to dictionary
     "   zug   Undo add to dictionary
     "   z=    spelling suggestions
-
+    
+    highlight clear SpellBad
+    highlight clear SpellCap   
+    highlight clear SpellLocal 
+    highlight clear SpellRare  
+    
     " Spellings Underline instead of highlight
-    highlight SpellBad cterm=underline
+    highlight SpellBad cterm=underline 
+
     "" GVIM/MVIM squigle underline
     highlight SpellBad gui=undercurl
   endif

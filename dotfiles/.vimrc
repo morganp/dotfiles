@@ -108,29 +108,27 @@ endif
 
 " In many terminal emulators the mouse works.
 if has('mouse')
- set mouse=a
+  set mouse=a
 endif
 
-"The following can be written out to a colorscheme.vim 
-" file and included separately. This would have the added 
-" bonus the :colorscheme x could be used to switch back
-" Set nice colors
-" 0: Black
-" 1: Red
-" 2: Green
-" 3: Orange
-" 4: Blue
-" 5: Magenta
-" 6: Cyan
-" 7: White
+
+" Colorschemes can be compared at
+" https://code.google.com/p/vimcolorschemetest/
+" colorscheme help
+" :help highlight-cterm
+" Colorschemes I have :
+"  ir_black
+"  oceanblack256
+"  xterm16
+"  bw_black
+"
+" ## Light backgrounds
+" bw_white
 
 " Set colorscheme dependant on terminal type
 if has("gui_running")
   " GUI
   colorscheme ir_black
-  "highlight Comment     gui=NONE     guifg=Green       guibg=Black
-  "highlight Error       gui=NONE     guifg=Black       guibg=blue
-  highlight Todo        gui=NONE     guifg=Black       guibg=blue
 
   " Turn on caret cross-hairs
   set cursorline
@@ -144,15 +142,14 @@ elseif &t_Co >= 16
   colorscheme xterm16
 elseif &t_Co >= 8
   "   8 Color Console
- set background=light
-  colorscheme bw
+  colorscheme bw_black_back
 else  
   " Console
-  colorscheme bw
+  colorscheme bw_black_back
 end
 
-" Load Spelling after loading colorscheme
-" Spelling corrections moved to separate file
+
+" Enable Spelling after loading colorscheme
 so $HOME/dotfiles/dotfiles/.vimrc_spelling
 
 " For Projector Presentations
@@ -160,9 +157,11 @@ so $HOME/dotfiles/dotfiles/.vimrc_spelling
 "highlight clear
 "colorscheme shine 
 
-"Warn with subtle background colours when over 80 chars long
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
-match OverLength /\%81v.\+/
+if has("gui_running") || &t_Co >= 16
+  "Warn with subtle background colours when over 80 chars long
+  highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+  match OverLength /\%81v.\+/
+end
 
 " Only do this part when compiled with support for autocommands.
 " http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
