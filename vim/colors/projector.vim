@@ -12,23 +12,12 @@
  endif
  let g:colors_name="projector"
 
+ " gvim colors from $VIMRUNTIME/rgb.txt
+
 " Many terminals can only use six different colors (plus black and white).
 " Therefore the number of colors used is kept low. It doesn't look nice with
 " too many colors anyway.
 " Careful with "cterm=bold", it changes the color to bright for some terminals.
-" hi Comment	  term=bold      cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=NONE      guifg=NONE      guibg=NONE
-" hi Constant	  term=NONE      cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=NONE      guifg=NONE      guibg=NONE
-" hi Special	  term=bold      cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=NONE      guifg=NONE      guibg=NONE
-" hi Identifier	term=NONE      cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=NONE      guifg=NONE      guibg=NONE
-" hi Statement	term=bold      cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=bold      guifg=NONE      guibg=NONE
-" hi PreProc	  term=NONE      cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=NONE      guifg=NONE      guibg=NONE
-" hi Type		    term=NONE      cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=bold      guifg=NONE      guibg=NONE
-" hi Underlined	term=underline cterm=underline ctermfg=NONE                       gui=underline guifg=NONE      
-" hi Ignore	    term=NONE      cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=NONE      guifg=NONE      guibg=NONE
-" hi Error      term=reverse   cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=NONE      guifg=NONE      guibg=NONE
-" hi Todo		    term=standout  cterm=NONE      ctermfg=NONE        ctermbg=NONE   gui=NONE      guifg=NONE      guibg=NONE
-
-" gvim colors from $VIMRUNTIME/rgb.txt
 " NR-16   NR-8    COLOR NAME ~
 " 0       0       Black
 " 1       4       DarkBlue
@@ -46,8 +35,6 @@
 " 13	    5*	    Magenta, LightMagenta
 " 14	    3*	    Yellow, LightYellow
 " 15	    7*	    White
-" TODO
-" Error
 " Constants are strings
 " unknown :special, Identifier
 " Statements are keywords
