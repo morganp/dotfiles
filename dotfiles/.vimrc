@@ -186,10 +186,7 @@ if has("autocmd")
     " Clear auto-commands
     autocmd! 
 
-    autocmd BufNewFile,BufRead *.va,*.vams set ft=verilogams
-    autocmd BufNewFile,BufRead *.v,*.vh    set ft=verilog_systemverilog
-    autocmd BufNewFile,BufRead *.f,*.v.*   set ft=verilog_systemverilog
-    autocmd BufNewFile,BufRead *.sv        set ft=verilog_systemverilog
+    "autocmd BufNewFile,BufRead *.va,*.vams set ft=verilogams
   augroup END
 
   augroup remmeber_position_group
