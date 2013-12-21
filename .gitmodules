@@ -1,0 +1,3 @@
+[submodule "vim/bundle/systemverilog"]
+	path = vim/bundle/systemverilog
+	url = http://github.com/morganp/vim-SystemVerilog.git
