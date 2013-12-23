@@ -45,4 +45,3 @@ Inputrc
     Tab completion, not case sensitive.
     Tab completion works with hidden files.
 
- 
