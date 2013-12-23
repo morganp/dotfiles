@@ -1,5 +1,5 @@
 #!/bin/sh
 
 echo "Linking git post-merge hook"
-ln -s hooks/post-merge .git/hooks/post-merge
+ln hooks/post-merge .git/hooks/post-merge
 
