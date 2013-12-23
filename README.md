@@ -9,6 +9,7 @@ Install
     $ cd ~
     $ git clone git://github.com/morganp/dotfiles.git
     $ cd dotfiles
+    $ bin/create-hook-symlinks ## Optional links to a post-merge hook to remind about submodule update
     $ git submodule update --init
     $ ./install --help
     # If you want every thing 
@@ -24,6 +25,7 @@ Bash
     ll -file list with permissions, human redable file sizes(K M G Bytes) & Colour
     la -As ll with hidden files
     prompt in git repository $ server folder (branch)
+    .. Up a directory
 
 Vim
 ---
