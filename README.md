@@ -9,6 +9,7 @@ Install
     $ cd ~
     $ git clone git://github.com/morganp/dotfiles.git
     $ cd dotfiles
+    $ git submodule update --init
     $ ./install --help
     # If you want every thing 
     $ ./install --all
