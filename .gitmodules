@@ -19,3 +19,6 @@
 [submodule "vim/bundle/matchit"]
 	path = vim/bundle/matchit
 	url = https://github.com/tsaleh/vim-matchit.git
+[submodule "vim/bundle/projector"]
+	path = vim/bundle/projector
+	url = https://github.com/morganp/vim-projector.git
