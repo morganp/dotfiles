@@ -1,6 +1,6 @@
 [submodule "vim/bundle/systemverilog"]
 	path = vim/bundle/systemverilog
-	url = http://github.com/morganp/vim-SystemVerilog.git
+	url = https://github.com/morganp/vim-SystemVerilog.git
 [submodule "vim/bundle/markdown"]
 	path = vim/bundle/markdown
 	url = https://github.com/tpope/vim-markdown.git
