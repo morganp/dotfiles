@@ -1,0 +1,9 @@
+#!/bin/bash 
+# Source https://github.com/christianbundy/sshcd
+# Usage:
+#   sshcd user@server:/path
+
+t="${!#}"
+c=("ssh" "-t" "${@:1:$(($#-1))}" "${t%:*}" "cd ${t##*:}; \$SHELL -l")
+"${c[@]}"
+
