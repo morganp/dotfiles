@@ -140,6 +140,14 @@ top_level_test_contents = %{
   else
     pass_count  = pass_count  + 1;
   end
+
+  %% Test Status Report
+  if error_count > 0
+    disp(['Test FAILED : ', num2str(pass_count), ' passes and ',num2str(error_count),' fails'])
+  else
+    disp(['Test Passed : ', num2str(pass_count), ' checks ran '])
+  end
+
 }
 
 
