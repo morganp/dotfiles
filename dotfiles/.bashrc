@@ -27,11 +27,16 @@
 #get ssh completion
 #source ~/.unix_config/.ssh-completion
 
-if [[ "$unamestr" == 'Darwin' ]]; then
+if [[ `uname` == 'Darwin' ]]; then
   # Default
-  #PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
-  PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
-  #PATH=/bin:~/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/texbin:/usr/X11/bin
+  #Mountain Lion
+  #PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+  
+  ## Mavericks
+  # Set architecture flags
+  export ARCHFLAGS="-arch x86_64"
+  # Ensure user-installed binaries take precedence
+  PATH=/usr/local/bin:$PATH
 fi
 
 #Bash functions to only add path if not on $PATH
@@ -217,3 +222,8 @@ export LS_COLORS="fi=00:di=01;94:ln=00;36:ex=00;91:"
 # install with $ bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+## brew install bash-completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
