@@ -129,16 +129,24 @@ top_level_test_contents = %{
   %    Add function to path
   addpath('../function/');
 
+  %% Test Vectors
+  test = {};
+  test(end+1).input = 0; test(end).expect = '0';
+  test(end+1).input = 1; test(end).expect = '1';
+
+
   %% The tests
   error_count = 0;
   pass_count  = 0;
 
-  b           = #{project_name}();
-  if (  ~isequal(b, ?Expected output?)  )
-    disp('#{project_name}() Failed ')
-    error_count = error_count + 1;
-  else
-    pass_count  = pass_count  + 1;
+  for vector=1:size(vector, 2)
+    b           = #{project_name}(i test(vector).input );
+    if (  ~isequal(b, test(vector).expect )  )
+      disp('#{project_name}() Failed ')
+      error_count = error_count + 1;
+    else
+      pass_count  = pass_count  + 1;
+    end
   end
 
   %% Test Status Report
