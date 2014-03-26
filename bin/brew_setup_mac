@@ -1,0 +1,27 @@
+#!/bin/sh
+brew update
+brew upgrade
+brew cleanup
+
+brew tap phinze/cask
+brew install brew-cask
+
+brew cask update
+brew cask install google-chrome
+brew cask install adobe-creative-cloud
+#brew cask install vlc ## Want 2.0.9 not the 2.1.x
+
+brew cask install gitx-l
+## Spyder screen callibration
+brew cask install hugin
+brew cask install graphsketcher
+brew cask install iterm2
+brew cask install omnidisksweeper
+brew cask install flux
+brew cask install max
+brew cask install handbrake
+brew cask install evernote
+brew cask install dropbox
+
+brew cleanup
+
