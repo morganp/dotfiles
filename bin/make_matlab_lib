@@ -139,7 +139,7 @@ top_level_test_contents = %{
   error_count = 0;
   pass_count  = 0;
 
-  for vector=1:size(vector, 2)
+  for vector=1:size(test, 2)
     b           = #{project_name}(i test(vector).input );
     if (  ~isequal(b, test(vector).expect )  )
       disp('#{project_name}() Failed ')
