@@ -148,16 +148,16 @@ if has("gui_running")
 
 elseif &t_Co >= 256
   " 256 Color Console
-  colorscheme oceanblack256
+  colorscheme xterm16 "oceanblack256
 elseif &t_Co >= 16
   "  16 Color Console
   colorscheme xterm16
 elseif &t_Co >= 8
   "   8 Color Console
-  colorscheme bw_black_back
+  colorscheme bw_white
 else  
   " Console
-  colorscheme bw_black_back
+  colorscheme bw_white
 end
 
 
@@ -304,6 +304,16 @@ if version >= 604
   " Add location of project tag-file if the $work environment variable is defined
   if len($work) > 0
     set tags+=$work/tags
+  endif
+endif
+
+" Some machine require backspace mappings when using xterm256-color
+" The following match string is quite specific.
+let need_backspacefix = matchstr(hostname(), 'edsrvcomp')
+if !empty(need_backspacefix)
+  ":help fixdel
+  if &term ==? "xterm-256color"
+    set t_kb=
   endif
 endif
 
