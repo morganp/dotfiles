@@ -68,6 +68,7 @@ process_report( run_report_for( "matlab"   ) ); print_report
 process_report( run_report_for( "simulink" ) ); print_report
 process_report( run_report_for( "Fixed_Point_Toolbox" ) ); print_report
 process_report( run_report_for( "Signal_Toolbox" ) ); print_report
+process_report( run_report_for( "Control_Toolbox" ) ); print_report
 #process_report( run_report_for( "" ) ); print_report
 
 
