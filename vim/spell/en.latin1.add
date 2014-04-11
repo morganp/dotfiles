@@ -36,3 +36,5 @@ femtoseconds
 testbench
 rtl
 off
+frequency
+timestamp
