@@ -23,5 +23,8 @@ brew cask install handbrake
 brew cask install evernote
 brew cask install dropbox
 
+## Install VPN (get config from AirVPN)
+brew cask install tunnelblick
+
 brew cleanup
 
