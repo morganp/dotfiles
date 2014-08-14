@@ -23,9 +23,8 @@ alias np  "nedit -lm plain"
 alias ne nedit #Just for fryderk
 
 alias h history
-alias calc "/usr/bin/kcalc"
 
-## Subversion alias
+## Subversion Shortcuts
 alias ss   "svn status -u"
 alias sup  "svn update"
 
@@ -42,7 +41,7 @@ alias ll '(tput rmam; ls -lFh  \!*; tput smam)'
 alias la '(tput rmam; ls -lAFh \!*; tput smam)'
 alias tree '(tput rmam; ""tree \!*; tput smam)'
 
-## cd aliases
+## Cd Shortcuts
 alias cd 'cd \!*;echo $cwd'
 alias .. cd ../
 alias ... cd ../../
@@ -51,6 +50,8 @@ alias ..... cd ../../../../
 
 alias cd- cd -
 alias -- cd -
+
+alias reload='source ~/.mycshrc && rehash'
 
 ## Nice defaults for grep
 alias grep grep --exclude=.svn -Rn
