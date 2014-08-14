@@ -312,6 +312,9 @@ endif
 let need_backspacefix = matchstr(hostname(), 'edsrvcomp')
 if !empty(need_backspacefix)
   ":help fixdel
+  if &term ==? "screen-256color"
+    set t_kb=
+  endif
   if &term ==? "xterm-256color"
     set t_kb=
   endif
