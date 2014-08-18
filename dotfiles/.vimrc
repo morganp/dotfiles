@@ -216,6 +216,9 @@ endif " has("autocmd")
 "#####################################
 "### Key Mappings
 "#####################################
+"imap maping for insert mode
+"map  maping for normal mode
+
 if has("unix")
   if system("uname") == "Darwin"
     " Mac Vim Defaults overide This
@@ -233,8 +236,10 @@ if has("unix")
   endif
 endif
 
-"imap maping for insert mode
-"map  maping for normal mode
+noremap <Up>     :echo 'Use k'<CR> 
+noremap <Down>   :echo 'Use j'<CR> 
+noremap <Left>   :echo 'Use h'<CR> 
+noremap <Right>  :echo 'Use l'<CR> 
 
 " type jk quickly instead of Escape to leave insert mode
 imap  jk <Esc>
