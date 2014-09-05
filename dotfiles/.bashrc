@@ -111,6 +111,7 @@ then
   export TERM=$TERM-256color
 fi
 
+
 ## BASH Prompt
 ## http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
 ## Colours from
@@ -142,6 +143,7 @@ alias vim="vim -X"
 alias n="nedit"
 alias h='history'
 
+
 ## Subversion Shortcuts
 alias ss='svn status -u'
 alias sup='svn update'
@@ -160,14 +162,14 @@ alias gm='git merge'
 alias gd='git diff'
 alias gl='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
 
-
 ## Cd Shortcuts
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias cd-='cd -'
-alias --='cd -'
+#Invalid alias in bash
+#alias --='cd -'
 
 
 alias reload='source ~/.bashrc'
@@ -184,7 +186,6 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
 elif [[ "$unamestr" == 'Darwin' ]]; then
   bsd=true
 fi
-
 #echo '## LS info ##'
 #echo `which ls`
 #echo `type ls`
@@ -202,6 +203,7 @@ elif [[ $bsd == true ]]; then
 else 
   echo "/n/nOS type not recognised form uname ls not setup correctly"
 fi
+
 
 #http://twistedcode.blogspot.com/2008/04/lscolors-explained.html#!/2008/04/lscolors-explained.html
 #fi file
