@@ -32,13 +32,13 @@ alias sup  "svn update"
 setenv LS_COLORS "fi=00:di=01;94:ln=00;36:ex=00;91:"
 
 ## ls setup
-alias ls ls -Fh --color=auto
+alias ls ls --color=auto
 alias l ll
 alias lll ll
 
 ## Stop line wrapping 
-alias ll '(tput rmam; ls -lFh  \!*; tput smam)'
-alias la '(tput rmam; ls -lAFh \!*; tput smam)'
+alias ll '(tput rmam; ls -lh  \!*; tput smam)'
+alias la '(tput rmam; ls -lAh \!*; tput smam)'
 alias tree '(tput rmam; ""tree \!*; tput smam)'
 
 ## Cd Shortcuts
