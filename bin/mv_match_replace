@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# Usage is mv_regexp my your my_playlist.txt
+#   my_playlist.txt --> my_playlist.txt
+
+match      = ARGV[0]
+replace    = ARGV[1]
+files      = ARGV[2]
+
+Dir[files].each do |file|
+  new_name = file.gsub(match, replace)
+  if (file != new_name) 
+    puts "Moving #{file} to #{new_name}"
+    File.rename(file, new_name)
+  end
+end
+
