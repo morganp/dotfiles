@@ -1,6 +1,8 @@
 #!/bin/sh
 
-#-not -name '.svn' // Stop the search in .svn foldrs
-find ./ -not -name "*.svn*" -not -name "*.SYNC*"   -iname "*$1*"
+## Do not search :
+#   svn  : Subversion 
+#   SYNC : Synchronisity
+#   git  : Git
+find ./ -not -name "*.svn*" -not -name "*.SYNC*"  -not -name "*.git*"  -iname "*$1*"
 
-#-not -name '.SYNC'
