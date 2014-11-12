@@ -9,5 +9,5 @@ find \
   -name '.svn*' -prune -o \
   -name '.SYNC*' -prune -o \
   -name '.git*' -prune -o \
-  -iname '*1*' -print
+  -iname "*$1*" -print
 
