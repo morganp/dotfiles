@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# encoding: UTF-8
+
+require 'pp'
+require "yaml"
+
+config = YAML.load_file("pension.yml")
+## Pounds starting balance
+statement        = Array(config['balance'])  
+#
+## How many year to pay in
+years            = config['years']    
+
+##Expected average interest rate  Decimal ie 10% is 0.10 
+interest_rate    = config['interest']     
+
+## Amount payed in each year
+annual_payment   = config['payment']
+
+## increase payments by %2 (0.02) a year.
+payment_increase = config['payment_increase']     
+
+(1..years).each do |year|
+  current_annual_payment = annual_payment * (1 +  ( year * payment_increase ))
+  statement[year] = (statement[year - 1] + current_annual_payment )*(1+interest_rate)
+end
+
+#pp statement
+puts "Initial #{statement[0]}, #{years} years at #{interest_rate} interest. "
+puts "first annual deposit #{annual_payment}, deposits increasing /year by #{payment_increase}"
+puts "£#{statement[years].to_i}"
