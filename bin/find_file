@@ -5,7 +5,7 @@
 #   SYNC : Synchronisity
 #   git  : Git
 #find ./ -not -name "*.svn*" -not -name "*.SYNC*"  -not -name "*.git*"  -iname "*$1*"
-find \
+find ./ \
   -name '.svn*' -prune -o \
   -name '.SYNC*' -prune -o \
   -name '.git*' -prune -o \
