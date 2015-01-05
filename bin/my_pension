@@ -4,7 +4,10 @@
 require 'pp'
 require "yaml"
 
-config = YAML.load_file("pension.yml")
+this_folder = File.expand_path('..', __FILE__)
+
+config_file = File.join(this_folder,  "pension.yml")
+config = YAML.load_file( config_file )
 ## Pounds starting balance
 statement        = Array(config['balance'])  
 #

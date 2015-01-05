@@ -6,7 +6,10 @@
 require "stock_quote"
 require "yaml"
 
-config = YAML.load_file("stock.yml")
+this_folder = File.expand_path('..', __FILE__)
+config_file = File.join(this_folder,  "stock.yml")
+
+config = YAML.load_file( config_file )
 
 ## Get price of DLG.DE stocks
 stock = StockQuote::Stock.quote(config['ticker']).ask
