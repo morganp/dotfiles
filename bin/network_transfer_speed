@@ -1,0 +1,31 @@
+#!/bin/bash
+
+destination=$1
+
+## Hd param to test local drives.
+#hdparm -t /dev/sda
+
+## Measure download speed on eth0
+#while true; do X=$Y; sleep 1; Y=$(ifconfig eth0|grep RX\ bytes|awk '{ print $2 }'|cut -d : -f 2); echo "$(( Y-X )) bps"; done
+
+
+
+
+##Create 'bigfile' 100MB file for transfer check.
+dd if=/dev/random of=bigfile bs=1024 count=102400
+
+
+START=$(date +%s)
+
+## Transfer and Show speed
+rsync --progress -av bigfile $destination
+
+END=$(date +%s)
+DIFF=$(echo "$END - $START" | bc)
+
+echo "100MB transfer took: $DIFF seconds"
+rate=`echo "100/$DIFF" | bc -l`
+echo "$rate MB/s "
+
+rm bigfile
+rm $destination/bigfile
