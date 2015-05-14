@@ -27,3 +27,11 @@ profit_pounds = profit * 0.8
 puts "Shares #{options_no}, current Share price #{stock} euro"
 puts "#{config['ticker']} Value (euro) : #{profit}"
 puts "#{config['ticker']} Value (GBP)  : #{profit_pounds}"
+
+## Calculate Capital gains tax 28% on value over �11k
+if profit_pounds > 11000
+  profit_pounds_post_tax = (profit_pounds-11000)*0.72 + 11000
+else
+  profit_pounds_post_tax = profit_pounds
+end
+puts "Post Tax (GBP)      : #{profit_pounds_post_tax}"
