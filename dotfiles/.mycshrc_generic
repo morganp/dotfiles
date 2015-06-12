@@ -17,6 +17,12 @@ endif
 setenv PATH ~/bin:${PATH}
 setenv PATH ~/dotfiles/bin:${PATH}
 
+## FIX for Terminal vim Backspace not working
+## http://vim.wikia.com/wiki/Backspace_and_delete_problems
+if ($?TERM =~ *xterm*) then
+  stty erase '^?'
+endif 
+
 ## Alias
 alias n nedit
 alias np  "nedit -lm plain"
