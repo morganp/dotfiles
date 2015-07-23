@@ -22,7 +22,8 @@ total_cost = option_cost + commision
 profit = (stock - total_cost) * options_no
  
 #euro to Stirling Conversion
-profit_pounds = profit * 0.8
+#xe.com http://www.xe.com/currencycharts/?from=EUR&to=GBP
+profit_pounds = profit * 0.71226
 
 puts "Shares #{options_no}, current Share price #{stock} euro"
 puts "#{config['ticker']} Value (euro) : #{profit}"
