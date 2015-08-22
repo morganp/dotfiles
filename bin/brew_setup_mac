@@ -26,6 +26,9 @@ brew cask install evernote
 brew cask install dropbox
 brew cask install little-snitch
 
+## Install VNC (built in broken since Lion)
+brew install Caskroom/cask/tigervnc-viewer
+
 ## Install VPN (get config from AirVPN)
 brew cask install tunnelblick
 

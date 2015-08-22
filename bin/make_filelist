@@ -1,0 +1,6 @@
+#!/bin/sh
+
+find . -name "*.v"  -type f >  file.list
+find . -name "*.sv" -type f >> file.list
+
+
