@@ -1,0 +1,71 @@
+#!/bin/bash
+
+destination=$1
+
+## Hd param to test local drives.
+#hdparm -t /dev/sda
+
+## Measure download speed on eth0
+#while true; do X=$Y; sleep 1; Y=$(ifconfig eth0|grep RX\ bytes|awk '{ print $2 }'|cut -d : -f 2); echo "$(( Y-X )) bps"; done
+
+
+
+
+##Create 'bigfile' 100MB file for transfer check.
+dd if=/dev/random of=bigfile bs=1024 count=102400
+START=$(date +%s)
+
+## Transfer and Show speed
+rsync --progress -av bigfile $destination
+
+END=$(date +%s)
+DIFF1=$(echo "$END - $START" | bc)
+
+echo "100MB transfer took: $DIFF seconds"
+rate=`echo "100/$DIFF1" | bc -l`
+echo "$rate MB/s "
+
+rm bigfile
+rm $destination/bigfile
+
+################################################
+##Create 'bigfile' 100MB file for transfer check.
+dd if=/dev/random of=bigfile bs=1024 count=102400
+START=$(date +%s)
+
+## Transfer and Show speed
+rsync -av bigfile $destination
+
+END=$(date +%s)
+DIFF2=$(echo "$END - $START" | bc)
+
+rate=`echo "100/$DIFF2" | bc -l`
+echo "$rate MB/s "
+
+rm bigfile
+rm $destination/bigfile
+
+
+################################################
+##Create 'bigfile' 100MB file for transfer check.
+dd if=/dev/random of=bigfile bs=1024 count=102400
+START=$(date +%s)
+
+## Transfer and Show speed
+rsync -av bigfile $destination
+
+END=$(date +%s)
+DIFF3=$(echo "$END - $START" | bc)
+
+rate=`echo "100/$DIFF3" | bc -l`
+echo "$rate MB/s "
+
+rm bigfile
+rm $destination/bigfile
+
+################################################
+TOTAL_DIFF=$(echo "$DIFF1 + $DIFF2 + $DIFF3" | bc)
+echo "3 * 100MB transfer took: $TOTAL_DIFF seconds"
+rate=`echo "300/$TOTAL_DIFF" | bc -l`
+echo "Average over 3 runs $rate MB/s "
+
