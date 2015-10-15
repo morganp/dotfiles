@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+# encoding: UTF-8
+
+require 'pp'
+require "yaml"
+
+this_folder = File.expand_path('..', __FILE__)
+
+config_file = File.join(this_folder,  "mortgage.yaml")
+
+config = YAML.load_file( config_file )
+## Pounds starting balance
+statement        = Array(config['loan'])  
+#
+## How many year to pay in
+years            = config['years']    
+
+##Expected average interest rate  Decimal ie 10% is 0.10 
+interest_rate    = config['interest']     
+
+## Amount payed in each year
+monthly_payment   = config['payment']
+annual_payment    = 12*monthly_payment
+
+## increase payments by %2 (0.02) a year.
+payment_increase = config['payment_increase']     
+puts ' '
+puts "Balance #{statement.first} over #{years} years at #{interest_rate}% interest rate"
+puts "Monthly payment #{monthly_payment} : => annual payment #{annual_payment}"
+
+
+(1..years).each do |year|
+  start_balance           = statement[year-1]
+
+  closing_balance_pre_int = start_balance - annual_payment
+
+  average_balance = (start_balance + closing_balance_pre_int)/2
+
+  annual_interest = average_balance * (interest_rate/100)
+
+  closing_balance = closing_balance_pre_int + annual_interest;
+
+  statement[year] = closing_balance
+
+  puts "Year #{format("%2.0f", year)} : £#{format("%9.2f", closing_balance)}"
+end
+
+#pp statement
+#puts "Initial #{statement[0]}, #{years} years at #{interest_rate} interest. "
+#puts "first annual deposit #{annual_payment}, deposits increasing /year by #{payment_increase}"
+#puts "£#{statement[years].to_i}"
