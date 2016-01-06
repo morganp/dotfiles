@@ -210,7 +210,7 @@ fi
 #di Directory
 #ln Link
 #ex Executable has unix x set
-export LS_COLORS="fi=00:di=01;34:ln=00;36:ex=00;91:"
+export LS_COLORS="fi=00:di=01;94:ln=00;36:ex=00;91:"
 
 # Stuff for RVM Ruby version manager
 # http://rvm.beginrescueend.com/
