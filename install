@@ -85,3 +85,6 @@ end
 
 puts "For global git ignore you may want to execute "
 puts "$ git config --global core.excludesfile ~/dotfiles/dotfiles/.gitignore "
+puts ""
+puts "VIM plugins added via git submodules"
+puts "git submodule update --init"
