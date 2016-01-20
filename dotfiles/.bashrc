@@ -133,6 +133,13 @@ export PS1=$PS1" \$ \[\033[00m\]"
 #http://jonisalonen.com/2012/your-bash-prompt-needs-this/
 export PS1="\[\033[G\]$PS1"
 
+############################
+## Perforce
+############################
+#export P4PORT=
+export P4CONFG=.p4config
+
+
 
 ############################
 ## Standard Alias
@@ -219,6 +226,8 @@ export LS_COLORS="fi=00:di=01;94:ln=00;36:ex=00;91:"
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ## brew install bash-completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+if [[ "$unamestr" == 'Darwin' ]]; then
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+      . $(brew --prefix)/etc/bash_completion
+  fi
 fi
