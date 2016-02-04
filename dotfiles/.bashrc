@@ -135,6 +135,15 @@ export PS1="\[\033[G\]$PS1"
 
 
 ############################
+## Perforce Alias
+############################
+export P4CONFIG=.p4config
+export P4MERGE=p4merge
+export P4IGNORE=.p4ignore
+export P4EDITOR=vim
+
+
+############################
 ## Standard Alias
 ############################
 alias less="less -r "
