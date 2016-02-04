@@ -93,6 +93,14 @@ post_add_path ~/dotfiles/bin
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 
+# Change max size of Core files
+ulimit -c 0
+
+# Ensure the umask is private even if you have a uid >99 and a
+# personal group as your primary gid
+umask 0022
+
+
 ## Bash History from : http://briancarper.net/blog/248/
 shopt -s histappend
 # Using this all terminals will have there history in sync
