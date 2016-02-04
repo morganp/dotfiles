@@ -18,7 +18,10 @@
 	url = https://github.com/kana/vim-textobj-user.git
 [submodule "vim/bundle/matchit"]
 	path = vim/bundle/matchit
-	url = https://github.com/tsaleh/vim-matchit.git
+	url = https://github.com/vim-scripts/vim-matchit.git
 [submodule "vim/bundle/projector"]
 	path = vim/bundle/projector
 	url = https://github.com/morganp/vim-projector.git
+[submodule "vim/bundle/perforce"]
+	path = vim/bundle/perforce
+	url = https://github.com/vim-scripts/perforce.git
