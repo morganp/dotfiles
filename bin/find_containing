@@ -1,5 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+echo "Looking for $1"
 
-grep --exclude="*.svn*" --exclude="*.SYNC*"  -riHn "$1" *
-# 
-#find ./ | xargs -I {} grep -iHn "$0" {}
+
+if [[ `uname` == 'Darwin' ]]; then
+  # Use find to list all files
+  find ./ -type f | xargs -I {} grep -iHn "$1" {}
+
+else 
+  grep --exclude="*.svn*" --exclude="*.SYNC*"  -riHn "$1" *
+
+fi
