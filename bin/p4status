@@ -1,0 +1,27 @@
+#!/bin/sh
+
+#                -sa     Opened files that differ from the revision
+#                        in the depot or are missing.
+#
+#                -sb     Files that have been opened for integrate, resolved,
+#                        and subsequently modified.
+#
+#                -sd     Unopened files that are missing on the client.
+#
+#                -se     Unopened files that differ from the revision
+#                        in the depot.
+#
+
+echo "Open Modified"
+p4 diff -sa
+
+echo "Open Modified after resolve"
+p4 diff -sb
+
+echo "Client Missing Files"
+p4 diff -sd
+
+echo "Modified and not opened"
+p4 diff -se
+
+
