@@ -24,4 +24,5 @@ p4 diff -sd
 echo "Modified and not opened"
 p4 diff -se
 
-
+echo "New Files:"
+p4 status -a ...
