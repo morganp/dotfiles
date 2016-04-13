@@ -305,6 +305,15 @@ set foldcolumn=1
 :set suffixesadd+=.sv
 :set suffixesadd+=.bh.v
 
+" Associate .vis with MacVim then when clicked in finder the session is opened
+" http://zackhobson.com/2011/02/21/macvim-sessions/
+"  save sessions with .vis extension
+"map <leader>s :mksession!  session.vis<CR>
+"  automatically source vim sessions so I can open them with the finder
+au BufRead *.vis so %
+
+
+
 if version >= 604
   " Add location of project tag-file if the $work environment variable is defined
   if len($work) > 0
