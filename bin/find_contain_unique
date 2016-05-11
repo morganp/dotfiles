@@ -4,13 +4,13 @@ echo "Looking for $1"
 
 if [[ `uname` == 'Darwin' ]]; then
   # Use find to list all files
-  find ./ -type f | xargs -I {} grep -iHn "$1" {}
+  find ./ -type f | xargs -I {} grep -il "$1" {}
 
 else 
   # Exclude :
   #   Subversion
   #   Synchronisity
   #   vim swap files
-  grep --exclude="*.svn*" --exclude="*.SYNC*" --exclude="*.swp" -riHn "$1" *
+  grep --exclude="*.svn*" --exclude="*.SYNC*" --exclude="*.swp"  -ril "$1" *
 
 fi
