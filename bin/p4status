@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #                -sa     Opened files that differ from the revision
 #                        in the depot or are missing.
@@ -12,17 +12,20 @@
 #                        in the depot.
 #
 
-echo "Open Modified"
-p4 diff -sa
+# Remove full path from the report if matches current location
+this_dir=$(pwd | sed 's/\//\\\//g')
 
-echo "Open Modified after resolve"
+echo "Open Modified :"
+p4 diff -sa | sed "s/$this_dir/./"
+
+echo "Open Modified after resolve :"
 p4 diff -sb
 
-echo "Client Missing Files"
+echo "Client Missing Files :"
 p4 diff -sd
 
-echo "Modified and not opened"
+echo "Modified and not opened :"
 p4 diff -se
 
-echo "New Files:"
+echo "New Files :"
 p4 status -a ...
