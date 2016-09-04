@@ -61,12 +61,12 @@ end
 def create_shoot( shoot_name )
 
   @config = {
-   :raw_conf_folder_loc => '/Users/morgy/Pictures/Workflow/RAW',
-   :drv_conf_folder_loc => '/Users/morgy/Pictures/Workflow/DRV',
+   :raw_conf_folder_loc => '~/Pictures/Workflow/RAW',
+   :drv_conf_folder_loc => '~/Pictures/Workflow/DRV',
   }
 
 
-  folderlist = Dir.entries(@config[:raw_conf_folder_loc]) ##- ['.', '..']
+  folderlist = Dir.entries(File.expand_path(@config[:raw_conf_folder_loc])) ##- ['.', '..']
   folderlist = folderlist.find_all{ |item| item =~ /(\d+)/ }
   
   sensible_sort( folderlist ).last =~ /(\d+)/
@@ -77,8 +77,8 @@ def create_shoot( shoot_name )
   shoot_folder  = "#{shoot_number}-#{shoot_name}"
 
   # Create matching hierarchies
-  create_folder( File.join( @config[:raw_conf_folder_loc], shoot_folder ) )
-  create_folder( File.join( @config[:drv_conf_folder_loc], shoot_folder ) )
+  create_folder( File.join( File.expand_path(@config[:raw_conf_folder_loc]), shoot_folder ) )
+  create_folder( File.join( File.expand_path(@config[:drv_conf_folder_loc]), shoot_folder ) )
 
 end 
 

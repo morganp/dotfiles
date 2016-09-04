@@ -93,6 +93,14 @@ post_add_path ~/dotfiles/bin
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 
+# Change max size of Core files
+ulimit -c 0
+
+# Ensure the umask is private even if you have a uid >99 and a
+# personal group as your primary gid
+umask 0022
+
+
 ## Bash History from : http://briancarper.net/blog/248/
 shopt -s histappend
 # Using this all terminals will have there history in sync
@@ -132,6 +140,22 @@ export PS1=$PS1" \$ \[\033[00m\]"
 #Trying this out Escape character to return to the begining of the line
 #http://jonisalonen.com/2012/your-bash-prompt-needs-this/
 export PS1="\[\033[G\]$PS1"
+
+############################
+## Perforce
+############################
+#export P4PORT=
+export P4CONFG=.p4config
+
+
+
+############################
+## Perforce Alias
+############################
+export P4CONFIG=.p4config
+export P4MERGE=p4merge
+export P4IGNORE=.p4ignore
+export P4EDITOR=vim
 
 
 ############################
@@ -219,6 +243,8 @@ export LS_COLORS="fi=00:di=01;94:ln=00;36:ex=00;91:"
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ## brew install bash-completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+if [[ "$unamestr" == 'Darwin' ]]; then
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+      . $(brew --prefix)/etc/bash_completion
+  fi
 fi

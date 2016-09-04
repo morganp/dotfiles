@@ -4,7 +4,14 @@
 #  $include ~/dotfiles/.inputrc
 
 set completion-ignore-case on
+
 set match-hidden-files on
+
+#Show all if ambiguous with out ringing bell
+set show-all-if-ambiguous on
+
+# Never ring a bell
+set bell-style none
 
 ########################## 
 ## This section maybe specific to work
