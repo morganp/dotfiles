@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+SERVER=192.168.0.29
+
+transmission-remote $SERVER --add "$@"
