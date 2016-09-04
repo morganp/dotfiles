@@ -10,7 +10,7 @@ destination=$1
 
 
 
-
+echo "100MB File transfer speed test to $1"
 ##Create 'bigfile' 100MB file for transfer check.
 dd if=/dev/random of=bigfile bs=1024 count=102400
 
@@ -25,6 +25,27 @@ DIFF=$(echo "$END - $START" | bc)
 
 echo "100MB transfer took: $DIFF seconds"
 rate=`echo "100/$DIFF" | bc -l`
+echo "$rate MB/s "
+
+rm bigfile
+rm $destination/bigfile
+
+
+
+echo "500MB File transfer speed test to $1"
+dd if=/dev/random of=bigfile bs=1024 count=512000
+
+
+START=$(date +%s)
+
+## Transfer and Show speed
+rsync --progress -av bigfile $destination
+
+END=$(date +%s)
+DIFF=$(echo "$END - $START" | bc)
+
+echo "500MB transfer took: $DIFF seconds"
+rate=`echo "500/$DIFF" | bc -l`
 echo "$rate MB/s "
 
 rm bigfile

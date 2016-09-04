@@ -158,6 +158,28 @@ top_level_test_contents = %{
 
 }
 
+load_package_contents = %{
+function load_package
+%% Script to load functions 
+
+%% Add all toplevel functions
+addpath([fileparts( mfilename('fullpath') ), '/package']);
+
+import #{project_name}.*
+
+end
+}
+
+load_toolbox_contents = %{
+function load_toolbox
+%% Script to load functions 
+
+%% Add all toplevel functions
+addpath([fileparts( mfilename('fullpath') ), '/function']);
+
+end
+}
+
 
 license_contents = %{
 Copyright (c) #{Time.now.year}, #{user_name}
@@ -204,6 +226,8 @@ FileUtils.mkdir_p File.join( 'package', "+#{project_name}")
 
 write ".matlab-version",                                             dot_version_contents 
 write "README.md",                                                   readme_contents 
+write "load_toolbox.m",                                              load_toolbox_contents
+write "load_package.m",                                              load_package_contents
 write File.join('function', project_name + '.m'),                    top_level_function_contents 
 write File.join('package', "+#{project_name}", project_name + '.m'), top_level_package_contents 
 write File.join('test', 'run_' + project_name + '_test.m'),          top_level_test_contents
