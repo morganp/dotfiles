@@ -5,6 +5,9 @@ brew cleanup
 
 ## Command Line apps
 brew install rename
+brew install transmission
+# brew services start transmission
+
 
 ## GUI Apps
 #brew tap phinze/cask
