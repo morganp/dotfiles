@@ -9,6 +9,7 @@ brew install transmission
 # brew services start transmission
 # For sctips to use notifications
 brew install terminal-notifier
+brew linkapps terminal-notifier
 
 ## GUI Apps
 #brew tap phinze/cask
