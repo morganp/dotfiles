@@ -11,3 +11,6 @@ if [[ -d $data_location && -d $backup_location ]]; then
   echo rsync -av --exclude ".DS_Store" $data_location $backup_location
   rsync -av --delete --exclude ".DS_Store" $data_location $backup_location
 fi
+
+# TODO Add notifiers
+# http://apple.stackexchange.com/a/85969/5361

@@ -3,7 +3,16 @@ brew update
 brew upgrade
 brew cleanup
 
-brew tap phinze/cask
+## Command Line apps
+brew install rename
+brew install transmission
+# brew services start transmission
+# For sctips to use notifications
+brew install terminal-notifier
+brew linkapps terminal-notifier
+
+## GUI Apps
+#brew tap phinze/cask
 brew install brew-cask
 
 brew cask update
