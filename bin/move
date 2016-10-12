@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+source=$1
+dest=$2
+
+echo "rsync -av --progress $source $dest"
+#rsync -av --progress $source $dest
+rc=$?; if [[ $rc != 0 ]]; then 
+  echo "rsync copy failed"
+  exit $rc; 
+fi
+#rm -rf $source
