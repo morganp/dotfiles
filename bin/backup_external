@@ -1,0 +1,16 @@
+#!/bin/bash
+
+data_location="/Volumes/serenity_ext/SerenityExternal"
+backup_location="/Volumes/backup/SerenityExternalBackup"
+
+# Mount Network share through keychain
+osascript -e "try" -e "mount volume \"cifs://morgy@penny/backup\"" -e "end try" 
+
+# Check Both locations exist, then perform backup.
+if [[ -d $data_location && -d $backup_location ]]; then
+  echo rsync -av --exclude ".DS_Store" $data_location $backup_location
+  rsync -av --delete --exclude ".DS_Store" $data_location $backup_location
+fi
+
+# TODO Add notifiers
+# http://apple.stackexchange.com/a/85969/5361
