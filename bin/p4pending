@@ -1,0 +1,5 @@
+#!/bin/usr/env bash
+
+# Find Pending change lists
+source .p4config
+p4 changes -c $P4CLIENT -s pending
