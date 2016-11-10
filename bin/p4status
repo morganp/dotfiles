@@ -19,13 +19,23 @@ echo "Open Modified :"
 p4 diff -sa | sed "s/$this_dir/./"
 
 echo "Open Modified after resolve :"
-p4 diff -sb
+p4 diff -sb | sed "s/$this_dir/./"
 
 echo "Client Missing Files :"
-p4 diff -sd
+p4 diff -sd | sed "s/$this_dir/./"
 
 echo "Modified and not opened :"
-p4 diff -se
+p4 diff -se | sed "s/$this_dir/./"
 
 echo "New Files :"
-p4 status -a ...
+p4 status -a ... | sed "s/$this_dir/./"
+
+echo "Opened (not modified)"
+p4 opened | sed "s/$this_dir/./"
+
+echo "c4 wstat shortened"
+c4 wstat | sed "s/$this_dir/./"
+
+# Find Pending change lists
+source .p4config
+p4 changes -c $P4CLIENT -s pending
