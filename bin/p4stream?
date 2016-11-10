@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Find the current folders stream
+
+p4 info | grep stream | sed 's/Client stream: \(.*\)/\1/'
