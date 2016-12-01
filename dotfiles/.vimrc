@@ -50,8 +50,9 @@ set softtabstop=2       " if set below tabstop will insert this many spaces
 
 "Search settings
 set ignorecase		" Do case insensitive matching
-set incsearch		" Incremental search
-
+set smartcase     " If uppercase is used in search switch to case sensitive
+set incsearch	   	" Incremental search
+ 
 " Auto
 set autowrite		  " Automatically save before commands like :next and :make
 
@@ -81,6 +82,10 @@ compiler ruby           " Enable compiler support for ruby
 "Set wrapping  http://vimcasts.org/e/16
 " NB list shows white space but breaks linebreak
 set wrap linebreak nolist
+
+" Do not insert line returns in insert mode when going past textwidth.
+" http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table 
+set formatoptions=l
 
 if version >= 604
   "Allow cursor to go 1 character past end of line 
@@ -115,6 +120,24 @@ if has("unix")
     "Other Unix systems
     :set guifont=Monospace\ 12
     " set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+  endif
+endif
+
+" Gvim on Redhat running inside VNC server accessed through OS X
+" Make CMD-C CMD-V Copy paste as Expected
+" First Step make terminal and Gvim listen to the same Copy/Paste command
+if has("unix")
+  if system("uname") != "Darwin"
+    " CTRL-SHIFT C Copy (Visual Selection)  P Paste (needs insert mode)
+    " These are now the same as terminal
+    "http://superuser.com/a/189198/42141
+    vmap <C-C> "+yi
+    vmap <C-V> c<ESC>"+p
+    imap <C-V> <C-r><C-o>+
+
+    " Yank uses the system clipboard
+    :set clipboard=unnamedplus
+
   endif
 endif
 
@@ -316,8 +339,8 @@ au BufRead *.vis so %
 
 if version >= 604
   " Add location of project tag-file if the $work environment variable is defined
-  if len($work) > 0
-    set tags+=$work/tags
+  if len($WORK) > 0
+    set tags+=$WORK/tags
   endif
 endif
 
