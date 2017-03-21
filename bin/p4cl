@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Get the latest change list number from specified repo or current workspace
+# if not specified
+
+stream=$@
+#Remove trailing white space
+#stream="$(echo -e "${stream}" | sed -e 's/[[:space:]]*$//')"
+
+
+if [ "$stream" == '' ]; then
+  #p4 info | grep stream | sed 's/Client stream: \(.*\)/\1/'
+  stream=`p4 info | grep stream | sed 's/Client stream: \(.*\)/\1/'`
+  #echo $this_stream
+fi
+stream=`echo $stream | sed 's/trunk/main/'`
+if [[ "$stream" != */... ]]; then
+    stream="$stream/..."
+fi
+  
+num=`p4 changes -m 1 "$stream"#have | sed 's/Change \([0-9]*\) .*/\1/'` 
+
+#stream="$(echo -e "${stream}" | sed -e 's/[[:space:]]*$//')"  
+echo "$stream@$num"
+echo "http://p4swarm.ad.cirrus.com/changes/$num"
