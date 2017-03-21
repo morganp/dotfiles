@@ -18,7 +18,7 @@ if [[ "$stream" != */... ]]; then
     stream="$stream/..."
 fi
   
-num=`p4 changes -m 1 "$stream"#have | sed 's/Change \([0-9]*\) .*/\1/'` 
+num=`p4 changes -m 1 "$stream" | sed 's/Change \([0-9]*\) .*/\1/'` 
 
 #stream="$(echo -e "${stream}" | sed -e 's/[[:space:]]*$//')"  
 echo "$stream@$num"
