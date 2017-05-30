@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+# .to_s,strip -- Used to strip trailing white space
+stream=`p4 -F %Stream% -ztag client -o`.to_s.strip
+clstream=stream.gsub('/trunk', '/main')
+
+case ARGV[0]
+when "stream"
+  #Return the Stream (depo/branch)
+  puts stream
+
+when "cl"
+  # Return workspace change list
+  puts `p4 changes -m 1 \"#{clstream}\/...#have" \| sed 's/Change \\([0-9]*\\) .*/\\1/'`
+
+when "streamcl"
+  # Return stream and workspaces changelist
+  puts stream+"/...@"+`p4 changes -m 1 \"#{clstream}\/...#have" \| sed 's/Change \\([0-9]*\\) .*/\\1/'`
+
+when "latest"
+  #Same as stream cl but gets the depos latest changelist not the workspace
+  puts stream+"/...@"+`p4 changes -m 1 \"#{clstream}\/..." \| sed 's/Change \\([0-9]*\\) .*/\\1/'`
+
+when "move", "mv"
+  # Move files with a unix like CLI 
+  from=ARGV[1...(ARGV.size-1)]
+
+  to=ARGV[ARGV.size-1]
+  from_s = from.join(' ').to_s.strip
+  puts `p4 edit #{from_s}`
+  ##Expand the ARGV and move 1 file at a time
+
+  from.each do |from_arg|
+    Dir[from_arg].each do |file|
+      if File.directory? to
+        to = File.join(to, "") # Add trailing /
+        dest = to + File.basename(file)
+        puts `p4 move #{file} #{dest}`
+      else
+        puts `p4 move #{file} #{to}`
+      end
+    end
+  end
+
+when "edit"
+  # Lock files, no special implementation just included for completness
+  from=ARGV[1...(ARGV.size)]
+  from_s = from.join(' ').to_s.strip
+  puts `p4 edit #{from_s}`
+
+when "revert"
+  # Revert file, only possible if locked. Will revert local only mods as well
+  from=ARGV[1...(ARGV.size)]
+  from_s = from.join(' ').to_s.strip
+  puts `p4 edit #{from_s}`
+  puts `p4 revert #{from_s}`
+
+when "remove", "rm"
+  # implement remove, and rm like a unix CLI should
+  del=ARGV[1...(ARGV.size)].join(' ').to_s.strip
+  puts `p4 delete #{del}`
+
+else 
+  STDOUT.puts <<-EOF
+
+Please provide command name
+
+Usage:
+  p4m stream       : Returns stream (depo/branch)
+  p4m cl           : Returns current changelist
+  p4m streamcl     : Returns current stream@changelist
+  p4m latest       : Returns latest stream@changelist
+  p4m move from to : moves multiple files and wildcards  
+  p4m edit files   : Attempt to edit (lock) files  
+  p4m revert files : Attempt to edit (lock) then revert files  
+  p4m edit files   : Attempt to edit (lock) files  
+EOF
+end
