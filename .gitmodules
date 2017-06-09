@@ -27,4 +27,4 @@
 	url = https://github.com/vim-scripts/perforce.git
 [submodule "vim/bundle/genutils"]
 	path = vim/bundle/genutils
-	url = https://github.com/vim-scripts/genutils.git
+  url = https://github.com/vim-scripts/genutils.git
