@@ -184,7 +184,6 @@ function mace(){
   #echo -en "\033]0;$1-$stream\a"
   echo -en "\033]0;$1 ($VARIANT)\a"
   ## Default PS1 looks like ss_dac_nicholls [morgan@ediws102 dev-burns-2]$
-  #PS1=\[\e[1m\]ss_dac_nicholls\(\e[0m\] [\u@\h) \W\$
   PS1='\[\e[1m\]$PROJ\[\e[0m\] ($VARIANT) \W $ '
 }
 
