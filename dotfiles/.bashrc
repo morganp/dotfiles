@@ -31,7 +31,8 @@ if [[ `uname` == 'Darwin' ]]; then
   # Default
   #Mountain Lion
   #PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
-  
+  #scutil --set HostName name-of-host
+
   ## Mavericks
   # Set architecture flags
   export ARCHFLAGS="-arch x86_64"
@@ -247,4 +248,6 @@ if [[ "$unamestr" == 'Darwin' ]]; then
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
       . $(brew --prefix)/etc/bash_completion
   fi
+  #Set default brew app folder to Users Applications 
+  export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 fi
