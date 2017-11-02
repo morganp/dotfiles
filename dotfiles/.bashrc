@@ -8,21 +8,6 @@
 #then
 # source ~/.unix_config/.bashrc
 #fi
-#
-#if [ -f ~/.unix_config/.bashrc_work ];
-#then
-# source ~/.unix_config/.bashrc_work
-#fi
-#
-#if [ -f ~/.unix_config/.bashrc_mac ];
-#then
-# source ~/.unix_config/.bashrc_mac
-#fi
-#
-#if [ -f ~/.unix_config/.bashrc_webfaction ];
-#then
-# source ~/.unix_config/.bashrc_webfaction
-#fi
 
 #get ssh completion
 #source ~/.unix_config/.ssh-completion
@@ -31,7 +16,8 @@ if [[ `uname` == 'Darwin' ]]; then
   # Default
   #Mountain Lion
   #PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
-  
+  #scutil --set HostName name-of-host
+
   ## Mavericks
   # Set architecture flags
   export ARCHFLAGS="-arch x86_64"
@@ -106,7 +92,6 @@ shopt -s histappend
 # Using this all terminals will have there history in sync
 # Not sure if this is nice, will not apply to ssh session etc.
 # but will keep local history in ordered by absolute time.
-#export PROMPT_COMMAND="history -n; history -a"
 export PROMPT_COMMAND="history -a"
 
 
@@ -124,22 +109,20 @@ fi
 ## http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
 ## Colours from
 ## http://www.marksanborn.net/linux/adding-color-and-customize-the-bash-prompt-ps1/
-#PS1='\s-\v\$'
-#PS1='\h$ '
 
 ps_lgreen='\[\033[01;32m\]'
 ps_lblue='\[\033[01;34m\]'
 ps_lred='\[\033[01;31m\]'
 
-#export PS1='\[\033[01;32m\]\h \[\033[01;34m\]\W' #\$ \[\033[00m\]'
+export PS1='\[\033[01;32m\]\h \[\033[01;34m\]\W' #\$ \[\033[00m\]'
 
 #Added git to status line
-#export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo ' (\[\033[01;31m\]'{}'\[\033[01;34m\])')"
-#export PS1=$PS1" \$ \[\033[00m\]"
+export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo ' (\[\033[01;31m\]'{}'\[\033[01;34m\])')"
+export PS1=$PS1" \$ \[\033[00m\]"
 
 #Trying this out Escape character to return to the beginning of the line
 #http://jonisalonen.com/2012/your-bash-prompt-needs-this/
-#export PS1="\[\033[G\]$PS1"
+export PS1="\[\033[G\]$PS1"
 
 ############################
 ## Perforce
@@ -192,8 +175,6 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias cd-='cd -'
-#Invalid alias in bash
-#alias --='cd -'
 
 function mace(){
   echo -en "\033]0;$1\a"
@@ -203,7 +184,6 @@ function mace(){
   #echo -en "\033]0;$1-$stream\a"
   echo -en "\033]0;$1 ($VARIANT)\a"
   ## Default PS1 looks like ss_dac_nicholls [morgan@ediws102 dev-burns-2]$
-  #PS1=\[\e[1m\]ss_dac_nicholls\(\e[0m\] [\u@\h) \W\$
   PS1='\[\e[1m\]$PROJ\[\e[0m\] ($VARIANT) \W $ '
 }
 
@@ -258,4 +238,6 @@ if [[ "$unamestr" == 'Darwin' ]]; then
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
       . $(brew --prefix)/etc/bash_completion
   fi
+  #Set default brew app folder to Users Applications 
+  export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 fi
