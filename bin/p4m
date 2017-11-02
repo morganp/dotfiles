@@ -60,6 +60,12 @@ when "remove", "rm"
   del=ARGV[1...(ARGV.size)].join(' ').to_s.strip
   puts `p4 delete #{del}`
 
+when "submit", "commit"
+  # 0 is command
+  # -1 is last element
+  file_list=ARGV[1..-1].join(' ')
+  puts `p4 submit #{file_list}`
+
 else 
   STDOUT.puts <<-EOF
 
