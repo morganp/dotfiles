@@ -1,0 +1,33 @@
+[submodule "vim/bundle/systemverilog"]
+	path = vim/bundle/systemverilog
+	url = https://github.com/morganp/vim-SystemVerilog.git
+[submodule "vim/bundle/markdown"]
+	path = vim/bundle/markdown
+	url = https://github.com/tpope/vim-markdown.git
+[submodule "vim/bundle/snipmate"]
+	path = vim/bundle/snipmate
+	url = https://github.com/msanders/snipmate.vim.git
+[submodule "vim/bundle/webapi"]
+	path = vim/bundle/webapi
+	url = https://github.com/mattn/webapi-vim.git
+[submodule "vim/bundle/gist"]
+	path = vim/bundle/gist
+	url = https://github.com/mattn/gist-vim.git
+[submodule "vim/bundle/textobj-user"]
+	path = vim/bundle/textobj-user
+	url = https://github.com/kana/vim-textobj-user.git
+[submodule "vim/bundle/matchit"]
+	path = vim/bundle/matchit
+	url = https://github.com/vim-scripts/vim-matchit.git
+[submodule "vim/bundle/projector"]
+	path = vim/bundle/projector
+	url = https://github.com/morganp/vim-projector.git
+[submodule "vim/bundle/perforce"]
+	path = vim/bundle/perforce
+	url = https://github.com/vim-scripts/perforce.git
+[submodule "vim/bundle/genutils"]
+	path = vim/bundle/genutils
+  url = https://github.com/vim-scripts/genutils.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
