@@ -44,6 +44,3 @@ brew cask install tunnelblick
 
 brew cleanup
 
-#Stop Chrome 2 finger gestures. they are for scrolling
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
-

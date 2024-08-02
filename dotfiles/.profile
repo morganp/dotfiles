@@ -78,6 +78,8 @@ elif [[ $bsd == true ]]; then
 else 
   echo "/n/nOS type not recognised form uname ls not setup correctly"
 fi
+alias lt="tree -L 1"
+
 
 #http://twistedcode.blogspot.com/2008/04/lscolors-explained.html#!/2008/04/lscolors-explained.html
 #fi file
