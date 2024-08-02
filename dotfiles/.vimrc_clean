@@ -1,7 +1,14 @@
 "~/.vimrc should be a link here or contain the following:
 "so ~/dotfile/dotfiles/.vimrc_clean
 
+" Number lines for debug
+set number
 
+" Tab settings
+set expandtab           " spaces are used instead of tabs
+set tabstop=2           " number of spaces inserted when tab is hit
+set shiftwidth=2        " used with autoindent (should equal tabstop)
+set softtabstop=2       " if set below tabstop will insert this many spaces 
 
 "http://amix.dk/vim/vimrc.txt
 " No annoying sound on errors
@@ -11,5 +18,5 @@
  set tm=500
  "--
 
-# https://stackoverflow.com/questions/16047146/disable-bell-in-macvim
+" https://stackoverflow.com/questions/16047146/disable-bell-in-macvim
 set visualbell t_vb=
