@@ -15,7 +15,11 @@ brew install python3
 brew install bitwarden
 brew install synology-drive
 
+brew install yt-dlp
+brew install ffmpeg
+
 brew install kid3 #Uses rosetta 2 
+
 
 
 # Old Tools Pre 2020
