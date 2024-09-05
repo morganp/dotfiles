@@ -20,6 +20,8 @@ brew install ffmpeg
 
 brew install bambu-studio
 
+brew install lyx
+
 brew install kid3 #Uses rosetta 2 
 
 
