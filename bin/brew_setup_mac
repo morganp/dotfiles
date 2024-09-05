@@ -18,6 +18,8 @@ brew install synology-drive
 brew install yt-dlp
 brew install ffmpeg
 
+brew install bambu-studio
+
 brew install kid3 #Uses rosetta 2 
 
 
