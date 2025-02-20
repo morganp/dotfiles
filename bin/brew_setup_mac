@@ -25,6 +25,18 @@ brew install lyx
 brew install kid3 #Uses rosetta 2 
 
 
+# 2025 Additions
+# NeoVIM (with verilog language)
+# Neo vim setup is quite complicated there will be a seperat note
+brew install neovim verible
+
+# for Python Course
+brew install sqlite db-browser-for-sqlite
+
+
+
+
+
 
 # Old Tools Pre 2020
 ## Command Line apps
