@@ -46,7 +46,7 @@ alias .....='cd ../../../../'
 alias cd-='cd -'
 
 # Setting up icloud backup python script
-alias icloud-download="ICLOUD_EMAIL=morgan.prior@gmail.com /Users/morgan/Code/icloud-download/icloud-download.py"
+alias icloud-download="ICLOUD_EMAIL=morgan.prior@gmail.com /Users/morgan/Documents/Code/icloud-download/icloud-download.py"
 
 
 #http://stackoverflow.com/questions/394230/detect-os-from-a-bash-script
