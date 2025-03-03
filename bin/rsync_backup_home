@@ -1,0 +1,52 @@
+#!/bin/bash
+
+iconv_opt=""
+
+rsync_version=`rsync --version | egrep -o '[0-9]+.[0-9]+'  -m 1`
+grt3=`bc <<<"$rsync_version > 3"`
+if [ "$grt3" == "0" ]
+then
+  echo "rsync 3 is faster"
+  if [[ `uname` == 'Darwin' ]]; then
+    #echo "brew tap homebrew/dupes" # No longer required
+    echo "brew install rsync"
+    echo "edit /private/etc/paths to put /usr/local/bin before /usr/bin"
+  fi
+else
+  # iconv is supported above version 3 first option is local filesystem
+  if [[ `uname` == 'Darwin' ]]; then
+    iconv_opt="--iconv=utf-8-mac"
+  else
+    iconv_opt="--iconv=utf-8"
+  fi
+fi
+
+## Expanded exclude list from :
+# http://alanwsmith.com/rsync-exclude-list-for-mac-osx
+# Added Python venv folders
+# Added default application folders
+
+excludes="--exclude='**.DS_Store'     --exclude='**._.DS_Store'\
+  --exclude='Zoom/'      --exclude='MATLAB/'\
+  --exclude='Kemper\\ Amps/' --exclude='Fusion\\ 360/'"
+
+#  --exclude='$RECYCLE.BIN'        --exclude='$Recycle.Bin'\
+#  --exclude='.AppleDB'            --exclude='.AppleDesktop' \
+#  --exclude='.AppleDouble'        --exclude='.com.apple.timemachine.supported'\
+#  --exclude='.dbfseventsd'        --exclude='.DocumentRevisions-V100*'\
+#  --exclude='.fseventsd'          --exclude='.PKInstallSandboxManager'\
+#  --exclude='.Spotlight*'         --exclude='.SymAV*'\
+#  --exclude='.symSchedScanLockxz' --exclude='.TemporaryItems'\
+#  --exclude='.Trash*'             --exclude='.vol'\
+#  --exclude='.VolumeIcon.icns'    --exclude='Desktop DB'\
+#  --exclude='Desktop DF'          --exclude='hiberfil.sys'\
+#  --exclude='lost+found'          --exclude='Network Trash Folder'\
+#  --exclude='pagefile.sys'        --exclude='Recycled'\
+#  --exclude='RECYCLER'            --exclude='System Volume Information'\
+#  --exclude='Temporary Items'     --exclude='Thumbs.db'"
+  
+#excludes="--exclude='Documents/Zoom/*' "
+
+#rsync --dry-run -av --progress $iconv_opt $excludes  ~/Documents/ /Volumes/home/Documents/
+
+rsync -av --progress --iconv=utf-8-mac --exclude='**.DS_Store'     --exclude='**._.DS_Store'  --exclude='Zoom/'      --exclude='MATLAB/'  --exclude='Kemper Amps/' --exclude='Fusion 360/'  ~/Documents/ /Volumes/home/Documents/
