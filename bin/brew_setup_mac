@@ -15,6 +15,7 @@ brew install python3
 brew install bitwarden
 brew install synology-drive
 brew install vlc
+brew install gh # Github command line
 
 brew install yt-dlp
 brew install ffmpeg
