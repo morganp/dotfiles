@@ -11,9 +11,17 @@ Install
     $ cd dotfiles
     $ bin/create-hook-symlinks ## Optional links to a post-merge hook to remind about submodule update
     $ git submodule update --init
+   
+Installer commands, have not been maintained :
+
     $ ./install --help
     # If you want every thing 
     $ ./install --all
+
+Manual usage
+
+Make you ~/.zshrc ~/.bashrc ~/.vimrc source the versions in ~/dotfiles/dotfile/
+
 
 Special features
 ===============
