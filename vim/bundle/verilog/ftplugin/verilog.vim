@@ -24,9 +24,9 @@ setlocal fo-=t fo+=croqlm1
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 
 " Format comments to be up to 78 characters long
-if &textwidth == 0 
-  setlocal tw=78
-endif
+"if &textwidth == 0 
+"  setlocal tw=78
+"endif
 
 set cpo-=C
 
