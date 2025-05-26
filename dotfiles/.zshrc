@@ -1,3 +1,4 @@
+# Morgan centralised .zshrc
 
 alias mergepdfs="gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=merged.pdf *.pdf"
 
