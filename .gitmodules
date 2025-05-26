@@ -28,9 +28,6 @@
 [submodule "vim/bundle/genutils"]
 	path = vim/bundle/genutils
   url = https://github.com/vim-scripts/genutils.git
-[submodule "vim/bundle/supertab"]
-	path = vim/bundle/supertab
-	url = https://github.com/ervandew/supertab.git
 [submodule "zsh-autosuggestions"]
 	path = zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
