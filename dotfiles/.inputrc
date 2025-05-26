@@ -13,6 +13,20 @@ set show-all-if-ambiguous on
 # Never ring a bell
 set bell-style none
 
+
+# Respect default shortcuts.
+$include /etc/inputrc
+
+#  SMART Searching start history search then press up
+## arrow up
+"\e[A":history-search-backward
+
+## arrow down
+"\e[B":history-search-forward
+
+
+
+
 ########################## 
 ## This section maybe specific to work
 ##########################
