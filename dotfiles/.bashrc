@@ -3,14 +3,17 @@
 ############################
 ## Load Files if Present
 ############################
+#Load standard Exports and Alias
 
-#if [ -f ~/.unix_config/.bashrc ];
-#then
-# source ~/.unix_config/.bashrc
-#fi
 
-#get ssh completion
-#source ~/.unix_config/.ssh-completion
+if [[ -f ~/dotfiles/dotfiles/.profile ]]; then
+  source ~/dotfiles/dotfiles/.profile
+else 
+  echo 'Not found profile'
+fi
+
+# Bash and zsh get unique reload commands
+alias reload='source ~/.bashrc'
 
 if [[ `uname` == 'Darwin' ]]; then
   # Default
@@ -104,42 +107,62 @@ then
   export TERM=$TERM-256color
 fi
 
+# Control if we modify the PS1
+# export BASH_PS1_MODE=false
+if [ "$BASH_PS1_MODE" = true ]; then
 
-## BASH Prompt
-## http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
-## Colours from
-## http://www.marksanborn.net/linux/adding-color-and-customize-the-bash-prompt-ps1/
+  echo "BASH_PS1_MODE true"
+  ## BASH Prompt
+  ## http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
+  ## Colours from
+  ## http://www.marksanborn.net/linux/adding-color-and-customize-the-bash-prompt-ps1/
+  
+  ps_lgreen='\[\033[01;32m\]'
+  ps_lblue='\[\033[01;34m\]'
+  ps_lred='\[\033[01;31m\]'
+  
+  export PS1='\[\033[01;32m\]\h \[\033[01;34m\]\W' #\$ \[\033[00m\]'
+  
+  #Added git to status line
+  export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo ' (\[\033[01;31m\]'{}'\[\033[01;34m\])')"
+  export PS1=$PS1" \$ \[\033[00m\]"
+  
+  #Trying this out Escape character to return to the beginning of the line
+  #http://jonisalonen.com/2012/your-bash-prompt-needs-this/
+  export PS1="\[\033[G\]$PS1"
 
-ps_lgreen='\[\033[01;32m\]'
-ps_lblue='\[\033[01;34m\]'
-ps_lred='\[\033[01;31m\]'
+  function mace(){
+    echo -en "\033]0;$1\a"
+    # Changing from $1 to "$@" to capture the -w workspace options
+    ace "$@"
+    #stream=`p4 -F %Stream% -ztag client -o`
+    #echo -en "\033]0;$1-$stream\a"
+    echo -en "\033]0;$1 ($VARIANT)\a"
+    ## Default PS1 looks like ss_dac_nicholls [morgan@ediws102 dev-burns-2]$
+    PS1='\[\e[1m\]$PROJ\[\e[0m\] ($VARIANT) \W $ '
+  }
 
-export PS1='\[\033[01;32m\]\h \[\033[01;34m\]\W' #\$ \[\033[00m\]'
-
-#Added git to status line
-export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo ' (\[\033[01;31m\]'{}'\[\033[01;34m\])')"
-export PS1=$PS1" \$ \[\033[00m\]"
-
-#Trying this out Escape character to return to the beginning of the line
-#http://jonisalonen.com/2012/your-bash-prompt-needs-this/
-export PS1="\[\033[G\]$PS1"
-
-function mace(){
-  echo -en "\033]0;$1\a"
-  # Changing from $1 to "$@" to capture the -w workspace options
-  ace "$@"
-  #stream=`p4 -F %Stream% -ztag client -o`
-  #echo -en "\033]0;$1-$stream\a"
-  echo -en "\033]0;$1 ($VARIANT)\a"
-  ## Default PS1 looks like ss_dac_nicholls [morgan@ediws102 dev-burns-2]$
-  PS1='\[\e[1m\]$PROJ\[\e[0m\] ($VARIANT) \W $ '
-}
+else
+  echo "BASH_PS1_MODE false"
+  # No colour modifications
+  
+  export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo '('{}') $ ')"
+  
+  function mace(){
+    #echo -en "\033]0;$1\a"
+    # Changing from $1 to "$@" to capture the -w workspace options
+    ace "$@"
+    #stream=`p4 -F %Stream% -ztag client -o`
+    #echo -en "\033]0;$1-$stream\a"
+    #echo -en "\033]0;$1 ($VARIANT)\a"
+    ## Default PS1 looks like ss_dac_nicholls [morgan@ediws102 dev-burns-2]$
+    PS1='$PROJ  ($VARIANT) \W $ '
+  }
+fi
 
 
-#Load standard Exports and Alias
-source '~/dotfiles/dotfiles/.profile'
 
-alias reload='source ~/.bashrc'
+
 
 
 # Stuff for RVM Ruby version manager
