@@ -19,6 +19,12 @@ compinit -i
 
 source ~/dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+#History
+SAVEHIST=5000
+HISTSIZE=5000
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+
 # Standard Aliases for Bash and zsh
 # https://stackoverflow.com/questions/764600/how-can-you-export-your-bashrc-to-zshrc
 [[ -e ~/dotfiles/dotfiles/.profile ]] && emulate sh -c 'source ~/dotfiles/dotfiles/.profile' 

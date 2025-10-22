@@ -28,6 +28,7 @@ fi
 
 excludes="--exclude='**.DS_Store'     --exclude='**._.DS_Store'\
   --exclude='Zoom/'      --exclude='MATLAB/'\
+  --exclude='**.venv/'\ 
   --exclude='Kemper\\ Amps/' --exclude='Fusion\\ 360/'"
 
 #  --exclude='$RECYCLE.BIN'        --exclude='$Recycle.Bin'\
@@ -49,4 +50,5 @@ excludes="--exclude='**.DS_Store'     --exclude='**._.DS_Store'\
 
 #rsync --dry-run -av --progress $iconv_opt $excludes  ~/Documents/ /Volumes/home/Documents/
 
-rsync -av --progress --iconv=utf-8-mac --exclude='**.DS_Store'     --exclude='**._.DS_Store'  --exclude='Zoom/'      --exclude='MATLAB/'  --exclude='Kemper Amps/' --exclude='Fusion 360/'  ~/Documents/ /Volumes/home/Documents/
+#rsync -av --progress --iconv=utf-8-mac --exclude='**.DS_Store'     --exclude='**._.DS_Store'  --exclude='Zoom/'      --exclude='MATLAB/'  --exclude='Kemper Amps/' --exclude='Fusion 360/'  ~/Documents/ /Volumes/home/Documents/
+rsync -av --progress --iconv=utf-8-mac --exclude='**.DS_Store'     --exclude='**.venv' --exclude='**._.DS_Store'  --exclude='Zoom/'      --exclude='MATLAB/'  --exclude='Kemper Amps/' --exclude='Fusion 360/'  ~/Documents/ /Volumes/morgan/
