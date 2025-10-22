@@ -79,8 +79,9 @@ post_add_path ~/bin
 post_add_path ~/dotfiles/bin
 
 # Control BASH History
-export HISTCONTROL=ignoreboth
-export HISTSIZE=1000
+export HISTCONTROL='erasedups:ignorespace'
+export HISTFILESIZE=5000
+export HISTSIZE=5000
 
 # Change max size of Core files
 ulimit -c 0

@@ -3,8 +3,6 @@ brew update
 brew upgrade
 brew cleanup
 
-#Tools Latest
-
 brew install gh # Github command line
 brew install gitx
 brew install --cask macvim 
@@ -28,9 +26,13 @@ brew install filebot
 #Raspberry PI
 brew install thonny
 
-
-
 brew install kid3 #Uses rosetta 2 
+
+#iterm Font
+brew install --cask font-victor-mono
+
+#VS Code
+brew install --cask visual-studio-code
 
 
 # 2025 Additions
@@ -45,7 +47,7 @@ brew install --cask alacritty
 # for Python Course
 brew install sqlite db-browser-for-sqlite
 
-#2025 Removed
+#2025 Removed # No longer used
 brew install bitwarden
 brew install synology-drive
 brew install iterm2
