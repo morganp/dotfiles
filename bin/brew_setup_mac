@@ -3,26 +3,32 @@ brew update
 brew upgrade
 brew cleanup
 
-#Tools 2024
-brew install macvim --cask
-brew install iterm2
-brew install handbrake
-brew install filebot
-brew install tree
-brew install gitx
-brew install thonny
-brew install python3
-brew install bitwarden
-brew install synology-drive
-brew install vlc
-brew install gh # Github command line
+#Tools Latest
 
+brew install gh # Github command line
+brew install gitx
+brew install --cask macvim 
+brew install --cask visual-studio-code
+brew install tree
+
+brew install python3
+brew install vlc
+
+brew install drawio
+
+
+# Video encoding
+brew install handbrake
 brew install yt-dlp
 brew install ffmpeg
 
-brew install bambu-studio
+#Bulk Renamer
+brew install filebot
 
-brew install lyx
+#Raspberry PI
+brew install thonny
+
+
 
 brew install kid3 #Uses rosetta 2 
 
@@ -32,12 +38,19 @@ brew install kid3 #Uses rosetta 2
 # Neo vim setup is quite complicated there will be a seperat note
 brew install neovim verible
 
+# New config based terminal
+brew install --cask alacritty
+
+
 # for Python Course
 brew install sqlite db-browser-for-sqlite
 
-
-
-
+#2025 Removed
+brew install bitwarden
+brew install synology-drive
+brew install iterm2
+brew install lyx
+brew install bambu-studio
 
 
 # Old Tools Pre 2020
