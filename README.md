@@ -3,6 +3,17 @@ dotfiles (Unix prefs)
 
 My Unix Config files in a centralised location
 
+
+Moving to a modern setup, copying structure from [ericsmacedo][em-dot].
+
+[em-dot]: https://github.com/ericsmacedo/dotfiles/tree/master
+
+
+
+
+OLD VERSION
+==
+
 Install
 -------
 

@@ -10,6 +10,22 @@ export P4EDITOR=vim
 
 export EDITOR=vim
 
+
+############################
+## Ghostty
+############################
+# BaseDir https://specifications.freedesktop.org/basedir-spec/latest/
+# /Users/morgan/dotfiles/configs/ghostty/config
+#export XDG_CONFIG_HOME=~/dotfiles/configs
+export XDG_DATA_HOME=/Users/morgan/dotfiles/data
+export XDG_CONFIG_HOME=/Users/morgan/dotfiles/configs
+export XDG_STATE_HOME=/Users/morgan/dotfiles/state
+#export XDG_DATA_DIRS
+#export XDG_CONFIG_DIRS
+#export XDG_CACHE_HOME
+#export XDG_RUNTIME_DIR
+# Ghostty Will only load from $HOME/.config/ghostty/config
+
 ############################
 ## Standard Alias
 ############################
