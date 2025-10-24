@@ -1,5 +1,8 @@
 # .screenrc Add the line below to your screenrc
-#source $HOME/dotfiles/.screenrc
+#source $HOME/dotfiles/config/screen/dot-screenrc
+# or symlink with stow
+#   cd $HOME/dotfiles/config
+#   stow screen --dotfiles -t ~/
 
 # Color table:
 # 0 Black             .    leave color unchanged

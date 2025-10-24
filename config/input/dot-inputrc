@@ -1,7 +1,10 @@
 #Generic inputrc
 
 ## Put this in your main ~/.inputrc
-#  $include ~/dotfiles/.inputrc
+#  $include ~/dotfiles/config/input/dot-inputrc
+# or link with stow
+#    cd ~/dotfiles/config
+#    stow input --dotfiles -t ~/
 
 set completion-ignore-case on
 

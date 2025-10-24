@@ -6,8 +6,8 @@
 #Load standard Exports and Alias
 
 
-if [[ -f ~/dotfiles/dotfiles/.profile ]]; then
-  source ~/dotfiles/dotfiles/.profile
+if [[ -f ~/dotfiles/config/shell/dot-profile ]]; then
+  source ~/dotfiles/config/shell/dot-profile
 else 
   echo 'Not found profile'
 fi

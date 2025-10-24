@@ -27,5 +27,5 @@ setopt HIST_IGNORE_SPACE
 
 # Standard Aliases for Bash and zsh
 # https://stackoverflow.com/questions/764600/how-can-you-export-your-bashrc-to-zshrc
-[[ -e ~/dotfiles/dotfiles/.profile ]] && emulate sh -c 'source ~/dotfiles/dotfiles/.profile' 
+[[ -e ~/dotfiles/config/shell/dot-profile ]] && emulate sh -c 'source ~/dotfiles/config/shell/dot-profile' 
 
