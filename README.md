@@ -1,12 +1,31 @@
 dotfiles (Unix prefs)
 =====================
 
-My Unix Config files in a centralised location
+unix config files in a central location.
+
+~/.zshrc can load dotfiles
+
+    source ~/dotfiles/config/shell/dot-zshrc
+
+~/vimrc can load dotfiles
+
+    so ~/dotfiles/config/vim/dot-vimrc_clean
+
+Others can be linked with stow
+
+    cd ~/dotfiles/config
+    stow git --dotfiles -t ~/
+    stow input --dotfiles -t ~/
+    stow screen --dotfiles -t ~/
+
+
+
 
 
 Moving to a modern setup, copying structure from [ericsmacedo][em-dot].
 
 [em-dot]: https://github.com/ericsmacedo/dotfiles/tree/master
+
 
 
 
