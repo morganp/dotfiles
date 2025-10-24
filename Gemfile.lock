@@ -1,9 +1,0 @@
-GEM
-  specs:
-    slop (1.4.0)
-
-PLATFORMS
-  ruby
-
-DEPENDENCIES
-  slop
