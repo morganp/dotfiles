@@ -1,12 +1,35 @@
 #Standard Exports and Alias for Bash and ZSH
 
+#Load Sectrets in ~/.env
+#Like openAI key
+#OPENAI_API_KEY="xxxxx"
+[ -f ~/.env ] && source ~/.env 
+
+
+#Warry Recommends
+alias gpsh='git push origin HEAD:refs/for/main'
+alias gplr='git pull --rebase'
+alias gcan='git commit --amend --no-edit'
+alias genp_aaps_isp='genp df mandalay_mmss.canvas/mandalay_aaps_isp_design.pkg/package.yaml:mandalay_aaps_isp -p'
+
+alias wd='cd $WKS_PATH'
+alias dc='cd $WKS_PATH/mandalay_mmss.canvas/mandalay_aaps_isp_design.pkg/mandalay_mmss_common/logical/design_checks/'
+alias vcs='rund df test:sim_compile_lint tbench:sim_vcs'
+alias ies='rund df test:sim_compile_lint tbench:sim_ies'
+alias mti='rund df test:sim_compile_lint tbench:sim_mti'
+alias fcl='rund df test:fusion_lint tbench:fusion_lint'
+alias ml_verdi='module load eda synopsys/verdi3/2025.06-1'
+alias bsubi="bsub -q inter -Is -P PJ34000420 -R 'select[rhe7 && os64]' -W 78:10"
+
+
+# Perforce is dead to me
 ############################
 ## Perforce Alias
 ############################
-export P4CONFIG=.p4config
-export P4MERGE=p4merge
-export P4IGNORE=.p4ignore
-export P4EDITOR=vim
+#export P4CONFIG=.p4config
+#export P4MERGE=p4merge
+#export P4IGNORE=.p4ignore
+#export P4EDITOR=vim
 
 export EDITOR=vim
 

@@ -1,0 +1,53 @@
+# ChatGPT5.0 recommended
+
+window-padding-x    = 6
+window-padding-y    = 6
+adjust-cell-height  = 2%
+theme               = "Catppuccin Mocha"
+
+#Keybindings
+keybind             = cmd+t=new_tab
+keybind             = cmd+r=reload_config
+## Basic font & layout
+#font-family         = "JetBrains Mono"        # clean monospaced, good for dev work
+#font-size           = 13.5                    # fine size (adjust for your DPI/display)
+#window-padding-x    = 6                       # some space left & right
+#window-padding-y    = 6                       # some space top & bottom
+#adjust-cell-height  = 2%                      # increase cell height by 2% for breathing room
+#
+## Colors & theme
+#theme               = dark                    # "dark" or "light" – here set dark mode
+#background          = 1e1e2e                  # deep grey-blue shade
+#foreground          = eeeeee                  # light grey text
+#cursor-color        = ffffff                  # white cursor for good contrast
+## optionally use palette or built-in theme name
+##      # if you have that
+#
+## Transparency & blur (nice effect if supported)
+#background-opacity  = 0.85                    # slightly translucent background
+#background-blur-radius = 10                   # subtle blur (Linux/Wayland builds)
+#
+## Window decoration & padding
+#window-decoration   = auto                    # native look but neat
+#window-inherit-font-size = false              # new windows use configured font size
+#window-width        = 120                     # approx width in columns
+#window-height       = 35                      # approx height in rows
+#
+## Shell integration (makes splits/tabs behave nicely)
+#shell-integration   = true
+#shell-integration-features = true
+#
+## Cursor style
+#cursor-style        = block                   # thick block cursor
+#cursor-style-blink  = false                   # no blinking (less distraction)
+#
+## Keybindings (just a couple useful ones)
+#keybind             = ctrl+shift+t=new_tab
+#keybind             = ctrl+shift+w=close_surface
+#
+## Misc readability
+#window-padding-color = extend                  # means padding uses background colour
+#unfocused-split-opacity = 0.7                  # dim unfocused splits a bit
+#
+## Set your preferred working directory
+#working-directory   = home
