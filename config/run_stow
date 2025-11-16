@@ -1,0 +1,14 @@
+# Run Stow Command to link config files    
+
+cd ~/dotfiles/config
+stow git --dotfiles -t ~/
+stow input --dotfiles -t ~/
+stow screen --dotfiles -t ~/
+stow tmux --dotfiles -t ~/
+
+mkdir -p $HOME/.config/ghostty
+stow ghostty  -t  $HOME/.config/ghostty
+
+mkdir ~/.codex
+stow codex --dotfiles -t ~/.codex
+

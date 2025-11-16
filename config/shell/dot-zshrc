@@ -7,7 +7,16 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/morgan/.local/bin:$PATH"
 
 #Shell Specific Reload Commmand
-alias reload="source ~/.zshrc"
+
+if [[ -f ~/.zshrc ]]; then
+  alias reload="source ~/.zshrc"
+else
+  if [[ -f ~/.zprofile ]]; then
+    alias reload="source ~/.zprofile"
+  else
+    echo "~/.zshrc and ~/.zprofile not found"
+  fi
+fi
 
 # Tab for auto-complete
 # https://stackoverflow.com/a/66363252/97073
@@ -17,7 +26,7 @@ bindkey '^I' expand-or-complete
 autoload -U compinit
 compinit -i
 
-source ~/dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #History
 SAVEHIST=5000
