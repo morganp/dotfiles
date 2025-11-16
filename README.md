@@ -1,17 +1,44 @@
 dotfiles (Unix prefs)
 =====================
 
-unix config files in a central location.
+MacOS/*nix config files in a central location.
 
-~/.zshrc can load dotfiles
+
+ZSH
+--
+~/.zshrc source dotfiles:
 
     source ~/dotfiles/config/shell/dot-zshrc
 
-~/vimrc can load dotfiles
+Vim
+-
+~/vimrc source dotfiles
 
     so ~/dotfiles/config/vim/dot-vimrc_clean
 
-Others can be linked with stow
+
+The Rest can be linked with stow, and homebrew to manage packages
+
+Packages (brew)
+--
+
+Install homebrew
+
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+Install Brew packages (includes Stow)
+
+    brew bundle install --file=~/dotfiels/config/brew
+
+The Rest
+--
+
+Link the remaining dot files using run_stow
+
+    cd ~/dotfiles/config
+    run_stow
+
+Example of run_stow:
 
     cd ~/dotfiles/config
     stow git --dotfiles -t ~/
