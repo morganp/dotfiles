@@ -19,6 +19,17 @@ Vim
 
 The Rest can be linked with stow, and homebrew to manage packages
 
+Tmux
+--
+
+Tmux uses the `$XDG_CONFIG_HOME` variable, which is set in config/shell/dot-profile
+
+    $XDG_CONFIG_HOME/tmux/tmux.conf
+
+For the tmux plugin manager, clone to this area:
+
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 Packages (brew)
 --
 
@@ -44,7 +55,7 @@ Example of run_stow:
     stow git --dotfiles -t ~/
     stow input --dotfiles -t ~/
     stow screen --dotfiles -t ~/
-    stow tmux --dotfiles -t ~/
+    
 
 
 
