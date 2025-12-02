@@ -39,10 +39,9 @@ export EDITOR=vim
 ############################
 # BaseDir https://specifications.freedesktop.org/basedir-spec/latest/
 # /Users/morgan/dotfiles/configs/ghostty/config
-#export XDG_CONFIG_HOME=~/dotfiles/configs
-export XDG_DATA_HOME=/Users/morgan/dotfiles/data
-export XDG_CONFIG_HOME=/Users/morgan/dotfiles/configs
-export XDG_STATE_HOME=/Users/morgan/dotfiles/state
+export XDG_DATA_HOME=$HOME/dotfiles/data
+export XDG_CONFIG_HOME=$HOME/dotfiles/config
+export XDG_STATE_HOME=$HOME/dotfiles/state
 #export XDG_DATA_DIRS
 #export XDG_CONFIG_DIRS
 #export XDG_CACHE_HOME

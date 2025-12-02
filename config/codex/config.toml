@@ -1,0 +1,16 @@
+model = "gpt-5-codex"
+model_provider = "arm-proxy-openai"
+disable_response_storage = true
+model_reasoning_effort = "high"
+ 
+[model_providers.arm-proxy-openai]
+name = "openai"
+base_url = "https://openai-api-proxy.geo.arm.com/api/providers/openai/v1"
+wire_api = "responses"
+env_key = "OPENAI_API_KEY"
+ 
+[projects."~/dotfiles"]
+trust_level = "trusted"
+ 
+[projects."/Your/path/number/2"]
+trust_level = "trusted"

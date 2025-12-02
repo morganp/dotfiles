@@ -4,7 +4,10 @@ alias mergepdfs="gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepre
 
 #Setup Homebrew Path
 export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/Users/morgan/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+#Setup Custom binaries Path (before Homebrew)
+export PATH="$HOME/dotfiles/bin:$PATH"
 
 #Shell Specific Reload Commmand
 

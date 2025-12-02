@@ -1,4 +1,7 @@
 # ChatGPT5.0 recommended
+font-family         = "Victor Mono"        
+#font-family         = "JetBrains Mono"        
+font-size           = 13.5                   
 
 window-padding-x    = 6
 window-padding-y    = 6
@@ -8,24 +11,10 @@ theme               = "Catppuccin Mocha"
 #Keybindings
 keybind             = cmd+t=new_tab
 keybind             = cmd+r=reload_config
-## Basic font & layout
-#font-family         = "JetBrains Mono"        # clean monospaced, good for dev work
-#font-size           = 13.5                    # fine size (adjust for your DPI/display)
-#window-padding-x    = 6                       # some space left & right
-#window-padding-y    = 6                       # some space top & bottom
-#adjust-cell-height  = 2%                      # increase cell height by 2% for breathing room
-#
-## Colors & theme
-#theme               = dark                    # "dark" or "light" – here set dark mode
-#background          = 1e1e2e                  # deep grey-blue shade
-#foreground          = eeeeee                  # light grey text
-#cursor-color        = ffffff                  # white cursor for good contrast
-## optionally use palette or built-in theme name
-##      # if you have that
-#
+
 ## Transparency & blur (nice effect if supported)
-#background-opacity  = 0.85                    # slightly translucent background
-#background-blur-radius = 10                   # subtle blur (Linux/Wayland builds)
+background-opacity  = 0.95                    
+background-blur-radius = 10                   
 #
 ## Window decoration & padding
 #window-decoration   = auto                    # native look but neat

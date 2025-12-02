@@ -15,6 +15,10 @@ fi
 # Bash and zsh get unique reload commands
 alias reload='source ~/.bashrc'
 
+# Make TMUX work in VS Code Remote SSH sessions
+unset PROMPT_COMMAND
+
+# Load OS specific settings
 if [[ `uname` == 'Darwin' ]]; then
   # Default
   #Mountain Lion
