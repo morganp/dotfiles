@@ -6,3 +6,4 @@ bin/stock_all.yml
 Arm-Enterprise-PKI-Root.pem
 bin/codex 
 *.swp
+config/vscode/User/settings.json
