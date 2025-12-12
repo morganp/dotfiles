@@ -1,42 +1,46 @@
 # ChatGPT5.0 recommended
-font-family         = "Victor Mono"        
-#font-family         = "JetBrains Mono"        
-font-size           = 13.5                   
+# Primary font with fallbacks for portability
+font-family         = "Victor Mono"
+#font-family         = "JetBrains Mono"
+#font-family         = "Menlo, Monaco, 'Courier New', monospace"
+font-size           = 13.5
 
 window-padding-x    = 6
 window-padding-y    = 6
 adjust-cell-height  = 2%
 theme               = "Catppuccin Mocha"
 
-#Keybindings
+# Keybindings (GUI and terminal)
 keybind             = cmd+t=new_tab
 keybind             = cmd+r=reload_config
+# Cross-platform useful bindings
+keybind             = ctrl+shift+t=new_tab
+keybind             = ctrl+shift+w=close_surface
+keybind             = ctrl+shift+n=new_window
 
 ## Transparency & blur (nice effect if supported)
-background-opacity  = 0.95                    
-background-blur-radius = 10                   
-#
+# Slightly more opaque for better contrast
+background-opacity  = 0.90
+background-blur-radius = 10
+
 ## Window decoration & padding
-#window-decoration   = auto                    # native look but neat
-#window-inherit-font-size = false              # new windows use configured font size
-#window-width        = 120                     # approx width in columns
-#window-height       = 35                      # approx height in rows
-#
+window-decoration   = auto                    # native look but neat
+window-inherit-font-size = false              # new windows use configured font size
+window-width        = 120                     # approx width in columns
+window-height       = 35                      # approx height in rows
+
 ## Shell integration (makes splits/tabs behave nicely)
-#shell-integration   = true
-#shell-integration-features = true
-#
-## Cursor style
-#cursor-style        = block                   # thick block cursor
-#cursor-style-blink  = false                   # no blinking (less distraction)
-#
-## Keybindings (just a couple useful ones)
-#keybind             = ctrl+shift+t=new_tab
-#keybind             = ctrl+shift+w=close_surface
-#
+shell-integration   = true
+shell-integration-features = true
+# Start new windows in the user's home directory
+working-directory   = home
+
+## Cursor style & accessibility
+cursor-style        = block                   # thick block cursor
+cursor-style-blink  = false                   # no blinking (less distraction)
+
 ## Misc readability
-#window-padding-color = extend                  # means padding uses background colour
-#unfocused-split-opacity = 0.7                  # dim unfocused splits a bit
-#
-## Set your preferred working directory
-#working-directory   = home
+window-padding-color = extend                  # means padding uses background colour
+unfocused-split-opacity = 0.7                  # dim unfocused splits a bit
+
+# End of config
