@@ -26,8 +26,12 @@ fi
 bindkey '^I' expand-or-complete
 
 # Completion
-autoload -U compinit
-compinit -i
+#autoload -U compinit
+#compinit -i
+# https://superuser.com/a/1092328/42141
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 
 #source ~/dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
 
