@@ -7,3 +7,4 @@ Arm-Enterprise-PKI-Root.pem
 bin/codex 
 *.swp
 config/vscode/User/settings.json
+Arm-Enterprise-PKI-Root.pem
