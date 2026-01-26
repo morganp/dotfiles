@@ -5,6 +5,7 @@ stow git --dotfiles -t ~/
 stow input --dotfiles -t ~/
 stow screen --dotfiles -t ~/
 #stow tmux --dotfiles -t ~/ Obeys $XDG_CONFIG_HOME
+stow ctags --dotfiles -t ~/
 
 mkdir -p $HOME/.config/ghostty
 stow ghostty  -t  $HOME/.config/ghostty
