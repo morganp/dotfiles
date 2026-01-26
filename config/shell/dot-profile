@@ -5,9 +5,9 @@
 #OPENAI_API_KEY="xxxxx"
 [ -f ~/.env ] && source ~/.env 
 
-# Ctage installed with brew: brew install ctags
+# Ctags installed with brew: brew install universal-ctags
 # https://kulkarniamit.github.io/whatwhyhow/howto/use-vim-ctags.html
-alias ctags=/opt/homebrew/bin/ctags
+[ -f /opt/homebrew/bin/ctags ] && alias ctags=/opt/homebrew/bin/ctags
 
 #Warry Recommends
 alias gpsh='git push origin HEAD:refs/for/main'
