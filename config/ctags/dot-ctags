@@ -1,4 +1,10 @@
---recurse=yes
+
+--languages=Verilog,SystemVerilog
+--langmap=Verilog:.v
+--langmap=SystemVerilog:.sv
+--fields=+n
+--extras=+q
+--recurse
 --exclude=.git
 --exclude=BUILD
 --exclude=.svn
