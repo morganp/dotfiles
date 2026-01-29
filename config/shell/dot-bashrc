@@ -150,19 +150,35 @@ if [ "$BASH_PS1_MODE" = true ]; then
 else
   echo "BASH_PS1_MODE false"
   # No colour modifications
+ # ~/.bashrc or sourced profile snippet
+
+HOSTNAME_FQDN="$(hostname -f 2>/dev/null || hostname)"
+
+CLUSTER=""
+if [[ "$HOSTNAME_FQDN" == *arm.com* ]]; then
+    if [[ "$HOSTNAME_FQDN" == login*.nahpc2.arm.com ]]; then
+        CLUSTER="nahpc2"
+    fi
+    if [[ "$HOSTNAME_FQDN" == login*.aws.arm.com ]]; then
+        CLUSTER="aws"
+    fi
+fi 
+
+# multiple reloads keep nesting the $PS1
+  #export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo '('{}') $ ')"
+
+export PS1="[\$CLUSTER:\W/] \$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo '('{}') $ ')"
   
-  export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo '('{}') $ ')"
-  
-  function mace(){
-    #echo -en "\033]0;$1\a"
-    # Changing from $1 to "$@" to capture the -w workspace options
-    ace "$@"
-    #stream=`p4 -F %Stream% -ztag client -o`
-    #echo -en "\033]0;$1-$stream\a"
-    #echo -en "\033]0;$1 ($VARIANT)\a"
-    ## Default PS1 looks like ss_dac_nicholls [morgan@ediws102 dev-burns-2]$
-    PS1='$PROJ  ($VARIANT) \W $ '
-  }
+ # function mace(){
+ #   #echo -en "\033]0;$1\a"
+ #   # Changing from $1 to "$@" to capture the -w workspace options
+ #   ace "$@"
+ #   #stream=`p4 -F %Stream% -ztag client -o`
+ #   #echo -en "\033]0;$1-$stream\a"
+ #   #echo -en "\033]0;$1 ($VARIANT)\a"
+ #   ## Default PS1 looks like ss_dac_nicholls [morgan@ediws102 dev-burns-2]$
+ #   PS1='$PROJ  ($VARIANT) \W $ '
+ # }
 fi
 
 
