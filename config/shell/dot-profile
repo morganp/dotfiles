@@ -9,6 +9,19 @@
 # https://kulkarniamit.github.io/whatwhyhow/howto/use-vim-ctags.html
 [ -f /opt/homebrew/bin/ctags ] && alias ctags=/opt/homebrew/bin/ctags
 
+
+# add mac style command 'open' on REHL
+if ! command -v open >/dev/null 2>&1; then
+  # open does NOT exist
+  alias open=xdg-open
+fi
+if [[ -f /etc/os-release ]]; then
+  . /etc/os-release
+  [[ "$ID" == "rhel" ]] && echo "Running on RHEL"
+  alias open=xdg-open
+fi
+
+
 #Warry Recommends
 alias gpsh='git push origin HEAD:refs/for/main'
 alias gplr='git pull --rebase'
