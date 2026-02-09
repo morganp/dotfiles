@@ -166,9 +166,21 @@ fi
 
 # multiple reloads keep nesting the $PS1
   #export PS1=$PS1"\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo '('{}') $ ')"
+git_base_folder() {
+    local root
+    root=$(git rev-parse --show-toplevel 2>/dev/null) || return
+    basename "$root"
+}
 
-export PS1="[\$CLUSTER:\W/] \$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | xargs -I {} echo '('{}') $ ')"
-  
+git_branch() {
+    local branch
+    branch=$(git symbolic-ref --short HEAD 2>/dev/null) || return
+    printf "(%s)" "$branch"
+}
+
+#export PS1="[\$CLUSTER:\W/] "
+ export PS1="$CLUSTER $(git_base_folder)-$(git_branch) \W: "
+ 
  # function mace(){
  #   #echo -en "\033]0;$1\a"
  #   # Changing from $1 to "$@" to capture the -w workspace options
