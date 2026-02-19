@@ -1,15 +1,20 @@
 # Run Stow Command to link config files    
 
 cd ~/dotfiles/config
-stow git --dotfiles -t ~/
+#stow git --dotfiles -t ~/
 stow input --dotfiles -t ~/
 stow screen --dotfiles -t ~/
 #stow tmux --dotfiles -t ~/ Obeys $XDG_CONFIG_HOME
 stow ctags --dotfiles -t ~/
 
+mkdir -p $HOME/.config/git
+stow git  -t  $HOME/.config/git
+
 mkdir -p $HOME/.config/ghostty
 stow ghostty  -t  $HOME/.config/ghostty
 
-mkdir ~/.codex
+mkdir -p ~/.codex
 stow codex --dotfiles -t ~/.codex
 
+mkdir -p ~/.claude
+stow claude --dotfiles -t ~/.claude/
