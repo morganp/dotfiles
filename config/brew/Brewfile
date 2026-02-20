@@ -18,6 +18,8 @@ cask "drawio"
 cask "gitx"
 cask "macvim-app"
 cask "vlc"
+cask "claude"
+
 
 cask "font-victor-mono"
 
