@@ -16,6 +16,7 @@ This skill produces WaveJSON — the JSON-based format used by [WaveDrom](https:
 3. **Compose each wave string** — character by character, tracking state transitions
 4. **Add labels, groups, edges, and config** as needed
 5. **Output a fenced code block** using ` ```json ` so it renders cleanly, then explain what it shows
+6. **Optionally render to an image file** — if the user wants a file (SVG/PNG) or Bash tool access is available, offer to run `wavedrom-cli` (see **Rendering to Image Files**)
 
 ## WaveJSON Reference
 
@@ -172,6 +173,48 @@ Always output the diagram as a fenced code block:
 After the code block, briefly explain:
 - What the diagram shows
 - Key timing relationships or events
-- How to use it (paste at https://wavedrom.com/editor.html, or embed in docs)
+- How to use it: paste at https://wavedrom.com/editor.html, or use `wavedrom-cli` to render to SVG/PNG (see **Rendering to Image Files** below)
 
 If the user's description is ambiguous about exact timing, make a reasonable assumption and note it — then offer to adjust.
+
+## Rendering to Image Files
+
+If the user wants an SVG or PNG file (not just JSON to paste in the browser), use `wavedrom-cli`.
+
+### Install (once, requires Node.js 14+)
+
+```bash
+npm install -g wavedrom-cli
+```
+
+### Generate an image
+
+Save the WaveJSON to a file, then render it:
+
+```bash
+# Save the diagram
+cat > diagram.json5 << 'EOF'
+{ "signal": [ ... ] }
+EOF
+
+# SVG — crisp, scalable, best for docs and embedding
+wavedrom-cli -i diagram.json5 -s diagram.svg
+
+# PNG — raster image
+wavedrom-cli -i diagram.json5 -p diagram.png
+
+# Both at once
+wavedrom-cli -i diagram.json5 -s diagram.svg -p diagram.png
+```
+
+### PDF (via Inkscape)
+
+```bash
+wavedrom-cli -i diagram.json5 | inkscape -p --export-filename=diagram.pdf
+```
+
+### When to offer this
+
+- User asks to "save", "export", or "generate" a file
+- User mentions embedding in a document, CI pipeline, or Makefile
+- Bash tool access is available — proactively offer to run it; check first with `which wavedrom-cli` and suggest the install command if it's missing
