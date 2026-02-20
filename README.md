@@ -39,7 +39,7 @@ Install homebrew
 
 Install Brew packages (includes Stow)
 
-    brew bundle install --file=~/dotfiels/config/brew
+    brew bundle install --file=~/dotfiles/config/brew
 
 The Rest
 --
