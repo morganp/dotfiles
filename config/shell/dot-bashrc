@@ -82,6 +82,10 @@ pre_add_path ~/bin
 post_add_path .
 post_add_path ~/dotfiles/bin
 
+# Debian LXC tutorials put homebre here
+pre_add_path /home/linuxbrew/.linuxbrew/bin
+
+
 # Control BASH History
 export HISTCONTROL='erasedups:ignorespace'
 export HISTFILESIZE=5000
