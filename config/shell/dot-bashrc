@@ -183,7 +183,7 @@ git_branch() {
 }
 
 #export PS1="[\$CLUSTER:\W/] "
- export PS1="$CLUSTER $(git_base_folder)-$(git_branch) \W: "
+ export PS1="$CLUSTER $(git_base_folder)-$(git_branch) \W $ "
  
  # function mace(){
  #   #echo -en "\033]0;$1\a"
