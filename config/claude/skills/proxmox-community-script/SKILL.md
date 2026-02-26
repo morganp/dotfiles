@@ -51,10 +51,12 @@ Key points:
 Read `references/addon-pattern.md` for the complete addon script template and JSON metadata template.
 
 Key points:
-- Addon scripts are self-contained (inline color vars, msg functions, telemetry)
-- They do NOT use `$FUNCTIONS_FILE_PATH` or `build.func`
-- They must detect the OS (Debian vs Alpine) and handle both
-- They use `whiptail` or `read` prompts for user confirmation
+- Addon scripts source `core.func`, `tools.func`, `error_handler.func`, and `api.func` via curl
+- They do NOT use `$FUNCTIONS_FILE_PATH` or `build.func` — those are for ct install scripts only
+- They must detect the OS (Debian vs Alpine) and handle both where possible
+- They use `read -r` prompts for user confirmation (not `whiptail`)
+- They use `$STD` for output suppression (from tools.func)
+- Structured sections: CONFIGURATION, OS DETECTION, UNINSTALL, UPDATE, INSTALL, MAIN
 - No `motd_ssh`, `customize`, or `cleanup_lxc` at the end
 
 ## Critical Anti-Patterns (will get your PR rejected)
