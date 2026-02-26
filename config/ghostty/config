@@ -1,6 +1,6 @@
 # ChatGPT5.0 recommended
-# Primary font with fallbacks for portability
-font-family         = "Victor Mono"
+# Primary font with explicit macOS fallbacks
+font-family         = "Victor Mono, SF Mono, Menlo, Monaco, 'Courier New', monospace"
 #font-family         = "JetBrains Mono"
 #font-family         = "Menlo, Monaco, 'Courier New', monospace"
 font-size           = 13.5
