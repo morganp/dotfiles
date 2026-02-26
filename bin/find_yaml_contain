@@ -1,0 +1,16 @@
+#!/bin/bash
+echo "Looking for $1 in *.yaml files"
+
+
+if [[ `uname` == 'Darwin' ]]; then
+  # Use find to list all files
+  find ./ -type f -name *.yaml | xargs -I {} grep -il "$1" {}
+
+else 
+  # Exclude :
+  #   Subversion
+  #   Synchronisity
+  #   vim swap files
+  grep --exclude="*.svn*" --exclude="*.SYNC*" --exclude="*.swp"  -ril "$1" *
+
+fi
