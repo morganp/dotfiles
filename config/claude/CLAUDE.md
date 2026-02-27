@@ -7,3 +7,6 @@ Always use specialized agents for all tasks. Do not perform tasks in the main co
 - **Planning:** Use `@plan` to outline complex tasks before executing [5].
 - **Context Management:** Ensure sub-agents report back findings, then exit to keep this main conversation focused [1].
 
+## Saved Links
+When asked about a saved link or resource, check ~/claude_personal_assistant/references/links.json
+
