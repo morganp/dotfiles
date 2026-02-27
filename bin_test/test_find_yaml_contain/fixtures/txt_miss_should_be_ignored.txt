@@ -1,0 +1,1 @@
+this text file has no matching token and should also be ignored by YAML-only filtering.
