@@ -224,6 +224,7 @@ fi
 - Use `load_functions` after sourcing to initialize all helpers
 - Use `init_tool_telemetry "" "addon"` for telemetry
 - Use `set -Eeuo pipefail` + `trap 'error_handler' ERR` for error handling
+- Use `apt` not `apt-get` for all package operations (except the curl bootstrap block at the top, which matches upstream template)
 - Use `$STD` to suppress command output (not `&>/dev/null`) — `$STD` comes from tools.func
 - Use `header_info` from core.func (do NOT define custom ASCII art header)
 - Use `get_lxc_ip` to get `$LOCAL_IP` for display
