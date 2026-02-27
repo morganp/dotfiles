@@ -11,6 +11,6 @@ else
   #   Subversion
   #   Synchronisity
   #   vim swap files
-  grep --exclude="*.svn*" --exclude="*.SYNC*" --exclude="*.swp"  -ril "$1" *
+  grep --exclude="*.svn*" --exclude="*.SYNC*" --exclude="*.swp" --exclude="*.git*"  -ril "$1" *.yaml
 
 fi
