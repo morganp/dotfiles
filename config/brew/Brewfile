@@ -1,5 +1,4 @@
 tap "chipsalliance/verible"
-
 brew "stow"
 brew "gh"
 brew "neovim"
@@ -15,6 +14,8 @@ brew "universal-ctags"
 # Faster than grep
 brew "ripgrep"
 
+# For wavedrom and other tools
+brew "node"
 
 brew codex 
 brew copilot-cli
@@ -25,8 +26,8 @@ cask "gitx"
 cask "macvim-app"
 cask "vlc"
 cask "claude"
+cask "claude-code"
 cask "visual-studio-code"
-
 # Fonts
 cask "font-victor-mono"
 
