@@ -1,5 +1,6 @@
 tap "chipsalliance/verible"
 
+brew "stow"
 brew "gh"
 brew "neovim"
 brew "python@3"
@@ -9,6 +10,11 @@ brew "uv"
 brew "yt-dlp"
 brew "ffmpeg"
 brew "chipsalliance/verible/verible"
+brew "universal-ctags"
+
+# Faster than grep
+brew "ripgrep"
+
 
 brew codex 
 brew copilot-cli
@@ -19,8 +25,9 @@ cask "gitx"
 cask "macvim-app"
 cask "vlc"
 cask "claude"
+cask "visual-studio-code"
 
-
+# Fonts
 cask "font-victor-mono"
 
 vscode "bmpenuelas.waveform-render"
