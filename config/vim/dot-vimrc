@@ -1,15 +1,15 @@
 "~/.vimrc should be a link here or contain the following:
-"so ~/.unix_config/.vimrc
+"so ~/dotfiles/.vimrc
 
-" This has been checked on:
-" RHEL4     gvim TODO 
-" RHEL4      vim DONE
-" RHEL5     gvim DONE 
-" RHEL5      vim DONE
-" macvim    mvim TODO 
-" macvim     vim TODO
-" webfaction vim TODO
+// brew install universal-ctag
+// Automatically crate tags file
+au BufWritePost *.c,*.cpp,*.h,*.v,*.sv silent! !ctags -R &
 
+//Adds command :MakeTags to rebuild tags file
+command! MakeTags silent !ctags -R .
+
+//Look for tags in local directory and walk up tree
+set tags=./tags;,tags;
 
 
 " Set up the search path for plugins colors and syntax files
