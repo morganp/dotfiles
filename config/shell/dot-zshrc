@@ -6,6 +6,11 @@ alias mergepdfs="gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepre
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+# Used for user compiled binaries on Unix
+if [[ -d ~/bin ]]; then
+  export PATH="$HOME/bin:$PATH"
+fi
+
 #Setup Custom binaries Path (before Homebrew)
 export PATH="$HOME/dotfiles/bin:$PATH"
 

@@ -1,7 +1,7 @@
-model = "gpt-5-codex"
+model = "gpt-5.2"
 model_provider = "arm-proxy-openai"
 disable_response_storage = true
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
  
 [model_providers.arm-proxy-openai]
 name = "openai"
@@ -14,3 +14,15 @@ trust_level = "trusted"
  
 [projects."/Your/path/number/2"]
 trust_level = "trusted"
+
+[projects."/Users/morpri01"]
+trust_level = "trusted"
+
+[projects."/Users/morpri01/Library/Mobile Documents/com~apple~CloudDocs/Documents (home)/3DPrinter/OpenGrid/OpenGrid-With96mm mft"]
+trust_level = "trusted"
+
+[projects."/Users/morpri01/Library/CloudStorage/OneDrive-Arm/Documents/OpenGrid-With96mm mft"]
+trust_level = "trusted"
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true
