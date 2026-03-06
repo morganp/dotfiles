@@ -28,6 +28,11 @@ cask "vlc"
 cask "claude"
 cask "claude-code"
 cask "visual-studio-code"
+
+# Local AI
+brew "llmfit"
+brew "ollama"
+
 # Fonts
 cask "font-victor-mono"
 
