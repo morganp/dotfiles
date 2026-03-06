@@ -31,14 +31,14 @@ BRANCH=""
   BRANCH=" | 🌿 $(git -C "$DIR" branch --show-current 2>/dev/null)"
 
 # --- Real usage from Anthropic API (cached 5 min) ---
-CREDS_FILE="$HOME/.claude/.credentials.json"
 USAGE_CACHE="/tmp/claude-usage-cache.json"
 WIN_PCT=0; WEEK_PCT=0
 
-if [ -f "$CREDS_FILE" ]; then
-  NOW_S=$(date +%s)
-  # Refresh cache if older than 5 minutes
-  if [ ! -f "$USAGE_CACHE" ] || [ $(( NOW_S - $(date -r "$USAGE_CACHE" +%s 2>/dev/null || echo 0) )) -gt 300 ]; then
+NOW_S=$(date +%s)
+# Refresh cache if older than 5 minutes
+if [ ! -f "$USAGE_CACHE" ] || [ $(( NOW_S - $(date -r "$USAGE_CACHE" +%s 2>/dev/null || echo 0) )) -gt 300 ]; then
+  CREDS_FILE="$HOME/.claude/.credentials.json"
+  if [ -f "$CREDS_FILE" ]; then
     TOKEN=$(python3 -c "
 import json, sys
 try:
@@ -47,21 +47,31 @@ try:
 except Exception:
     print('')
 ")
-    if [ -n "$TOKEN" ]; then
-      curl -s --max-time 5 \
-        -H "Authorization: Bearer $TOKEN" \
-        -H "anthropic-beta: oauth-2025-04-20" \
-        "https://api.anthropic.com/api/oauth/usage" > "${USAGE_CACHE}.tmp" 2>/dev/null
-      if [ -s "${USAGE_CACHE}.tmp" ]; then
-        mv "${USAGE_CACHE}.tmp" "$USAGE_CACHE"
-      else
-        rm -f "${USAGE_CACHE}.tmp"
-      fi
+  else
+    TOKEN=$(security find-generic-password -s "Claude Code-credentials" -w -g 2>/dev/null | python3 -c "
+import sys, json
+try:
+    d = json.loads(sys.stdin.read())
+    print(d['claudeAiOauth']['accessToken'])
+except Exception:
+    print('')
+")
+  fi
+  if [ -n "$TOKEN" ]; then
+    curl -s --max-time 5 \
+      -H "Authorization: Bearer $TOKEN" \
+      -H "anthropic-beta: oauth-2025-04-20" \
+      "https://api.anthropic.com/api/oauth/usage" > "${USAGE_CACHE}.tmp" 2>/dev/null
+    if [ -s "${USAGE_CACHE}.tmp" ]; then
+      mv "${USAGE_CACHE}.tmp" "$USAGE_CACHE"
+    else
+      rm -f "${USAGE_CACHE}.tmp"
     fi
   fi
+fi
 
-  if [ -f "$USAGE_CACHE" ]; then
-    read -r WIN_PCT WEEK_PCT <<< "$(python3 -c "
+if [ -f "$USAGE_CACHE" ]; then
+  read -r WIN_PCT WEEK_PCT <<< "$(python3 -c "
 import json, sys
 try:
     d = json.load(open('$USAGE_CACHE'))
@@ -71,7 +81,6 @@ try:
 except Exception:
     print(0, 0)
 ")"
-  fi
 fi
 
 WIN_PCT=${WIN_PCT:-0}; WEEK_PCT=${WEEK_PCT:-0}
