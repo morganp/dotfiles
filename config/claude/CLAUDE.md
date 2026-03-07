@@ -9,6 +9,11 @@ Always use specialized agents for all tasks. Do not perform tasks in the main co
 
 In comments and generated text do not use em dashes
 
-## Saved Links
-When asked about a saved link or resource, check ~/claude_personal_assistant/references/links.json
+When being asked to plan or build first check if there are any relevant skills.
+- https://skillsmp.com/search
+- https://mcpmarket.com/tools/skills
+- https://claudeskills.info/
+- https://github.com/BehiSecc/awesome-claude-skills
+- https://github.com/travisvn/awesome-claude-skills
+- https://github.com/VoltAgent/awesome-agent-skills
 
