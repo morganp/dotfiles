@@ -1,6 +1,12 @@
 {
   "permissions": {
-    "defaultMode": "default"
+    "defaultMode": "default",
+    "allow": [
+      "Search(*)",
+      "Search(pattern:*)",
+      "Search(pattern:*, include:*)",
+      "Read(*)"
+    ]
   },
   "statusLine": {
     "type": "command",
@@ -9,6 +15,7 @@
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true
   }
 }
