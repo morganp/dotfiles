@@ -1,46 +1,35 @@
-# ChatGPT5.0 recommended
-# Primary font with explicit macOS fallbacks
-font-family         = "Victor Mono, SF Mono, Menlo, Monaco, 'Courier New', monospace"
-#font-family         = "JetBrains Mono"
-#font-family         = "Menlo, Monaco, 'Courier New', monospace"
-font-size           = 13.5
+# Primary font with explicit macOS fallbacks.
+font-family = "Victor Mono"
+font-family = "SF Mono"
+font-family = "Menlo"
+font-family = "Monaco"
+font-family = "Courier New"
+font-size = 13.5
 
-window-padding-x    = 6
-window-padding-y    = 6
-adjust-cell-height  = 2%
-theme               = "Catppuccin Mocha"
+window-padding-x = 6
+window-padding-y = 6
+window-padding-color = extend
+adjust-cell-height = 2%
 
-# Keybindings (GUI and terminal)
-keybind             = cmd+t=new_tab
-keybind             = cmd+r=reload_config
-# Cross-platform useful bindings
-keybind             = ctrl+shift+t=new_tab
-keybind             = ctrl+shift+w=close_surface
-keybind             = ctrl+shift+n=new_window
+theme = "Catppuccin Mocha"
+background-opacity = 0.90
+background-blur = 10
+unfocused-split-opacity = 0.7
 
-## Transparency & blur (nice effect if supported)
-# Slightly more opaque for better contrast
-background-opacity  = 0.90
-background-blur-radius = 10
+window-decoration = auto
+window-inherit-font-size = false
+window-width = 120
+window-height = 35
 
-## Window decoration & padding
-window-decoration   = auto                    # native look but neat
-window-inherit-font-size = false              # new windows use configured font size
-window-width        = 120                     # approx width in columns
-window-height       = 35                      # approx height in rows
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
+working-directory = home
 
-## Shell integration (makes splits/tabs behave nicely)
-shell-integration   = true
-shell-integration-features = true
-# Start new windows in the user's home directory
-working-directory   = home
+cursor-style = block
+cursor-style-blink = false
 
-## Cursor style & accessibility
-cursor-style        = block                   # thick block cursor
-cursor-style-blink  = false                   # no blinking (less distraction)
-
-## Misc readability
-window-padding-color = extend                  # means padding uses background colour
-unfocused-split-opacity = 0.7                  # dim unfocused splits a bit
-
-# End of config
+keybind = cmd+t=new_tab
+keybind = cmd+r=reload_config
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+shift+w=close_surface
+keybind = ctrl+shift+n=new_window
