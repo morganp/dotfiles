@@ -1,4 +1,8 @@
 model = "gpt-5.2"
+=======
+# https://developers.openai.com/codex/config-sample/
+
+model = "gpt-5.3-codex"
 model_provider = "arm-proxy-openai"
 disable_response_storage = true
 model_reasoning_effort = "medium"
@@ -15,6 +19,7 @@ trust_level = "trusted"
 [projects."/Your/path/number/2"]
 trust_level = "trusted"
 
+<<<<<<< HEAD
 [projects."/Users/morpri01"]
 trust_level = "trusted"
 
@@ -26,3 +31,60 @@ trust_level = "trusted"
 
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true
+=======
+################################################################################
+# History & File Opener
+################################################################################
+
+# URI scheme for clickable citations: vscode (default) | vscode-insiders | windsurf | cursor | none
+file_opener = "vscode"
+
+################################################################################
+# Web Search
+################################################################################
+
+# Web search mode: disabled | cached | live. Default: "cached"
+# cached serves results from a web search cache (an OpenAI-maintained index).
+# cached returns pre-indexed results; live fetches the most recent data.
+# If you use --yolo or another full access sandbox setting, web search defaults to live.
+web_search = "live"
+
+################################################################################
+# Agents (multi-agent roles and limits)
+################################################################################
+
+# [agents]
+# Maximum concurrently open agent threads. Default: 6
+max_threads = 6
+# Maximum nested spawn depth. Root session starts at depth 0. Default: 1
+max_depth = 2
+# Default timeout per worker for spawn_agents_on_csv jobs. When unset, the tool defaults to 1800 seconds.
+# job_max_runtime_seconds = 1800
+
+# [agents.reviewer]
+# description = "Find security, correctness, and test risks in code."
+# config_file = "./agents/reviewer.toml"  # relative to the config.toml that defines it
+
+################################################################################
+# Shell Environment Policy for spawned processes (table)
+################################################################################
+
+[shell_environment_policy]
+# inherit: all (default) | core | none
+inherit = "all"
+# Skip default excludes for names containing KEY/SECRET/TOKEN (case-insensitive). Default: true
+ignore_default_excludes = true
+# Case-insensitive glob patterns to remove (e.g., "AWS_*", "AZURE_*"). Default: []
+exclude = []
+# Explicit key/value overrides (always win). Default: {}
+set = {}
+# Whitelist; if non-empty, keep only matching vars. Default: []
+include_only = []
+# Experimental: run via user shell profile. Default: false
+experimental_use_profile = false
+
+################################################################################
+#  Safe commands (Not found in Docs - just github approved merge request)
+#  https://github.com/openai/codex/issues/380
+################################################################################
+safeCommands = ["find", "grep"]
