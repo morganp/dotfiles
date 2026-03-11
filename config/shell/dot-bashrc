@@ -82,8 +82,11 @@ pre_add_path ~/bin
 post_add_path .
 post_add_path ~/dotfiles/bin
 
-# Debian LXC tutorials put homebre here
+# Debian LXC tutorials put homebrew here
 pre_add_path /home/linuxbrew/.linuxbrew/bin
+
+# Using Rust and cargo package manager
+pre_add_path /home/morpri01/.cargo/bin
 
 
 # Control BASH History
