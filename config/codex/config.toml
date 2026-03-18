@@ -1,37 +1,9 @@
-model = "gpt-5.2"
-=======
-# https://developers.openai.com/codex/config-sample/
-
-model = "gpt-5.3-codex"
-model_provider = "arm-proxy-openai"
+model = "gpt-5.4"
+model_provider = "proxy"
 disable_response_storage = true
-model_reasoning_effort = "medium"
- 
-[model_providers.arm-proxy-openai]
-name = "openai"
-base_url = "https://openai-api-proxy.geo.arm.com/api/providers/openai/v1"
-wire_api = "responses"
-env_key = "OPENAI_API_KEY"
- 
-[projects."~/dotfiles"]
-trust_level = "trusted"
- 
-[projects."/Your/path/number/2"]
-trust_level = "trusted"
+sandbox_mode = "danger-full-access"
+approval_policy = "never"
 
-<<<<<<< HEAD
-[projects."/Users/morpri01"]
-trust_level = "trusted"
-
-[projects."/Users/morpri01/Library/Mobile Documents/com~apple~CloudDocs/Documents (home)/3DPrinter/OpenGrid/OpenGrid-With96mm mft"]
-trust_level = "trusted"
-
-[projects."/Users/morpri01/Library/CloudStorage/OneDrive-Arm/Documents/OpenGrid-With96mm mft"]
-trust_level = "trusted"
-
-[notice]
-"hide_gpt-5.1-codex-max_migration_prompt" = true
-=======
 ################################################################################
 # History & File Opener
 ################################################################################
@@ -58,6 +30,7 @@ web_search = "live"
 max_threads = 6
 # Maximum nested spawn depth. Root session starts at depth 0. Default: 1
 max_depth = 2
+model_reasoning_effort = "high"
 # Default timeout per worker for spawn_agents_on_csv jobs. When unset, the tool defaults to 1800 seconds.
 # job_max_runtime_seconds = 1800
 
@@ -88,3 +61,14 @@ experimental_use_profile = false
 #  https://github.com/openai/codex/issues/380
 ################################################################################
 safeCommands = ["find", "grep"]
+
+
+[model_providers.proxy]
+name      = "OpenAI"
+base_url  = "https://openai-api-proxy.geo.arm.com/api/providers/openai/v1"
+wire_api  = "responses"
+
+# Local machine-specific project trust entries belong in config.local.toml and
+# are appended to ~/.codex/config.toml by install_config.sh.
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
