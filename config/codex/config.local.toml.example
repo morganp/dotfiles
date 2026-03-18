@@ -1,0 +1,6 @@
+# Local-only Codex settings.
+# Copy this to config/codex/config.local.toml and add machine-specific settings
+# that should never be committed, such as trusted project paths.
+
+[projects."/absolute/path/to/a/local/project"]
+trust_level = "trusted"

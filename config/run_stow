@@ -14,7 +14,7 @@ mkdir -p $HOME/.config/ghostty
 stow ghostty  -t  $HOME/.config/ghostty
 
 mkdir -p ~/.codex
-stow codex --dotfiles -t ~/.codex
+./codex/install_config.sh
 
 mkdir -p ~/.claude
 stow claude --dotfiles -t ~/.claude/
