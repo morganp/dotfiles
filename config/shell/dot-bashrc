@@ -89,6 +89,10 @@ pre_add_path /home/linuxbrew/.linuxbrew/bin
 pre_add_path /home/morpri01/.cargo/bin
 
 
+# Debian/Ubuntu Claude install
+post_add_path $HOME/.local/bin
+
+
 # Control BASH History
 export HISTCONTROL='erasedups:ignorespace'
 export HISTFILESIZE=5000
