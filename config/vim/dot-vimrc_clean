@@ -19,11 +19,14 @@ set smartindent
 
 "http://amix.dk/vim/vimrc.txt
 " No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
+if has('patch-7.4.793')
+  set belloff=all
+else
+  set noerrorbells
+  set novisualbell
+  set t_vb=
+endif
 set tm=500
-set belloff=all
 
 " Navigation/search quality-of-life
 set ignorecase
