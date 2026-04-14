@@ -1,12 +1,12 @@
 {
   "permissions": {
-    "defaultMode": "default",
     "allow": [
       "Search(*)",
       "Search(pattern:*)",
       "Search(pattern:*, include:*)",
       "Read(*)"
-    ]
+    ],
+    "defaultMode": "default"
   },
   "statusLine": {
     "type": "command",
@@ -17,5 +17,6 @@
     "swift-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }

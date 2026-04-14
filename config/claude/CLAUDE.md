@@ -17,3 +17,6 @@ When being asked to plan or build first check if there are any relevant skills.
 - https://github.com/travisvn/awesome-claude-skills
 - https://github.com/VoltAgent/awesome-agent-skills
 
+# Version Control
+For tagging projects ie code releases and 3D models follow Semantic Versioning 2.0.0
+- https://semver.org
