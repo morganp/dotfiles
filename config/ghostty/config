@@ -6,6 +6,9 @@ font-family = "Monaco"
 font-family = "Courier New"
 font-size = 13.5
 
+# Save tabs between restarts
+window-save-state = always
+
 window-padding-x = 6
 window-padding-y = 6
 window-padding-color = extend
