@@ -125,7 +125,7 @@ fi
 
 # Control if we modify the PS1
 # export BASH_PS1_MODE=false
-if [ "$BASH_PS1_MODE" = true ]; then
+if [ "${BASH_PS1_MODE:-false}" = true ]; then
 
   echo "BASH_PS1_MODE true"
   ## BASH Prompt
