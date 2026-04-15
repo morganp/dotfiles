@@ -64,9 +64,10 @@ safeCommands = ["find", "grep"]
 
 
 [model_providers.proxy]
-name      = "OpenAI"
-base_url  = "https://openai-api-proxy.geo.arm.com/api/providers/openai/v1"
-wire_api  = "responses"
+name     = "OpenAI"
+base_url = "https://openai-api-proxy.geo.arm.com/api/providers/openai/v1"
+wire_api = "responses"
+env_key = "OPENAI_API_KEY"
 
 # Local machine-specific project trust entries belong in config.local.toml and
 # are appended to ~/.codex/config.toml by install_config.sh.

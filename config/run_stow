@@ -13,6 +13,9 @@ stow git  -t  $HOME/.config/git
 mkdir -p $HOME/.config/ghostty
 stow ghostty  -t  $HOME/.config/ghostty
 
+mkdir -p $HOME/.config/karabiner
+stow karabiner  -t  $HOME/.config/karabiner
+
 mkdir -p ~/.codex
 ./codex/install_config.sh
 
