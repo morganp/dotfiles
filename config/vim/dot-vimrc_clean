@@ -8,6 +8,12 @@ filetype plugin indent on
 " Number lines for debug
 set number
 
+" Map the ctrl-shift-C to vim Copy
+:map <C-S-z> u
+:map <C-S-x> "+x
+:map <C-S-c> "+y
+:map <C-S-v> "+gP
+
 " Tab settings
 set expandtab           " spaces are used instead of tabs
 set tabstop=2           " number of spaces inserted when tab is hit
