@@ -43,7 +43,9 @@ set scrolloff=3
 
 " Buffers, clipboard, undo
 set hidden
-set clipboard=unnamedplus
 set updatetime=300
 set undofile
 set undodir=~/.vim/undo
+
+" set clipboard=unnamedplus " Plus better for Linux
+set clipboard=unnamed " Use for macOS
