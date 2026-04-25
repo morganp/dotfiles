@@ -11,6 +11,8 @@ brew "ffmpeg"
 brew "chipsalliance/verible/verible"
 brew "universal-ctags"
 brew "karabiner-elements"
+# timg allows ghostty to use kitty protocol to show images in terminal
+brew "timg"
 
 # Faster than grep
 brew "ripgrep"
