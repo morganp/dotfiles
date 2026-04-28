@@ -1,0 +1,7 @@
+interface:
+  display_name: "Terminal Table Formatting"
+  short_description: "Create aligned terminal tables"
+  default_prompt: "Use $terminal-table-formatting to format this output as a readable terminal table."
+
+policy:
+  allow_implicit_invocation: true
