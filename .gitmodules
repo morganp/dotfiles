@@ -31,3 +31,6 @@
 [submodule "zsh-autosuggestions"]
 	path = zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "shared/skillbook"]
+	path = shared/skillbook
+	url = https://github.com/morganp/skillbook.git
