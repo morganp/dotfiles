@@ -40,7 +40,7 @@ This skill produces WaveJSON — the JSON-based format used by [WaveDrom](https:
 | `1`  | Logic high |
 | `x`  | Unknown / undefined |
 | `z`  | High impedance (tri-state) |
-| `.`  | Continue previous state for one more period |
+| `.`  | Continue previous state for one more period — for clock signals `.` repeats the clock, so `p.p` and `p..` are identical (both show 3 clock cycles) |
 | `=`  | Multi-bit data (label comes from `data` array) |
 | `2`–`9` | Colored data states (label from `data` array, colors cycle) |
 | `p`  | Positive clock (rising-edge tick mark) |
@@ -131,6 +131,29 @@ Edge syntax: `"source connector target label"`
   { "name": "CS",   "wave": "10................1" }
 ]}
 ```
+
+### Multiple clock rates (CDC diagrams)
+
+Use `period` to scale a clock's brick width rather than manually spacing `p` characters. This makes slower clocks visually obvious and keeps the diagram tidy.
+
+**Right-edge alignment rule:** all signals must have the same total base-units or the right edge will be ragged. Total base-units = `wave string length × period` (period defaults to 1). Choose string lengths so every signal produces the same total.
+
+**Prefer integer periods.** Fractional periods (e.g. `1.5`) can cause the last brick to overshoot the canvas boundary and make data-signal transitions appear misaligned with clock edges even when the maths looks correct. Use integer periods whenever possible.
+
+For a 2:1 ratio (integer, recommended):
+- SRC: 8 chars × period 1 = **8 units**
+- DST: 4 chars × period 2 = **8 units** ✓
+
+```json
+{ "signal": [
+  { "name": "SRC_CLK", "wave": "p......." },
+  { "name": "DST_CLK", "wave": "p...", "period": 2 }
+]}
+```
+
+With `period: 2` the DST_CLK bricks are 2× wider, making the slower clock visually obvious. Data signals that must transition on DST edges should use `period: 1` with transitions placed at the integer positions corresponding to DST edges (0, 2, 4, 6 … for a 2:1 ratio).
+
+For non-integer ratios, if fractional period is unavoidable, ensure `wave_length × period` equals the same integer for every signal — but be aware rendering artifacts may still occur.
 
 ### Request/acknowledge handshake
 
