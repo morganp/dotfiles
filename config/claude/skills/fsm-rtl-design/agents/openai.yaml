@@ -1,0 +1,7 @@
+interface:
+  display_name: "FSM RTL Design"
+  short_description: "RTL FSM design, diagrams, and waveforms"
+  default_prompt: "Use $fsm-rtl-design to design a synthesizable Verilog FSM with a state diagram and WaveDrom timing."
+
+policy:
+  allow_implicit_invocation: true
