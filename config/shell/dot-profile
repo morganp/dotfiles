@@ -17,7 +17,7 @@ if ! command -v open >/dev/null 2>&1; then
 fi
 if [[ -f /etc/os-release ]]; then
   . /etc/os-release
-  [[ "$ID" == "rhel" ]] && echo "Running on RHEL"
+  # [[ "$ID" == "rhel" ]] && echo "Running on RHEL"
   alias open=xdg-open
 fi
 
