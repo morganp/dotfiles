@@ -17,6 +17,9 @@ Vim
     so ~/dotfiles/config/vim/dot-vimrc_clean
 
 
+All configs live under `config/`. Stow targets operate from that directory.
+Submodules (e.g. skillbook) live under `config/shared/`.
+
 The Rest can be linked with stow, and homebrew to manage packages
 
 Tmux
@@ -55,6 +58,9 @@ Example of run_stow:
     stow git --dotfiles -t ~/
     stow input --dotfiles -t ~/
     stow screen --dotfiles -t ~/
+
+Claude AI skills are managed as a submodule at `config/shared/skillbook`.
+`run_stow` creates `~/.claude/skills` pointing there directly.
     
 
 
