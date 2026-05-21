@@ -21,3 +21,4 @@ mkdir -p ~/.codex
 
 mkdir -p ~/.claude
 stow claude --dotfiles -t ~/.claude/
+ln -sf ~/dotfiles/config/shared/skillbook ~/.claude/skills
