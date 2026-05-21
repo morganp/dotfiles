@@ -18,7 +18,13 @@ stow karabiner  -t  $HOME/.config/karabiner
 
 mkdir -p ~/.codex
 ./codex/install_config.sh
+if [ -L "$HOME/.codex/skills" ] || [ ! -e "$HOME/.codex/skills" ]; then
+    ln -sfn "$HOME/dotfiles/config/shared/skillbook" "$HOME/.codex/skills"
+else
+    mv "$HOME/.codex/skills" "$HOME/.codex/skills.bak-before-shared-skillbook"
+    ln -s "$HOME/dotfiles/config/shared/skillbook" "$HOME/.codex/skills"
+fi
 
 mkdir -p ~/.claude
 stow claude --dotfiles -t ~/.claude/
-ln -sf ~/dotfiles/config/shared/skillbook ~/.claude/skills
+ln -sfn "$HOME/dotfiles/config/shared/skillbook" "$HOME/.claude/skills"
