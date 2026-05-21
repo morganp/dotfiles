@@ -127,7 +127,7 @@ fi
 # export BASH_PS1_MODE=false
 if [ "${BASH_PS1_MODE:-false}" = true ]; then
 
-  echo "BASH_PS1_MODE true"
+  # echo "BASH_PS1_MODE true"
   ## BASH Prompt
   ## http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
   ## Colours from
@@ -159,7 +159,7 @@ if [ "${BASH_PS1_MODE:-false}" = true ]; then
   }
 
 else
-  echo "BASH_PS1_MODE false"
+  # echo "BASH_PS1_MODE false"
   # No colour modifications
  # ~/.bashrc or sourced profile snippet
 
