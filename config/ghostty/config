@@ -31,6 +31,9 @@ working-directory = home
 cursor-style = block
 cursor-style-blink = false
 
+# Shift+scroll always scrolls terminal scrollback, even when TUI app captures mouse
+mouse-shift-capture = false
+
 keybind = cmd+t=new_tab
 keybind = cmd+r=reload_config
 keybind = ctrl+shift+t=new_tab
