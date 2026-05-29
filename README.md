@@ -59,8 +59,9 @@ Example of run_stow:
     stow input --dotfiles -t ~/
     stow screen --dotfiles -t ~/
 
-Claude AI skills are managed as a submodule at `config/shared/skillbook`.
-`run_stow` creates `~/.claude/skills` pointing there directly.
+AI skills are managed as a submodule at `config/shared/skillbook`.
+`run_stow` initializes that submodule and creates `~/.codex/skills` and
+`~/.claude/skills` pointing there directly.
     
 
 
