@@ -1,6 +1,8 @@
-# Run Stow Command to link config files    
+# Run Stow Command to link config files
 
-cd ~/dotfiles/config
+dotfiles_dir="$HOME/dotfiles"
+
+cd "$dotfiles_dir/config"
 #stow git --dotfiles -t ~/
 stow input --dotfiles -t ~/
 stow screen --dotfiles -t ~/
@@ -15,6 +17,8 @@ stow ghostty  -t  $HOME/.config/ghostty
 
 mkdir -p $HOME/.config/karabiner
 stow karabiner  -t  $HOME/.config/karabiner
+
+git -C "$dotfiles_dir" submodule update --init --recursive config/shared/skillbook
 
 mkdir -p ~/.codex
 ./codex/install_config.sh
