@@ -1,0 +1,15 @@
+{
+  "model": "opus",
+  "effortLevel": "medium",
+  "agentPushNotifEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
+  }
+}
