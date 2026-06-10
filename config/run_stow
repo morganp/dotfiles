@@ -18,7 +18,8 @@ stow ghostty  -t  $HOME/.config/ghostty
 mkdir -p $HOME/.config/karabiner
 stow karabiner  -t  $HOME/.config/karabiner
 
-git -C "$dotfiles_dir" submodule update --init --recursive config/shared/skillbook
+# skillbook tracks main (branch set in .gitmodules); --remote always pulls latest, never a pin
+git -C "$dotfiles_dir" submodule update --remote --init config/shared/skillbook
 
 mkdir -p ~/.codex
 ./codex/install_config.sh
@@ -31,4 +32,12 @@ fi
 
 mkdir -p ~/.claude
 stow claude --dotfiles -t ~/.claude/
+# settings.json is OS-specific and excluded from stow (see config/claude/.stow-local-ignore).
+# macOS keeps the full config (caveman hooks, swift-lsp); Linux uses an adapted variant
+# with no macOS-absolute hook paths and no skipDangerousMode.
+if [[ "$(uname)" == "Darwin" ]]; then
+  ln -sfn "$HOME/dotfiles/config/claude/settings.json"       "$HOME/.claude/settings.json"
+else
+  ln -sfn "$HOME/dotfiles/config/claude/settings.linux.json" "$HOME/.claude/settings.json"
+fi
 ln -sfn "$HOME/dotfiles/config/shared/skillbook" "$HOME/.claude/skills"

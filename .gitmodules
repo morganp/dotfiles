@@ -34,3 +34,4 @@
 [submodule "shared/skillbook"]
 	path = config/shared/skillbook
 	url = https://github.com/morganp/skillbook.git
+	branch = main
