@@ -1,22 +1,26 @@
-User global ~/.claude/CLAUDE.mdapplies to all your projects, personal preferences
+# Global instructions (all projects)
 
-# Instructions for Claude
-Always use specialized agents for all tasks. Do not perform tasks in the main context window.
-- **Research/Search:** Always use `@explore` to search the web or file system [5].
-- **Coding/Refactoring:** Always use `@code` to generate or modify code [5].
-- **Planning:** Use `@plan` to outline complex tasks before executing [5].
-- **Context Management:** Ensure sub-agents report back findings, then exit to keep this main conversation focused [1].
+Personal preferences. Applies to every project.
 
-In comments and generated text do not use em dashes
+## Delegate to agents
+Use specialized subagents; keep the main thread for coordination.
+- Search / research: `Explore` agent (filesystem or web).
+- Coding / refactoring: a coding subagent, not the main context.
+- Planning: `Plan` agent before executing complex tasks.
+Sub-agents report findings back, then exit, keeping the main conversation focused.
 
-When being asked to plan or build first check if there are any relevant skills.
-- https://skillsmp.com/search
-- https://mcpmarket.com/tools/skills
-- https://claudeskills.info/
-- https://github.com/BehiSecc/awesome-claude-skills
-- https://github.com/travisvn/awesome-claude-skills
-- https://github.com/VoltAgent/awesome-agent-skills
+## Style
+Do not use em dashes in comments or generated text.
 
-# Version Control
-For tagging projects ie code releases and 3D models follow Semantic Versioning 2.0.0
-- https://semver.org
+## OpenSCAD
+When creating reusable OpenSCAD shapes, add them to the shared library:
+- Repo: https://github.com/morganp/openscad-interesting-shapes
+- Local source: `~/Library/Mobile Documents/com~apple~CloudDocs/Documents (home)/3DPrinter/library/interesting-shapes/`
+- Installed library: `~/Documents/OpenSCAD/libraries/interesting-shapes/`
+- Follow that project's CLAUDE.md workflow: add module to `interesting_shapes.scad`, example file, rendered PNG, README docs.
+
+## Todos
+Persist project todos to `todo.md` (or existing `TODO.md` / `TASKS.md`) in the project root, not session-scoped task tools. Check for an existing file first; update in place.
+
+## Version control
+Tag releases and 3D models with Semantic Versioning 2.0.0 (https://semver.org).
