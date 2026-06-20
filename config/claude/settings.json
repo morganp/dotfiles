@@ -1,14 +1,28 @@
 {
+  "env": {
+    "CLAUDE_CODE_ENABLE_AUTO_MODE": "1"
+  },
   "permissions": {
     "allow": [
       "Search(*)",
       "Search(pattern:*)",
       "Search(pattern:*, include:*)",
-      "Read(*)"
+      "Read(*)",
+      "mcp__brain__read_text",
+      "mcp__brain__list",
+      "mcp__brain__grep",
+      "mcp__brain__list_projects",
+      "mcp__claude_ai_SecondBrain__read_text",
+      "mcp__claude_ai_SecondBrain__grep",
+      "mcp__claude_ai_SecondBrain__list_projects",
+      "mcp__claude_ai_SecondBrain__read_text_file",
+      "mcp__obsidian__obsidian_get_note",
+      "mcp__obsidian__obsidian_list_notes",
+      "mcp__obsidian__obsidian_search_notes",
+      "mcp__claude_ai_Google_Calendar__list_events"
     ],
     "defaultMode": "default"
   },
-  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
