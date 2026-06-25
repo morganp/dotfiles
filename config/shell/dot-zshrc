@@ -2,6 +2,8 @@
 
 alias mergepdfs="gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=merged.pdf *.pdf"
 
+alias claude-qwen='claude --setting-sources local,project --settings ~/.claude/settings-qwen.json --bare --tools "Read,Edit,Write,Bash"'
+
 #Setup Homebrew Path
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
