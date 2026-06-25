@@ -41,4 +41,5 @@ else
   ln -sfn "$HOME/dotfiles/config/claude/settings.linux.json" "$HOME/.claude/settings.json"
 fi
 ln -sfn "$HOME/dotfiles/config/claude/settings-qwen.json" "$HOME/.claude/settings-qwen.json"
+ln -sfn "$HOME/dotfiles/config/claude/settings-qwen3.json" "$HOME/.claude/settings-qwen3.json"
 ln -sfn "$HOME/dotfiles/config/shared/skillbook" "$HOME/.claude/skills"
