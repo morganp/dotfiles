@@ -21,7 +21,7 @@
       "maxTokens": 32768,
       "inputPrice": 0.001,
       "outputPrice": 0.004,
-      "description": "AtomicChat ornith-9b-GGUF with DSpark speculative decoding (2x faster inference)"
+      "description": "AtomicChat ornith-9b-GGUF via local llama.cpp (bin/ornith_dspark_server.sh); speculative decoding inactive until a vocab-matched draft model is configured"
     }
   },
   "permissions": {
