@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:8080",
+    "ANTHROPIC_AUTH_TOKEN": "dspark-local",
+    "ANTHROPIC_MODEL": "AtomicChat/ornith-9b-GGUF:Q4_K_M",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "AtomicChat/ornith-9b-GGUF:Q4_K_M",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "AtomicChat/ornith-9b-GGUF:Q4_K_M",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "AtomicChat/ornith-9b-GGUF:Q4_K_M",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "AtomicChat/ornith-9b-GGUF:Q4_K_M",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "32768",
+    "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
+  },
+  "models": {
+    "ornith-9b-dspark": {
+      "provider": "anthropic",
+      "contextWindow": 131072,
+      "maxTokens": 32768,
+      "inputPrice": 0.001,
+      "outputPrice": 0.004,
+      "description": "AtomicChat ornith-9b-GGUF with DSpark speculative decoding (2x faster inference)"
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)", "Bash(npm *)", "Bash(npx *)", "Bash(node *)",
+      "Bash(python *)", "Bash(python3 *)", "Bash(pip *)", "Bash(pip3 *)",
+      "Bash(brew *)", "Bash(ls *)", "Bash(cat *)", "Bash(head *)",
+      "Bash(tail *)", "Bash(find *)", "Bash(grep *)", "Bash(rg *)",
+      "Bash(mkdir *)", "Bash(cp *)", "Bash(mv *)", "Bash(rm *)",
+      "Bash(echo *)", "Bash(curl *)", "Bash(which *)", "Bash(env *)",
+      "Bash(cd *)", "Bash(pwd)", "Bash(wc *)", "Bash(sort *)",
+      "Bash(uniq *)", "Bash(diff *)", "Bash(chmod *)", "Bash(touch *)",
+      "Bash(sed *)", "Bash(awk *)", "Bash(xargs *)", "Bash(tee *)",
+      "Read", "Edit", "Write", "Glob", "Grep",
+      "WebFetch", "WebSearch"
+    ],
+    "deny": [
+      "Read(./.env)", "Read(./.env.*)", "Read(./secrets/**)"
+    ]
+  }
+}

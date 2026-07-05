@@ -134,6 +134,11 @@ else
 fi
 alias lt="tree -L 1"
 
+# Local AI setups
+# claude-ornith-dspark: ornith-9b-GGUF served through dspark speculative-decoding accelerator
+alias claude-ornith-dspark=' claude --setting-sources local,project --settings ~/.claude/settings-ornith-dspark.json --bare --tools "Read,Edit,Write,Bash"'
+
+
 
 #http://twistedcode.blogspot.com/2008/04/lscolors-explained.html#!/2008/04/lscolors-explained.html
 #fi file
