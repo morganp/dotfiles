@@ -30,3 +30,11 @@ branch.
 - Preserve existing local or tool-managed files unless the user explicitly
   asks to replace or remove them. Codex's existing non-symlink skills directory
   is backed up before the shared link is created.
+
+## Codex Configuration
+
+- After changing `config/codex/config.toml` or
+  `config/codex/config.local.toml`, run `config/codex/install_config.sh` to
+  regenerate the effective `~/.codex/config.toml`.
+- Restart Codex after regeneration when the changed setting is not reloaded by
+  the current session.
