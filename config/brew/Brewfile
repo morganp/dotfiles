@@ -6,6 +6,10 @@ brew "python@3"
 brew "tmux"
 brew "tree"
 brew "uv"
+# Interactive Zsh prompt and plugins; Oh My Zsh itself is installed separately.
+brew "spaceship"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
 brew "yt-dlp"
 brew "ffmpeg"
 brew "chipsalliance/verible/verible"
@@ -20,10 +24,8 @@ brew "ripgrep"
 # For wavedrom and other tools
 brew "node"
 
-brew codex 
-brew copilot-cli
-
 cask "ghostty"
+cask "copilot-cli"
 cask "drawio"
 cask "gitx"
 cask "macvim-app"
@@ -38,6 +40,7 @@ brew "ollama"
 
 # Fonts
 cask "font-victor-mono"
+cask "font-victor-mono-nerd-font"
 
 vscode "bmpenuelas.waveform-render"
 vscode "chipsalliance.verible"

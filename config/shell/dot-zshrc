@@ -16,11 +16,11 @@ export PATH="$HOME/dotfiles/bin:$PATH"
 
 #Shell Specific Reload Commmand
 
-if [[ -f ~/.zshrc ]]; then
-  alias reload="source ~/.zshrc"
+if [[ -f ~/.zprofile ]]; then
+  alias reload="source ~/.zprofile"
 else
-  if [[ -f ~/.zprofile ]]; then
-    alias reload="source ~/.zprofile"
+  if [[ -f ~/.zshrc ]]; then
+    alias reload="source ~/.zshrc"
   else
     echo "~/.zshrc and ~/.zprofile not found"
   fi
@@ -31,14 +31,22 @@ fi
 bindkey '^I' expand-or-complete
 
 # Completion
-#autoload -U compinit
-#compinit -i
-# https://superuser.com/a/1092328/42141
-autoload -Uz compinit && compinit
+# Oh My Zsh initializes completion and maintains its own versioned dump. Keep
+# this optimized fallback for shells that source this file without Oh My Zsh.
+if [[ -z ${DOTFILES_OMZ_LOADED-} ]]; then
+  # Run the full completion and security checks once per day, then reuse
+  # ~/.zcompdump without repeating those checks. Suggested by:
+  # https://scottspence.com/posts/speeding-up-my-zsh-shell
+  # Measured 2026-07-31: compinit saved ~12 ms gross (20.78 -> 8.89 ms);
+  # including date/stat, median shell startup saved ~4 ms (103.60 -> 99.25 ms).
+  autoload -Uz compinit
+  if [[ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]]; then
+    compinit
+  else
+    compinit -C
+  fi
+fi
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-
-#source ~/dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #History
 SAVEHIST=5000
@@ -49,4 +57,3 @@ setopt HIST_IGNORE_SPACE
 # Standard Aliases for Bash and zsh
 # https://stackoverflow.com/questions/764600/how-can-you-export-your-bashrc-to-zshrc
 [[ -e ~/dotfiles/config/shell/dot-profile ]] && emulate sh -c 'source ~/dotfiles/config/shell/dot-profile' 
-
