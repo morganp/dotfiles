@@ -39,6 +39,18 @@ model_reasoning_effort = "high"
 # config_file = "./agents/reviewer.toml"  # relative to the config.toml that defines it
 
 ################################################################################
+# Terminal UI
+################################################################################
+
+[tui]
+# Keep the most useful session context visible without overcrowding the footer.
+status_line = ["model-with-reasoning", "current-dir", "git-branch", "run-state", "context-remaining", "context-window-size", "used-tokens", "task-progress"]
+# Show task activity and repository context in the terminal tab title.
+terminal_title = ["spinner", "project", "git-branch"]
+animations = true
+theme = "catppuccin-mocha"
+
+################################################################################
 # Shell Environment Policy for spawned processes (table)
 ################################################################################
 

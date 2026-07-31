@@ -18,6 +18,13 @@ if [[ -f "$HOME/.config/codex/env" ]]; then
   source "$HOME/.config/codex/env"
 fi
 
+# Completion functions stored in the dotfiles repository must be added to
+# fpath before Oh My Zsh runs compinit. The Codex completion is generated from
+# the installed CLI, rather than evaluated during every shell startup.
+# Regenerate it after upgrading Codex with:
+#   codex completion zsh > "$HOME/dotfiles/config/shell/completions/_codex"
+fpath=("$HOME/dotfiles/config/shell/completions" $fpath)
+
 # Oh My Zsh and its bundled git plugin.
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""
