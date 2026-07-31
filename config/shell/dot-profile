@@ -135,6 +135,16 @@ fi
 alias lt="tree -L 1"
 
 
+# Local AI setups
+# claude-qwen3: aliased to claude --setting-sources local,project --settings ~/.claude/settings-qwen3.json --bare --tools "Read,Edit,Write,Bash"
+alias claude-qwen3=' claude --setting-sources local,project --settings ~/.claude/settings-qwen3.json --bare --tools "Read,Edit,Write,Bash"'
+
+# claude-ornith-dspark: ornith-9b-GGUF via local llama.cpp server (settings-ornith-dspark.json).
+#   Start the backend first: ~/dotfiles/bin/ornith_dspark_server.sh
+#   Speculative "dspark" accel is inactive until a vocab-matched draft model is set (see script).
+alias claude-ornith-dspark=' claude --setting-sources local,project --settings ~/.claude/settings-ornith-dspark.json --bare --tools "Read,Edit,Write,Bash"'
+
+
 #http://twistedcode.blogspot.com/2008/04/lscolors-explained.html#!/2008/04/lscolors-explained.html
 #fi file
 #di Directory
