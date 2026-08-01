@@ -6,7 +6,7 @@ add_newline = true
 format = """
 $os\
 ${env_var.DOTFILES_OS}\
-$hostname\
+${env_var.DOTFILES_HOST}\
 $username\
 $directory\
 $git_branch\
@@ -38,11 +38,9 @@ variable = "DOTFILES_OS"
 format = "[$env_value]($style) "
 style = "#cba6f7"
 
-[hostname]
-# Shown on every machine, not only over SSH: these dotfiles are shared between
-# this Mac and remote Linux boxes, and the host is the point of the label.
-ssh_only = false
-format = "[󰂋 ]($style)[$hostname]($style) "
+[env_var.DOTFILES_HOST]
+variable = "DOTFILES_HOST"
+format = "[󰂋 ]($style)[$env_value]($style) "
 style = "#89b4fa bold"
 
 [username]

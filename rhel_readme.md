@@ -62,6 +62,22 @@ The tracked bash setup automatically uses this file when it exists:
 export STARSHIP_CONFIG="$HOME/.config/starship.local.toml"
 ```
 
+## Login Host Labels
+
+The Starship config displays `DOTFILES_HOST` instead of Starship's built-in
+hostname module. The shell startup computes this value once when the prompt is
+initialized.
+
+For login-node FQDNs, the prompt shows the cluster or site portion rather than
+the individual login node number:
+
+```text
+login01.cluster.example.com -> cluster
+login02.cluster.example.com -> cluster
+```
+
+For other hosts, the prompt falls back to the short hostname.
+
 Start a new terminal or reload bash:
 
 ```bash

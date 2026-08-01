@@ -263,11 +263,28 @@ _dotfiles_set_os_label() {
   export DOTFILES_OS="${name}${ver:+ $ver}"
 }
 
+_dotfiles_set_host_label() {
+  local fqdn="" host="" rest="" label=""
+
+  fqdn="$(hostname -f 2>/dev/null || hostname 2>/dev/null || printf '%s' "${HOSTNAME:-}")"
+  host="${fqdn%%.*}"
+  label="$host"
+
+  if [[ "$host" == login* && "$fqdn" == *.*.* ]]; then
+    rest="${fqdn#*.}"
+    label="${rest%%.*}"
+  fi
+
+  export DOTFILES_HOST="$label"
+}
+
 if [[ $- == *i* ]] && command -v starship >/dev/null 2>&1; then
   if [[ -r "$HOME/.config/starship.local.toml" ]]; then
     export STARSHIP_CONFIG="$HOME/.config/starship.local.toml"
   fi
   _dotfiles_set_os_label
+  _dotfiles_set_host_label
   unset -f _dotfiles_set_os_label
+  unset -f _dotfiles_set_host_label
   eval "$(starship init bash)"
 fi

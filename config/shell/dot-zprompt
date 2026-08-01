@@ -55,6 +55,24 @@ _dotfiles_set_os_label
 unset -f _dotfiles_set_os_label
 export DOTFILES_OS
 
+_dotfiles_set_host_label() {
+  local fqdn="" host="" rest="" label=""
+
+  fqdn="$(hostname -f 2>/dev/null || hostname 2>/dev/null || printf '%s' "${HOST:-}")"
+  host="${fqdn%%.*}"
+  label="$host"
+
+  if [[ "$host" == login* && "$fqdn" == *.*.* ]]; then
+    rest="${fqdn#*.}"
+    label="${rest%%.*}"
+  fi
+
+  typeset -g DOTFILES_HOST="$label"
+}
+_dotfiles_set_host_label
+unset -f _dotfiles_set_host_label
+export DOTFILES_HOST
+
 if [[ -o interactive ]] && (( $+commands[starship] )); then
   eval "$(starship init zsh)"
   # The right prompt carries transient detail about the command that just ran
