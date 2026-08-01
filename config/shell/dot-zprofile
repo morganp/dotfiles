@@ -56,3 +56,9 @@ fi
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
   zprof
 fi
+
+# Start or attach to the shared tmux session for interactive terminals. TMUX is
+# set inside tmux, which prevents new panes from creating nested sessions.
+if [[ -o interactive && -z "${TMUX:-}" && -t 1 ]] && (( $+commands[tmux] )); then
+  exec tmux new-session -A -s main
+fi

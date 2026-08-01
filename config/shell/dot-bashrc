@@ -286,3 +286,9 @@ if [[ $- == *i* ]] && command -v starship >/dev/null 2>&1; then
   unset -f _dotfiles_set_host_label
   eval "$(starship init bash)"
 fi
+
+# Start or attach to the shared tmux session for interactive terminals. TMUX is
+# set inside tmux, which prevents new panes from creating nested sessions.
+if [[ $- == *i* && -z "${TMUX:-}" && -t 1 ]] && command -v tmux >/dev/null 2>&1; then
+  exec tmux new-session -A -s main
+fi
