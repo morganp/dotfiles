@@ -7,6 +7,54 @@
 # therefore discarded in every login shell. Spaceship hid this by reassigning
 # PROMPT from a precmd hook on each draw; Starship sets PROMPT once at init.
 
+# OS name and major.minor version for the prompt, exported for starship's
+# env_var module. Starship's own os module reports a name but no version, and a
+# custom module would run a command on every redraw. This is built once per
+# shell instead, using only zsh builtins: sw_vers costs about 13ms per call,
+# which is not worth paying at each shell start. In zsh "$(<file)" is read
+# without forking a subprocess.
+_dotfiles_set_os_label() {
+  local name="" ver="" raw line id=""
+
+  if [[ -r /etc/os-release ]]; then
+    # RHEL reports VERSION_ID="9.4"; Ubuntu "24.04"; Debian just "12".
+    for line in ${(f)"$(</etc/os-release)"}; do
+      case $line in
+        ID=*)         id=${${line#ID=}//\"/} ;;
+        VERSION_ID=*) ver=${${line#VERSION_ID=}//\"/} ;;
+      esac
+    done
+    case $id in
+      rhel)      name="RHEL" ;;
+      centos)    name="CentOS" ;;
+      rocky)     name="Rocky" ;;
+      almalinux) name="AlmaLinux" ;;
+      fedora)    name="Fedora" ;;
+      ubuntu)    name="Ubuntu" ;;
+      debian)    name="Debian" ;;
+      "")        name="Linux" ;;
+      *)         name=${(C)id} ;;
+    esac
+  elif [[ -r /System/Library/CoreServices/SystemVersion.plist ]]; then
+    name="macOS"
+    raw="$(</System/Library/CoreServices/SystemVersion.plist)"
+    if [[ $raw == *"<key>ProductVersion</key>"* ]]; then
+      ver=${${raw#*<key>ProductVersion</key>}#*<string>}
+      ver=${ver%%</string>*}
+    fi
+  else
+    name=$OSTYPE
+  fi
+
+  # Keep at most major.minor, so 26.5.2 becomes 26.5 and 12 stays 12.
+  [[ -n $ver ]] && ver=${(j:.:)${(s:.:)ver}[1,2]}
+
+  typeset -g DOTFILES_OS="${name}${ver:+ $ver}"
+}
+_dotfiles_set_os_label
+unset -f _dotfiles_set_os_label
+export DOTFILES_OS
+
 if [[ -o interactive ]] && (( $+commands[starship] )); then
   eval "$(starship init zsh)"
   # The right prompt carries transient detail about the command that just ran

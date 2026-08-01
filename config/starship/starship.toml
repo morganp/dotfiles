@@ -4,6 +4,8 @@
 add_newline = true
 
 format = """
+${env_var.DOTFILES_OS}\
+$hostname\
 $username\
 $directory\
 $git_branch\
@@ -22,6 +24,20 @@ $jobs\
 $cmd_duration\
 $time\
 """
+
+# OS name and major.minor version, exported by config/shell/dot-zprompt. The
+# built-in os module reports no version, so the label is built there instead.
+[env_var.DOTFILES_OS]
+variable = "DOTFILES_OS"
+format = "[$env_value]($style) "
+style = "#cba6f7"
+
+[hostname]
+# Shown on every machine, not only over SSH: these dotfiles are shared between
+# this Mac and remote Linux boxes, and the host is the point of the label.
+ssh_only = false
+format = "[$hostname]($style) "
+style = "#89b4fa bold"
 
 [username]
 # Same default as Spaceship: only shown for root or over SSH.

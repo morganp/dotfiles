@@ -40,8 +40,15 @@ The `git` plugin is bundled with Oh My Zsh. The Starship prompt,
 Brewfile below. Starship is configured in `config/starship/starship.toml`, which
 `run_stow` links to `~/.config/starship.toml`; it keeps the minimal prompt order
 (user, dir, git, line break, char) that the setup used previously. The right
+left prompt opens with the OS and its major.minor version and the hostname, so
+a shell on a remote RHEL box is distinguishable at a glance. Starship's own `os`
+module reports a name but no version, so `dot-zprompt` builds the label once per
+shell and exports it as `DOTFILES_OS` for the `env_var` module to read. It
+parses `/etc/os-release` on Linux and `SystemVersion.plist` on macOS with zsh
+builtins, costing about 1.4ms; `sw_vers` would cost 13ms per call, and a
+starship `custom` module would pay that on every redraw. The right
 prompt carries transient detail about the command that just ran: exit status,
-backgrounded job count, duration once it exceeds two seconds, and the clock.
+backgrounded job count, duration once it exceeds 500ms, and the clock.
 `dot-zprompt` sets `TRANSIENT_RPROMPT` so that detail is erased from earlier
 lines, leaving scrollback with only commands and their output. The prompt is
 initialised by `config/shell/dot-zprompt`, sourced from `~/.zshrc`.

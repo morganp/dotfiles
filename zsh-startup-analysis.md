@@ -5,9 +5,10 @@ Date: 2026-07-31 (Europe/London)
 > These measurements describe the configuration before Oh My Zsh and a prompt
 > framework were installed. The Spaceship setup measured 175.74 ms median over 60
 > warm launches. Spaceship was replaced by Starship on 2026-08-01; the Starship
-> setup measures 216.90 ms median (p95 224.54 ms) over 30 warm launches, of which
-> roughly 10 ms is the `starship init zsh` subprocess. The two numbers were taken
-> with different harnesses, so treat the delta as indicative only. Portable
+> setup measures 225.54 ms median over 25 warm launches, of which roughly 10 ms
+> is the `starship init zsh` subprocess and 1.4 ms is the OS label built in
+> `dot-zprompt`. The Spaceship and Starship numbers were taken with different
+> harnesses, so treat the delta as indicative only. Portable
 > configuration lives in the tracked `config/shell/dot-zprofile`; local
 > `.zprofile` sources it and retains internal Codex configuration.
 
