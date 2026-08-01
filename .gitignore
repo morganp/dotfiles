@@ -10,3 +10,5 @@ config/codex/config.local.toml
 *.swp
 config/vscode/User/settings.json
 Arm-Enterprise-PKI-Root.pem
+config/starship/*.local.toml
+config/starship/*private*.toml

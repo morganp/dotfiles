@@ -223,3 +223,51 @@ if [[ "$unamestr" == 'Darwin' ]]; then
   #Set default brew app folder to Users Applications 
   export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 fi
+
+_dotfiles_set_os_label() {
+  local name="" ver="" id="" major="" minor=""
+
+  if [[ -r /etc/os-release ]]; then
+    . /etc/os-release
+    id="${ID:-}"
+    ver="${VERSION_ID:-}"
+    case "$id" in
+      rhel)      name="RHEL" ;;
+      centos)    name="CentOS" ;;
+      rocky)     name="Rocky" ;;
+      almalinux) name="AlmaLinux" ;;
+      fedora)    name="Fedora" ;;
+      ubuntu)    name="Ubuntu" ;;
+      debian)    name="Debian" ;;
+      "")        name="Linux" ;;
+      *)         name="${id^}" ;;
+    esac
+  elif [[ "$(uname)" == "Darwin" ]]; then
+    name="macOS"
+    if command -v sw_vers >/dev/null 2>&1; then
+      ver="$(sw_vers -productVersion)"
+    fi
+  else
+    name="$OSTYPE"
+  fi
+
+  if [[ -n "$ver" ]]; then
+    IFS=. read -r major minor _ <<< "$ver"
+    if [[ -n "$minor" ]]; then
+      ver="$major.$minor"
+    else
+      ver="$major"
+    fi
+  fi
+
+  export DOTFILES_OS="${name}${ver:+ $ver}"
+}
+
+if [[ $- == *i* ]] && command -v starship >/dev/null 2>&1; then
+  if [[ -r "$HOME/.config/starship.local.toml" ]]; then
+    export STARSHIP_CONFIG="$HOME/.config/starship.local.toml"
+  fi
+  _dotfiles_set_os_label
+  unset -f _dotfiles_set_os_label
+  eval "$(starship init bash)"
+fi
