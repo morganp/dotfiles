@@ -18,6 +18,14 @@ brew "karabiner-elements"
 # timg allows ghostty to use kitty protocol to show images in terminal
 brew "timg"
 
+# System info summary, and a quick way to print the terminal colour scheme:
+# the palette blocks at the end of the output show all 16 ANSI colours as the
+# active theme renders them. Maintained replacement for neofetch, which was
+# archived upstream and dropped from homebrew-core.
+#   fastfetch                       full report
+#   fastfetch -s colors --logo none just the colour palette
+brew "fastfetch"
+
 # Faster than grep
 brew "ripgrep"
 
