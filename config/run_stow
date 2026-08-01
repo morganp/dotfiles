@@ -18,6 +18,9 @@ stow ghostty  -t  $HOME/.config/ghostty
 mkdir -p $HOME/.config/karabiner
 stow karabiner  -t  $HOME/.config/karabiner
 
+mkdir -p $HOME/.config
+stow starship -t $HOME/.config
+
 # skillbook tracks main (branch set in .gitmodules); --remote always pulls latest, never a pin
 git -C "$dotfiles_dir" submodule update --remote --init config/shared/skillbook
 

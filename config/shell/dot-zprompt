@@ -1,0 +1,12 @@
+# Starship prompt. Configuration lives in ~/.config/starship.toml, linked from
+# config/starship by run_stow.
+#
+# This must be sourced from ~/.zshrc rather than ~/.zprofile. Zsh reads startup
+# files in the order ~/.zprofile, /etc/zshrc, ~/.zshrc, and macOS ships an
+# /etc/zshrc that sets PS1="%n@%m %1~ %# ". A prompt configured in ~/.zprofile is
+# therefore discarded in every login shell. Spaceship hid this by reassigning
+# PROMPT from a precmd hook on each draw; Starship sets PROMPT once at init.
+
+if [[ -o interactive ]] && (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
+fi

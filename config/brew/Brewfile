@@ -7,7 +7,7 @@ brew "tmux"
 brew "tree"
 brew "uv"
 # Interactive Zsh prompt and plugins; Oh My Zsh itself is installed separately.
-brew "spaceship"
+brew "starship"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "yt-dlp"

@@ -18,20 +18,29 @@ also contains the internal Codex updater and architecture-specific Codex path.
 API keys remain in `~/.config/codex/env` and are never stored in this repository.
 
 `~/.zshrc` delegates interactive non-login shells to the same configuration
-without loading login shells twice:
+without loading login shells twice, and sets the prompt:
 
     if [[ ! -o login ]]; then
       source "$HOME/.zprofile"
     fi
 
+    source "$HOME/dotfiles/config/shell/dot-zprompt"
+
+The prompt has to be initialised from `~/.zshrc`, not `~/.zprofile`. Zsh reads
+`~/.zprofile`, then `/etc/zshrc`, then `~/.zshrc`, and the macOS `/etc/zshrc`
+sets `PS1="%n@%m %1~ %# "`. A prompt configured in `~/.zprofile` is silently
+discarded in every login shell, which is what a new terminal window opens.
+
 Oh My Zsh has no Homebrew formula, so install it separately:
 
     git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
-The `git` plugin is bundled with Oh My Zsh. The Spaceship prompt,
+The `git` plugin is bundled with Oh My Zsh. The Starship prompt,
 `zsh-autosuggestions`, and `zsh-syntax-highlighting` are installed through the
-Brewfile below. Spaceship uses the optimized prompt order from
-[Scott Spence's Zsh setup](https://scottspence.com/posts/speeding-up-my-zsh-shell).
+Brewfile below. Starship is configured in `config/starship/starship.toml`, which
+`run_stow` links to `~/.config/starship.toml`; it keeps the minimal prompt order
+(user, dir, git, line break, char) that the setup used previously. It is
+initialised by `config/shell/dot-zprompt`, sourced from `~/.zshrc`.
 The Brewfile also installs Victor Mono Nerd Font for the prompt glyphs.
 
 Vim

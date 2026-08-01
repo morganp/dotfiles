@@ -1,0 +1,38 @@
+# Starship prompt. Linked to ~/.config/starship.toml by run_stow.
+# Mirrors the previous Spaceship layout: user, dir, git, line break, char.
+
+add_newline = true
+
+format = """
+$username\
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+$character\
+"""
+
+[username]
+# Same default as Spaceship: only shown for root or over SSH.
+format = "[$user]($style) in "
+style_user = "yellow bold"
+style_root = "red bold"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "cyan bold"
+
+[git_branch]
+symbol = " "
+format = "on [$symbol$branch]($style) "
+style = "magenta bold"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style))"
+style = "red bold"
+
+[character]
+success_symbol = "[⚡](green bold)"
+error_symbol = "[⚡](red bold)"
+vicmd_symbol = "[❮](green bold)"

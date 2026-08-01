@@ -36,22 +36,10 @@ if [[ -r "$ZSH/oh-my-zsh.sh" ]]; then
   DOTFILES_OMZ_LOADED=1
 fi
 
-# Spaceship settings from Scott Spence's optimized Zsh setup:
-# https://scottspence.com/posts/speeding-up-my-zsh-shell
-SPACESHIP_PROMPT_ASYNC=true
-SPACESHIP_PROMPT_ADD_NEWLINE=true
-SPACESHIP_CHAR_SYMBOL="⚡"
-SPACESHIP_PROMPT_ORDER=(
-  time
-  user
-  dir
-  git
-  line_sep
-  char
-)
-if [[ -n ${HOMEBREW_PREFIX-} && -r "$HOMEBREW_PREFIX/opt/spaceship/spaceship.zsh" ]]; then
-  source "$HOMEBREW_PREFIX/opt/spaceship/spaceship.zsh"
-fi
+# The prompt is deliberately not initialised here. macOS /etc/zshrc sets
+# PS1 and is read after ~/.zprofile, so anything set at this stage is
+# overwritten in login shells. See config/shell/dot-zprompt, sourced from
+# ~/.zshrc.
 
 source "$HOME/dotfiles/config/shell/dot-zshrc"
 
