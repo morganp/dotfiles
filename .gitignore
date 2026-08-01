@@ -12,3 +12,10 @@ config/vscode/User/settings.json
 Arm-Enterprise-PKI-Root.pem
 config/starship/*.local.toml
 config/starship/*private*.toml
+
+# Machine-generated application data and runtime state.
+/config/.copilot/
+/config/swiftpm/
+/config/tmux/plugins/
+/data/
+/state/

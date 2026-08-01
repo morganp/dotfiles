@@ -39,6 +39,7 @@ format = "[$env_value]($style) "
 style = "#cba6f7"
 
 [env_var.DOTFILES_HOST]
+# Shared with tmux; cluster login hosts are normalized by dot-zprompt.
 variable = "DOTFILES_HOST"
 format = "[󰂋 ]($style)[$env_value]($style) "
 style = "#89b4fa bold"
@@ -64,6 +65,7 @@ style = "cyan bold"
 # No trailing slash: starship supplies the separator, so "iCloud/" would render
 # a deeper path as "iCloud//Documents (home)".
 "~/Library/Mobile Documents/com~apple~CloudDocs" = "iCloud"
+"~/Library/CloudStorage/OneDrive-Arm" = "OneDrive"
 "~/Documents/OpenSCAD/libraries" = "~/scad-lib"
 
 [git_branch]
