@@ -4,6 +4,7 @@
 add_newline = true
 
 format = """
+$os\
 ${env_var.DOTFILES_OS}\
 $hostname\
 $username\
@@ -27,6 +28,11 @@ $time\
 
 # OS name and major.minor version, exported by config/shell/dot-zprompt. The
 # built-in os module reports no version, so the label is built there instead.
+[os]
+disabled = false
+format = "[$symbol]($style)"
+style = "#cba6f7"
+
 [env_var.DOTFILES_OS]
 variable = "DOTFILES_OS"
 format = "[$env_value]($style) "
@@ -36,16 +42,17 @@ style = "#cba6f7"
 # Shown on every machine, not only over SSH: these dotfiles are shared between
 # this Mac and remote Linux boxes, and the host is the point of the label.
 ssh_only = false
-format = "[$hostname]($style) "
+format = "[󰂋 ]($style)[$hostname]($style) "
 style = "#89b4fa bold"
 
 [username]
 # Same default as Spaceship: only shown for root or over SSH.
-format = "[$user]($style) in "
+format = "[$user]($style) "
 style_user = "yellow bold"
 style_root = "red bold"
 
 [directory]
+format = "in [$path]($style)[$read_only]($read_only_style) "
 # 0 disables truncation, so the whole path is shown. truncate_to_repo must be
 # off as well: left on, it clips the path back to the repository root and is
 # what previously reduced ~/dotfiles to just "dotfiles".
@@ -62,7 +69,7 @@ style = "cyan bold"
 "~/Documents/OpenSCAD/libraries" = "~/scad-lib"
 
 [git_branch]
-symbol = " "
+symbol = " "
 format = "on [$symbol$branch]($style) "
 style = "magenta bold"
 
