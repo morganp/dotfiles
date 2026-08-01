@@ -12,6 +12,17 @@ $line_break\
 $character\
 """
 
+# Right-hand status line, drawn on the first prompt line. Everything here is
+# transient detail about the command that just ran, so it stays out of the
+# left prompt. dot-zprompt sets TRANSIENT_RPROMPT so it is erased from
+# scrollback once the next command runs.
+right_format = """
+$status\
+$jobs\
+$cmd_duration\
+$time\
+"""
+
 [username]
 # Same default as Spaceship: only shown for root or over SSH.
 format = "[$user]($style) in "
@@ -19,9 +30,20 @@ style_user = "yellow bold"
 style_root = "red bold"
 
 [directory]
-truncation_length = 3
-truncate_to_repo = true
+# 0 disables truncation, so the whole path is shown. truncate_to_repo must be
+# off as well: left on, it clips the path back to the repository root and is
+# what previously reduced ~/dotfiles to just "dotfiles".
+truncation_length = 0
+truncate_to_repo = false
 style = "cyan bold"
+
+# Shorten individual paths. Keys match the path after $HOME has become "~", and
+# the longest matching key wins. Add entries here as they come up.
+[directory.substitutions]
+# No trailing slash: starship supplies the separator, so "iCloud/" would render
+# a deeper path as "iCloud//Documents (home)".
+"~/Library/Mobile Documents/com~apple~CloudDocs" = "iCloud"
+"~/Documents/OpenSCAD/libraries" = "~/scad-lib"
 
 [git_branch]
 symbol = " "
@@ -36,3 +58,35 @@ style = "red bold"
 success_symbol = "[⚡](green bold)"
 error_symbol = "[⚡](red bold)"
 vicmd_symbol = "[❮](green bold)"
+
+# Right status line modules. status and time are disabled by default.
+
+[status]
+disabled = false
+format = "[$symbol$status]($style) "
+symbol = "✘ "
+style = "red bold"
+
+[jobs]
+format = "[$symbol$number]($style) "
+symbol = "✦ "
+style = "blue bold"
+# Show the count only once more than one job is backgrounded.
+number_threshold = 2
+symbol_threshold = 1
+
+[cmd_duration]
+disabled = false
+# Low enough that the right prompt is visibly doing something during normal
+# work, rather than only on the occasional slow command.
+min_time = 500
+format = "took [$duration]($style) "
+style = "#f9e2af"
+
+# Catppuccin Mocha Subtext0. The dim attribute was too faint to read against
+# this theme at the right edge of the prompt.
+[time]
+disabled = false
+format = "[$time]($style)"
+time_format = "%H:%M:%S"
+style = "#a6adc8"

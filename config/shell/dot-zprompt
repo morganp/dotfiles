@@ -9,4 +9,8 @@
 
 if [[ -o interactive ]] && (( $+commands[starship] )); then
   eval "$(starship init zsh)"
+  # The right prompt carries transient detail about the command that just ran
+  # (exit status, duration, clock). Erase it from earlier lines so scrollback
+  # keeps only the commands and their output.
+  setopt TRANSIENT_RPROMPT
 fi

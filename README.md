@@ -39,7 +39,11 @@ The `git` plugin is bundled with Oh My Zsh. The Starship prompt,
 `zsh-autosuggestions`, and `zsh-syntax-highlighting` are installed through the
 Brewfile below. Starship is configured in `config/starship/starship.toml`, which
 `run_stow` links to `~/.config/starship.toml`; it keeps the minimal prompt order
-(user, dir, git, line break, char) that the setup used previously. It is
+(user, dir, git, line break, char) that the setup used previously. The right
+prompt carries transient detail about the command that just ran: exit status,
+backgrounded job count, duration once it exceeds two seconds, and the clock.
+`dot-zprompt` sets `TRANSIENT_RPROMPT` so that detail is erased from earlier
+lines, leaving scrollback with only commands and their output. The prompt is
 initialised by `config/shell/dot-zprompt`, sourced from `~/.zshrc`.
 The Brewfile also installs Victor Mono Nerd Font for the prompt glyphs.
 
