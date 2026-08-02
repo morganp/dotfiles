@@ -59,6 +59,9 @@ fi
 
 # Start or attach to the shared tmux session for interactive terminals. TMUX is
 # set inside tmux, which prevents new panes from creating nested sessions.
-if [[ -o interactive && -z "${TMUX:-}" && -t 1 ]] && (( $+commands[tmux] )); then
-  exec tmux new-session -A -s main
+# Set NO_TMUX=1 to get a plain shell, e.g. ghostty -e "env NO_TMUX=1 zsh -l".
+# Deliberately not exec: on detach the login shell survives instead of the
+# terminal window closing.
+if [[ -o interactive && -z "${TMUX:-}" && -t 1 && -z "${NO_TMUX:-}" ]] && (( $+commands[tmux] )); then
+  tmux new-session -A -s main
 fi
