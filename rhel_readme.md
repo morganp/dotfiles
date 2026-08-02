@@ -109,6 +109,15 @@ source "$HOME/dotfiles/config/shell/dot-bashrc"
 # this point or in another untracked local file.
 ```
 
+New tmux panes start as login bash shells (`-bash`). Login bash reads
+`~/.bash_profile`, not `~/.bashrc`, so keep this unshared shim as well:
+
+```bash
+if [[ -r "$HOME/.bashrc" ]]; then
+  source "$HOME/.bashrc"
+fi
+```
+
 On RHEL, keep module initialization in the unshared `~/.bashrc`, not in
 `config/shell/dot-bashrc`. Do not eagerly run:
 

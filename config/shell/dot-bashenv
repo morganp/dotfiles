@@ -1,0 +1,40 @@
+# Lightweight environment for non-interactive bash shells spawned by tools.
+
+_dotfiles_path_prepend() {
+  [ -d "$1" ] || return
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="$1${PATH:+:$PATH}" ;;
+  esac
+}
+
+_dotfiles_path_append() {
+  [ -d "$1" ] || return
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="${PATH:+$PATH:}$1" ;;
+  esac
+}
+
+_dotfiles_path_prepend "$HOME/bin"
+_dotfiles_path_prepend /home/linuxbrew/.linuxbrew/bin
+_dotfiles_path_prepend "$HOME/.cargo/bin"
+_dotfiles_path_prepend "$HOME/.local/bin"
+
+case "$(uname -s),$(uname -m)" in
+  Linux,x86_64)  _dotfiles_path_prepend "$HOME/.local/bin/x86_64" ;;
+  Linux,aarch64) _dotfiles_path_prepend "$HOME/.local/bin/aarch64" ;;
+  Darwin,x86_64) _dotfiles_path_prepend "$HOME/.local/bin/x86_64" ;;
+  Darwin,arm64)  _dotfiles_path_prepend "$HOME/.local/bin/aarch64" ;;
+esac
+
+_dotfiles_path_prepend "$HOME/.codex/bin"
+
+_dotfiles_path_append .
+_dotfiles_path_append "$HOME/dotfiles/bin"
+
+export PATH
+export BASH_ENV="$HOME/dotfiles/config/shell/dot-bashenv"
+
+unset -f _dotfiles_path_prepend
+unset -f _dotfiles_path_append

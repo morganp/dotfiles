@@ -12,6 +12,10 @@ else
   echo 'Not found profile'
 fi
 
+if [[ -r "$HOME/dotfiles/config/shell/dot-bashenv" ]]; then
+  source "$HOME/dotfiles/config/shell/dot-bashenv"
+fi
+
 # Bash and zsh get unique reload commands
 alias reload='source ~/.bashrc'
 
@@ -34,12 +38,12 @@ fi
 
 #Bash functions to only add path if not on $PATH
 pre_add_path() {
-  if [ -s "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     PATH="$1:$PATH"
   fi
 }
 post_add_path() {
-  if [ -s "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     PATH="$PATH:$1"
   fi
 }
@@ -292,6 +296,9 @@ fi
 # Set NO_TMUX=1 to get a plain shell, e.g. ghostty -e "env NO_TMUX=1 bash -l".
 # Deliberately not exec: on detach the login shell survives instead of the
 # terminal window closing.
-if [[ $- == *i* && -z "${TMUX:-}" && -t 1 && -z "${NO_TMUX:-}" ]] && command -v tmux >/dev/null 2>&1; then
-  tmux new-session -A -s main
+if [[ $- == *i* && -z "${TMUX:-}" && -t 1 && -z "${NO_TMUX:-}" ]]; then
+  _dotfiles_module_load util gnu/tmux >/dev/null 2>&1
+  if command -v tmux >/dev/null 2>&1; then
+    tmux new-session -A -s main
+  fi
 fi
