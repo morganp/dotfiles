@@ -33,6 +33,10 @@ fi
 # https://stackoverflow.com/a/66363252/97073
 bindkey '^I' expand-or-complete
 
+# Ghostty sends this CSI-u sequence for Shift+Return so Codex can distinguish
+# it through GNU Screen. At a normal shell prompt, retain Return's behaviour.
+bindkey $'\e[13;2u' accept-line
+
 # Completion
 # Oh My Zsh initializes completion and maintains its own versioned dump. Keep
 # this optimized fallback for shells that source this file without Oh My Zsh.

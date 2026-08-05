@@ -73,6 +73,29 @@ alias vim="vim -X"
 alias n="nedit"
 alias h='history'
 
+# Do not put one terminal multiplexer inside the other. Use `command tmux` or
+# `command screen` to bypass the guard deliberately.
+tmux() {
+  if [ -n "${STY:-}" ]; then
+    echo "Refusing to start tmux inside GNU Screen." >&2
+    return 1
+  fi
+
+  # tmux is supplied by an environment module on some RHEL hosts.
+  if type _dotfiles_module_load >/dev/null 2>&1; then
+    _dotfiles_module_load util gnu/tmux >/dev/null 2>&1
+  fi
+  command tmux "$@"
+}
+
+screen() {
+  if [ -n "${TMUX:-}" ]; then
+    echo "Refusing to start GNU Screen inside tmux." >&2
+    return 1
+  fi
+  command screen "$@"
+}
+
 
 ## Subversion Shortcuts
 alias ss='svn status -u'
@@ -151,5 +174,4 @@ alias claude-ornith-dspark=' claude --setting-sources local,project --settings ~
 #ln Link
 #ex Executable has unix x set
 export LS_COLORS="fi=00:di=01;94:ln=00;36:ex=00;91:"
-
 

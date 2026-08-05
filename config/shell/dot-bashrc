@@ -291,14 +291,11 @@ if [[ $- == *i* ]] && command -v starship >/dev/null 2>&1; then
   eval "$(starship init bash)"
 fi
 
-# Start or attach to the shared tmux session for interactive terminals. TMUX is
-# set inside tmux, which prevents new panes from creating nested sessions.
-# Set NO_TMUX=1 to get a plain shell, e.g. ghostty -e "env NO_TMUX=1 bash -l".
-# Deliberately not exec: on detach the login shell survives instead of the
-# terminal window closing.
-if [[ $- == *i* && -z "${TMUX:-}" && -t 1 && -z "${NO_TMUX:-}" ]]; then
-  _dotfiles_module_load util gnu/tmux >/dev/null 2>&1
-  if command -v tmux >/dev/null 2>&1; then
-    tmux new-session -A -s main
-  fi
-fi
+# Optional: start or attach to the shared tmux session for interactive
+# terminals. Uncomment the block to enable automatic startup.
+# if [[ $- == *i* && -z "${TMUX:-}" && -z "${STY:-}" && -t 1 && -z "${NO_TMUX:-}" ]]; then
+#   _dotfiles_module_load util gnu/tmux >/dev/null 2>&1
+#   if command -v tmux >/dev/null 2>&1; then
+#     tmux new-session -A -s main
+#   fi
+# fi

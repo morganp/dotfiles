@@ -22,12 +22,22 @@
 ## Create initial Named screens
 #screen -t "Name 1"
 #screen -t "Two"
-## Add [computer] to status -> %{gk}[ %{G}%H %{g}]
+# Keep the window/stats row above a shortcut guide for new Screen users.
+# %H expands to the hostname of the machine running Screen.
+caption always
+caption string '%{= kW}%-Lw%{= KW}%50>%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%H  %D %d %M %Y %c:%s%{-}'
+
 hardstatus alwayslastline
-hardstatus string '%{= kW}%-Lw%{= KW}%50>%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+hardstatus string '%{= kW}%=%{= KW}Prefix: Ctrl-a  |  c: create  |  A: rename  |  n/p: next/previous  |  d: detach%=%{-}'
 
 defscrollback 10000
 vbell off
+
+# Advertise Screen's 256-colour virtual terminal to applications such as
+# Codex. The default `screen` entry exposes only eight colours.
+term screen-256color
+truecolor on
+
 termcapinfo xterm* ti@:te@
 termcapinfo linux* ti@:te@
 termcapinfo screen* ti@:te@

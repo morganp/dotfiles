@@ -34,6 +34,11 @@ cursor-style-blink = false
 # Shift+scroll always scrolls terminal scrollback, even when TUI app captures mouse
 mouse-shift-capture = false
 
+# GNU Screen does not forward the enhanced-keyboard negotiation used by Codex.
+# Send the CSI-u encoding explicitly so Shift+Return remains distinguishable
+# from Return through Screen.
+keybind = shift+enter=csi:13;2u
+
 keybind = cmd+t=new_tab
 keybind = cmd+r=reload_config
 keybind = ctrl+shift+t=new_tab

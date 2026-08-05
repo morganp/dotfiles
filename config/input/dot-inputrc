@@ -16,6 +16,10 @@ set show-all-if-ambiguous on
 # Never ring a bell
 set bell-style none
 
+# Ghostty sends this CSI-u sequence for Shift+Return so Codex can distinguish
+# it through GNU Screen. At a normal Readline prompt, retain Return's behaviour.
+"\e[13;2u": accept-line
+
 
 # Respect default shortcuts.
 $include /etc/inputrc
