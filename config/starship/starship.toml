@@ -11,6 +11,7 @@ $username\
 $directory\
 $git_branch\
 $git_status\
+$python\
 $line_break\
 $character\
 """
@@ -74,8 +75,19 @@ format = "on [$symbol$branch]($style) "
 style = "magenta bold"
 
 [git_status]
-format = "([$all_status$ahead_behind]($style))"
+# Trailing space sits inside the group, so it only renders when the status is
+# non-empty. Without it a following module (python) would butt up against it.
+format = "([$all_status$ahead_behind]($style) )"
 style = "red bold"
+
+[python]
+# Active virtualenv plus the interpreter version behind it. The module also
+# fires on Python project files (pyproject.toml, requirements.txt, *.py, ...);
+# to limit it to activated venvs only, clear detect_extensions/detect_files
+# and detect_folders below.
+symbol = " "
+format = 'via [$symbol$version( \($virtualenv\))]($style) '
+style = "yellow bold"
 
 [character]
 success_symbol = "[⚡](green bold)"
