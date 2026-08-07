@@ -85,7 +85,7 @@ style = "red bold"
 # fires on Python project files (pyproject.toml, requirements.txt, *.py, ...);
 # to limit it to activated venvs only, clear detect_extensions/detect_files
 # and detect_folders below.
-symbol = " "
+symbol = " "
 format = 'via [$symbol$version( \($virtualenv\))]($style) '
 style = "yellow bold"
 
