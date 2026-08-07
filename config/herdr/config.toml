@@ -7,3 +7,6 @@ delivery = "off"
 
 [ui.sound]
 enabled = false
+
+[experimental]
+allow_nested = false

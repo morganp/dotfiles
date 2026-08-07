@@ -23,9 +23,11 @@
 #screen -t "Name 1"
 #screen -t "Two"
 # Keep the window/stats row above a shortcut guide for new Screen users.
-# %H expands to the hostname of the machine running Screen.
+# Reuse the host label computed for Starship and tmux (for example, NAHPC2
+# instead of login68), with Screen's short hostname as a fallback.
+backtick 1 3600 0 sh -c 'printf "%s\n" "${DOTFILES_HOST:-$(hostname -s)}"'
 caption always
-caption string '%{= kW}%-Lw%{= KW}%50>%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%H  %D %d %M %Y %c:%s%{-}'
+caption string '%{= kW}%-Lw%{= KW}%50>%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%1`  %D %d %M %Y %c:%s%{-}'
 
 hardstatus alwayslastline
 hardstatus string '%{= kW}%=%{= KW}Prefix: Ctrl-a  |  c: create  |  A: rename  |  n/p: next/previous  |  d: detach%=%{-}'

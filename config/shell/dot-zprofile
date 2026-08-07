@@ -57,8 +57,9 @@ if [ -n "${ZSH_DEBUGRC+1}" ]; then
   zprof
 fi
 
-# Optional: start or attach to the shared tmux session for interactive
-# terminals. Uncomment the block to enable automatic startup.
-# if [[ -o interactive && -z "${TMUX:-}" && -z "${STY:-}" && -t 1 && -z "${NO_TMUX:-}" ]] && (( $+commands[tmux] )); then
-#   tmux new-session -A -s main
-# fi
+# Start or attach to Herdr's default persistent session. HERDR_ENV, STY, and
+# TMUX are checked by the shared helper so pane shells cannot nest multiplexers.
+# Set NO_HERDR=1 to open a plain shell instead.
+if [[ -o interactive ]]; then
+  _dotfiles_autostart_herdr
+fi

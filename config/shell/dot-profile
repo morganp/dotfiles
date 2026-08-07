@@ -73,11 +73,33 @@ alias vim="vim -X"
 alias n="nedit"
 alias h='history'
 
-# Do not put one terminal multiplexer inside the other. Use `command tmux` or
-# `command screen` to bypass the guard deliberately.
+# Start Herdr only from a real terminal, never from inside another multiplexer.
+# Keep this helper shell-neutral because both bash and zsh source this file.
+_dotfiles_autostart_herdr() {
+  [ -t 1 ] || return
+  [ -z "${NO_HERDR:-}" ] || return
+  [ -z "${STY:-}" ] || return
+  [ -z "${TMUX:-}" ] || return
+  [ -z "${HERDR_ENV:-}" ] || return
+
+  # Ignore the shell wrapper below and locate the real executable.
+  local herdr_bin
+  herdr_bin="$(type -P herdr 2>/dev/null || whence -p herdr 2>/dev/null)"
+  [ -n "$herdr_bin" ] || return
+
+  # Do not exec: detaching returns to the original login shell.
+  "$herdr_bin"
+}
+
+# Do not put Screen, tmux, or Herdr inside one another. Prefix a command with
+# `command` to bypass the corresponding manual guard deliberately.
 tmux() {
   if [ -n "${STY:-}" ]; then
     echo "Refusing to start tmux inside GNU Screen." >&2
+    return 1
+  fi
+  if [ -n "${HERDR_ENV:-}" ]; then
+    echo "Refusing to start tmux inside Herdr." >&2
     return 1
   fi
 
@@ -93,7 +115,35 @@ screen() {
     echo "Refusing to start GNU Screen inside tmux." >&2
     return 1
   fi
+  if [ -n "${HERDR_ENV:-}" ]; then
+    echo "Refusing to start GNU Screen inside Herdr." >&2
+    return 1
+  fi
+  if [ -n "${ZSH_VERSION:-}" ]; then
+    (( $+commands[screen] )) || _dotfiles_module_load util gnu/screen >/dev/null 2>&1
+  elif ! type -P screen >/dev/null 2>&1; then
+    _dotfiles_module_load util gnu/screen >/dev/null 2>&1
+  fi
   command screen "$@"
+}
+
+herdr() {
+  if [ -n "${STY:-}" ]; then
+    echo "Refusing to start Herdr inside GNU Screen." >&2
+    return 1
+  fi
+  if [ -n "${TMUX:-}" ]; then
+    echo "Refusing to start Herdr inside tmux." >&2
+    return 1
+  fi
+
+  # Herdr CLI subcommands are useful from managed panes; only a bare invocation
+  # would try to attach a Herdr client inside Herdr itself.
+  if [ -n "${HERDR_ENV:-}" ] && [ "$#" -eq 0 ]; then
+    echo "Refusing to start Herdr inside Herdr." >&2
+    return 1
+  fi
+  command herdr "$@"
 }
 
 
@@ -174,4 +224,3 @@ alias claude-ornith-dspark=' claude --setting-sources local,project --settings ~
 #ln Link
 #ex Executable has unix x set
 export LS_COLORS="fi=00:di=01;94:ln=00;36:ex=00;91:"
-
