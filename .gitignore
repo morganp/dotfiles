@@ -19,3 +19,11 @@ config/starship/*private*.toml
 /config/tmux/plugins/
 /data/
 /state/
+
+# herdr treats $XDG_CONFIG_HOME (config/) as its runtime dir, so its sockets,
+# logs and session state land here. Keep the hand-written settings only.
+/config/herdr/*
+!/config/herdr/config.toml
+
+# Stray XDG-ish dir some tools write to; holds gh/hosts.yml with an auth token.
+/configs/
