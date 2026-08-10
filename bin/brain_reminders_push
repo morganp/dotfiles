@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""Push dated SecondBrain actions into Apple Reminders.
+
+One way only: the vault is the source of truth, Reminders is a projection.
+Nothing here reads Reminders back into the vault.
+
+Input is a JSON array on stdin, one object per action:
+
+    [{"id": "submit-ipsita-friend-cv",
+      "title": "Submit Ipsita friend CV",
+      "due": "2026-08-17"}]
+
+`due` may be null. `id` is the vault action id and must be stable: it is
+written into the reminder body as [brain:<id>] and is what makes a re-run
+skip an action it already pushed.
+
+Usage:
+    brain_reminders_push < actions.json
+    brain_reminders_push --dry-run < actions.json
+    brain_reminders_push --list "Work" < actions.json
+"""
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+
+DEFAULT_LIST = "SecondBrain"
+DUE_HOUR = 9
+ID_PATTERN = re.compile(r"\[brain:([^\]]+)\]")
+
+
+def osascript(script):
+    result = subprocess.run(
+        ["osascript", "-e", script],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        err = result.stderr.strip()
+        if "-1743" in err or "not allowed" in err.lower():
+            sys.exit(
+                "Reminders refused automation access.\n"
+                "Grant it in System Settings > Privacy & Security > Automation,\n"
+                "for whichever app is running this script, then re-run."
+            )
+        sys.exit("osascript failed: " + err)
+    return result.stdout.strip()
+
+
+def applescript_string(value):
+    return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def ensure_list(name):
+    osascript(
+        'tell application "Reminders"\n'
+        "  if not (exists list %s) then make new list with properties {name:%s}\n"
+        "end tell" % (applescript_string(name), applescript_string(name))
+    )
+
+
+def existing_ids(name):
+    """Ids already present in the list, completed or not.
+
+    Completed ones count: a re-run should not resurrect something ticked off.
+    """
+    raw = osascript(
+        'set out to ""\n'
+        'tell application "Reminders"\n'
+        "  repeat with r in reminders of list %s\n"
+        "    set b to body of r\n"
+        '    if b is not missing value then set out to out & b & "\\n"\n'
+        "  end repeat\n"
+        "end tell\n"
+        "return out" % applescript_string(name)
+    )
+    return set(ID_PATTERN.findall(raw))
+
+
+def due_clause(due):
+    """AppleScript that leaves a `theDate` variable holding the due date.
+
+    Day is reset to 1 before setting month, otherwise assigning a month with
+    fewer days than the current day-of-month rolls the date into the next one.
+    """
+    year, month, day = (int(part) for part in due.split("-"))
+    return (
+        "set theDate to current date\n"
+        "set day of theDate to 1\n"
+        "set year of theDate to %d\n"
+        "set month of theDate to %d\n"
+        "set day of theDate to %d\n"
+        "set time of theDate to %d * hours\n" % (year, month, day, DUE_HOUR)
+    )
+
+
+def create(name, action):
+    title = applescript_string(action["title"])
+    body = applescript_string("[brain:%s]" % action["id"])
+    due = action.get("due")
+
+    if due:
+        script = due_clause(due) + (
+            'tell application "Reminders"\n'
+            "  make new reminder at end of list %s with properties "
+            "{name:%s, body:%s, due date:theDate, remind me date:theDate}\n"
+            "end tell" % (applescript_string(name), title, body)
+        )
+    else:
+        script = (
+            'tell application "Reminders"\n'
+            "  make new reminder at end of list %s with properties {name:%s, body:%s}\n"
+            "end tell" % (applescript_string(name), title, body)
+        )
+    osascript(script)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--list", default=DEFAULT_LIST, help="target Reminders list")
+    parser.add_argument("--dry-run", action="store_true", help="report, change nothing")
+    args = parser.parse_args()
+
+    try:
+        actions = json.load(sys.stdin)
+    except json.JSONDecodeError as exc:
+        sys.exit("stdin is not valid JSON: %s" % exc)
+
+    if not isinstance(actions, list):
+        sys.exit("expected a JSON array of actions")
+
+    for action in actions:
+        if not action.get("id") or not action.get("title"):
+            sys.exit("every action needs an id and a title: %r" % action)
+
+    if args.dry_run:
+        print("dry run, target list: %s" % args.list)
+        for action in actions:
+            print("  would push %s  (%s)" % (action["title"], action.get("due") or "no due date"))
+        return
+
+    ensure_list(args.list)
+    seen = existing_ids(args.list)
+
+    pushed, skipped = 0, 0
+    for action in actions:
+        if action["id"] in seen:
+            skipped += 1
+            continue
+        create(args.list, action)
+        pushed += 1
+        print("pushed  %s" % action["title"])
+
+    print("%d pushed, %d already present, list %s" % (pushed, skipped, args.list))
+
+
+if __name__ == "__main__":
+    main()
