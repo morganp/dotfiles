@@ -12,7 +12,8 @@ branch.
   to both `~/.claude/skills` and `~/.codex/skills`.
 - Put shared, repo-managed skills in the skillbook, not under
   `config/claude/skills` or another tool-specific directory.
-- Local-only skills belong in `config/shared/skillbook/arm-*`; the skillbook's
+- Local-only skills belong in `config/shared/skillbook/arm-*` or
+  `config/shared/skillbook/morgan-*`; the skillbook's
   `.gitignore` excludes that naming pattern.
 - The skillbook's tracked `.system` directory contains shared Codex system
   skills. Treat tool-generated changes there as changes inside the submodule;
