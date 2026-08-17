@@ -1,3 +1,4 @@
+onboarding = false
 [ui]
 agent_panel_sort = "spaces"
 
@@ -10,3 +11,37 @@ enabled = false
 
 [experimental]
 allow_nested = false
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+# herdr-mirror. The remote actions fall back to the plain local action when
+# invoked outside a mirror, so the native keys can point at them and cover both
+# worlds. Natives move to their shift variants.
+[keys]
+new_tab = "prefix+shift+c"
+split_vertical = "prefix+shift+v"
+split_horizontal = "prefix+shift+minus"
+
+# Create a workspace on the remote host. Native new_workspace stays on
+# prefix+shift+n; this is the same key plus alt.
+[[keys.command]]
+key = "prefix+alt+n"
+type = "plugin_action"
+command = "mirror.remote-new-workspace"
+
+[[keys.command]]
+key = "prefix+c"
+type = "plugin_action"
+command = "mirror.remote-new-tab"
+
+[[keys.command]]
+key = "prefix+v"
+type = "plugin_action"
+command = "mirror.remote-split-right"
+
+[[keys.command]]
+key = "prefix+minus"
+type = "plugin_action"
+command = "mirror.remote-split-down"
