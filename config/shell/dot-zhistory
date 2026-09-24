@@ -1,0 +1,11 @@
+# History file and sizes.
+#
+# These cannot be set from ~/.zprofile. Zsh reads ~/.zprofile, then /etc/zshrc,
+# then ~/.zshrc, and the macOS /etc/zshrc sets HISTFILE, HISTSIZE=2000, and
+# SAVEHIST=1000. Anything set earlier is discarded in every login shell, which
+# is what a new terminal window opens. This file is therefore sourced from
+# ~/.zshrc, for the same reason the prompt is. The history options themselves
+# are not reset by /etc/zshrc and stay in dot-zshrc.
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=5000
+SAVEHIST=5000

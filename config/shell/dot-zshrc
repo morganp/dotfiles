@@ -37,29 +37,66 @@ bindkey '^I' expand-or-complete
 # it through GNU Screen. At a normal shell prompt, retain Return's behaviour.
 bindkey $'\e[13;2u' accept-line
 
+# Editing behaviour that came from Oh My Zsh's lib/key-bindings.zsh and
+# lib/misc.zsh. The sequences are the xterm-style ones sent by Ghostty,
+# Terminal.app, and the Linux terminals in use here.
+setopt INTERACTIVE_COMMENTS
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+bindkey '^[[1;5C' forward-word    # Ctrl+Right
+bindkey '^[[1;5D' backward-word   # Ctrl+Left
+bindkey '^[[1;3C' forward-word    # Alt+Right
+bindkey '^[[1;3D' backward-word   # Alt+Left
+bindkey '^[[3~' delete-char
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+
+# Escape the characters zsh treats as special (?, &, *, spaces) while a URL is
+# being typed, so that curl http://host/?a=1&b=2 does not fail to glob or get
+# cut at the ampersand. Oh My Zsh autoloaded this; the widget ships with zsh.
+# Its companion bracketed-paste-magic, which extends this to pasted text, is
+# deliberately not loaded: it dispatches a widget per pasted character, which
+# is slow on large pastes and interferes with zsh-syntax-highlighting.
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+
+# Window and tab title: the working directory while idle, the running command
+# while one is in the foreground. Oh My Zsh did this in lib/termsupport.zsh.
+if [[ -o interactive ]]; then
+  _dotfiles_title() { print -Pn "\e]0;$1\a" }
+  _dotfiles_title_precmd() { _dotfiles_title '%~' }
+  _dotfiles_title_preexec() { _dotfiles_title "${1//\%/%%}" }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _dotfiles_title_precmd
+  add-zsh-hook preexec _dotfiles_title_preexec
+fi
+
 # Completion
-# Oh My Zsh initializes completion and maintains its own versioned dump. Keep
-# this optimized fallback for shells that source this file without Oh My Zsh.
-if [[ -z ${DOTFILES_OMZ_LOADED-} ]]; then
-  # Run the full completion and security checks once per day, then reuse
-  # ~/.zcompdump without repeating those checks. Suggested by:
-  # https://scottspence.com/posts/speeding-up-my-zsh-shell
-  # Measured 2026-07-31: compinit saved ~12 ms gross (20.78 -> 8.89 ms);
-  # including date/stat, median shell startup saved ~4 ms (103.60 -> 99.25 ms).
-  autoload -Uz compinit
-  if [[ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]]; then
-    compinit
-  else
-    compinit -C
-  fi
+# Run the full completion and security checks once per day, then reuse
+# ~/.zcompdump without repeating those checks. Suggested by:
+# https://scottspence.com/posts/speeding-up-my-zsh-shell
+# Measured 2026-07-31: compinit saved ~12 ms gross (20.78 -> 8.89 ms);
+# including date/stat, median shell startup saved ~4 ms (103.60 -> 99.25 ms).
+autoload -Uz compinit
+if [[ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]]; then
+  compinit
+else
+  compinit -C
 fi
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select
 
 #History
-SAVEHIST=5000
-HISTSIZE=5000
+# The options are safe to set here; HISTFILE, HISTSIZE, and SAVEHIST are not,
+# because macOS /etc/zshrc resets all three after ~/.zprofile has been read.
+# They live in dot-zhistory, sourced from ~/.zshrc via dot-zprompt.
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_VERIFY
 
 # Standard Aliases for Bash and zsh
 # https://stackoverflow.com/questions/764600/how-can-you-export-your-bashrc-to-zshrc

@@ -7,6 +7,11 @@
 # therefore discarded in every login shell. Spaceship hid this by reassigning
 # PROMPT from a precmd hook on each draw; Starship sets PROMPT once at init.
 
+# History sizes are set here, not in dot-zshrc, because macOS /etc/zshrc
+# resets them after ~/.zprofile. Same ordering problem as the prompt below.
+[[ -r "$HOME/dotfiles/config/shell/dot-zhistory" ]] &&
+  source "$HOME/dotfiles/config/shell/dot-zhistory"
+
 # OS name and major.minor version for the prompt, exported for starship's
 # env_var module. Starship's own os module reports a name but no version, and a
 # custom module would run a command on every redraw. This is built once per

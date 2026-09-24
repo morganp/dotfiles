@@ -6,7 +6,7 @@ brew "python@3"
 brew "tmux"
 brew "tree"
 brew "uv"
-# Interactive Zsh prompt and plugins; Oh My Zsh itself is installed separately.
+# Interactive Zsh prompt and plugins.
 brew "starship"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"

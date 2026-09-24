@@ -31,13 +31,27 @@ The prompt has to be initialised from `~/.zshrc`, not `~/.zprofile`. Zsh reads
 sets `PS1="%n@%m %1~ %# "`. A prompt configured in `~/.zprofile` is silently
 discarded in every login shell, which is what a new terminal window opens.
 
-Oh My Zsh has no Homebrew formula, so install it separately:
+Oh My Zsh was removed in favour of plain Zsh. Everything it provided that was
+actually in use is now set explicitly: `compinit` and the completion styles,
+the history settings (shared history, timestamps, file and sizes), the
+word-motion and `edit-command-line` key bindings, and the window title
+hooks, all in `config/shell/dot-zshrc` and `config/shell/dot-zhistory`. Its
+`git` plugin aliases were already shadowed by the git aliases in
+`config/shell/dot-profile`.
+Two of its conveniences were kept: the `url-quote-magic` widget, in
+`dot-zshrc`, and a `mkcd` function replacing its `take`, in `dot-profile` so
+that Bash gets it too. Nothing outside this repository needs installing for the
+shell; `~/.oh-my-zsh` can be deleted. Measured on macOS, login shell startup
+went from about 140ms to about 90ms.
 
-    git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+`config/shell/dot-zhistory` holds `HISTFILE`, `HISTSIZE`, and `SAVEHIST`. It is
+sourced from `dot-zprompt`, so that it is read from `~/.zshrc`, for the same
+ordering reason as the prompt: the macOS `/etc/zshrc` resets all three (to
+`SAVEHIST=1000`) after `~/.zprofile`. The history *options* are not reset and
+stay in `dot-zshrc`.
 
-The `git` plugin is bundled with Oh My Zsh. The Starship prompt,
-`zsh-autosuggestions`, and `zsh-syntax-highlighting` are installed through the
-Brewfile below. Starship is configured in `config/starship/starship.toml`, which
+The Starship prompt, `zsh-autosuggestions`, and `zsh-syntax-highlighting` are
+installed through the Brewfile below. Starship is configured in `config/starship/starship.toml`, which
 `run_stow` links to `~/.config/starship.toml`; it keeps the minimal prompt order
 (user, dir, git, line break, char) that the setup used previously. The right
 left prompt opens with the OS and its major.minor version and the hostname, so

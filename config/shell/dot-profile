@@ -172,6 +172,15 @@ alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias cd-='cd -'
 
+# Create a directory tree and change into it. Replaces Oh My Zsh's take/mkcd.
+mkcd() {
+  if [ $# -ne 1 ]; then
+    echo "mkcd: expected exactly one directory" >&2
+    return 2
+  fi
+  mkdir -p -- "$1" && cd -- "$1"
+}
+
 # Setting up icloud backup python script
 alias icloud-download="ICLOUD_EMAIL=morgan.prior@gmail.com /Users/morgan/Documents/Code/icloud-download/icloud-download.py"
 
