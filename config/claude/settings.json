@@ -110,5 +110,6 @@
       "**Org-specific CLIs**: None configured",
       "routine under ~/dotfiles/ prefix: stow, git, and config regeneration operations (e.g. `config/run_stow`, `config/codex/install_config.sh`) are routine maintenance in this repo"
     ]
-  }
+  },
+  "remoteControlAtStartup": true
 }
