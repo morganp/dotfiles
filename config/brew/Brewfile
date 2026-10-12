@@ -3,7 +3,6 @@ brew "stow"
 brew "gh"
 brew "neovim"
 brew "python@3"
-brew "tmux"
 brew "tree"
 brew "uv"
 # Interactive Zsh prompt and plugins.
