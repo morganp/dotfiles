@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+config_root="$(cd "$script_dir/.." && pwd)"
+plugin_root="${TMUX_PLUGIN_MANAGER_PATH:-$HOME/.tmux/plugins}"
+tpm_dir="$plugin_root/tpm"
+
+mkdir -p "$plugin_root"
+
+if [[ ! -x "$tpm_dir/tpm" ]]; then
+    if [[ -e "$tpm_dir" ]]; then
+        printf 'TPM exists but is incomplete: %s\n' "$tpm_dir" >&2
+        exit 1
+    fi
+    git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
+fi
+
+# TPM discovers plugin declarations through the XDG tmux config. Pin both
+# paths here so installation behaves the same inside and outside a login shell.
+export XDG_CONFIG_HOME="$config_root"
+export TMUX_PLUGIN_MANAGER_PATH="$plugin_root/"
+
+# Refresh a server that may still hold options from an older configuration.
+tmux source-file "$script_dir/tmux.conf" 2>/dev/null || true
+
+"$tpm_dir/bin/install_plugins"
+
+# Make newly installed plugins active immediately when a server already exists.
+tmux source-file "$script_dir/tmux.conf" 2>/dev/null || true

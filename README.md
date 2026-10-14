@@ -87,9 +87,11 @@ Tmux uses the `$XDG_CONFIG_HOME` variable, which is set in config/shell/dot-prof
 
     $XDG_CONFIG_HOME/tmux/tmux.conf
 
-For the tmux plugin manager, clone to this area:
+Install the tmux plugin manager and all plugins declared in `tmux.conf`:
 
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    ~/dotfiles/config/tmux/install_plugins
+
+The installer is idempotent and is also run by `config/run_stow`.
 
 Packages (brew)
 --

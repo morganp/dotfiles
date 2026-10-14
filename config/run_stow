@@ -21,6 +21,10 @@ stow karabiner  -t  $HOME/.config/karabiner
 mkdir -p $HOME/.config
 stow starship -t $HOME/.config
 
+# Install tmux-resurrect and tmux-continuum declared in tmux.conf. The installer
+# is idempotent, so rerunning the dotfiles setup also repairs missing plugins.
+"$dotfiles_dir/config/tmux/install_plugins"
+
 # skillbook tracks main (branch set in .gitmodules); --remote always pulls latest, never a pin
 git -C "$dotfiles_dir" submodule update --remote --init config/shared/skillbook
 
