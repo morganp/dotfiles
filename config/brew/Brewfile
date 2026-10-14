@@ -30,6 +30,8 @@ brew "ripgrep"
 
 # For wavedrom and other tools
 brew "node"
+brew "herdr"
+brew "rust"
 
 cask "ghostty"
 cask "copilot-cli"
